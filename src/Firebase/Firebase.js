@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-
+import "firebase/auth";
 const config = {
   apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
   authDomain: "mansub-portfolio.firebaseapp.com",
@@ -10,6 +10,8 @@ const config = {
   messagingSenderId: "13321522848",
   appId: "1:13321522848:web:ebe5e5c7f4da6619"
 };
+
+var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.initializeApp(config);
 

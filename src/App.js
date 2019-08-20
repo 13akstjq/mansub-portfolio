@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import { firestore } from "./Firebase";
+import React from "react";
+import Router from "./Router";
+import GlobalStyle from "./Styles/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import Theme from "./Styles/Theme";
 
 function App() {
-  useEffect(() => {
-    firestore
-      .collection("projects")
-      .get()
-      .then(() => console.log("성공"));
-  }, []);
-
   return (
     <div className="App">
-      <span>Hello World!</span>
+      <ThemeProvider theme={Theme}>
+        <>
+          <GlobalStyle />
+          <Router />
+        </>
+      </ThemeProvider>
     </div>
   );
 }
