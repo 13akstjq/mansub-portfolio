@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Login from "./Login";
+import PortfolioLogo from "../assets/image/portfolioLogo.jpg";
 const Header = styled.div`
   position: fixed;
   width: 100vw;
-  height: 50px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
 `;
 
-const Logo = styled.div`
+const Logo = styled.img`
   margin-left: 20px;
+  width: 70px;
+  height: 70px;
   cursor: pointer;
 `;
 
@@ -34,7 +37,7 @@ export default () => {
 
   return (
     <Header>
-      <Logo>Logo</Logo>
+      <Logo src={PortfolioLogo} />
       <AuthButton onClick={() => setIsClicked(!isClicked)}>
         {!isLoggedIn ? "Login" : "Logout"}
       </AuthButton>

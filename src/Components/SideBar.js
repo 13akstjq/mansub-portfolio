@@ -9,11 +9,12 @@ const Wrapper = styled.div`
   height: 100vh;
   width: ${props => (props.isSideOpen ? "300px" : "0px")};
   overflow: hidden;
-  display: flex;
+  /* display: flex; */
+  position: absolute;
   flex-direction: column;
   padding-top: 200px;
   z-index: 1;
-  transition: 0.3s ease-in-out;
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
   white-space: nowrap;
 `;
 

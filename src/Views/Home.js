@@ -7,18 +7,24 @@ import Slider from "../Components/Slider";
 import { AppContext } from "../Context/AppContext";
 const Wrapper = styled.div`
   width: 100vw;
-  display: grid;
-  grid-template-columns: ${props => (props.isSideOpen ? "300px" : "0px")} 1fr;
+  /* display: grid;
+  grid-template-columns: ${props =>
+    props.isSideOpen ? "300px" : "0px"} 1fr; */
   height: 100vh;
   overflow: hidden;
+  transition: 0.5s ease-in-out;
 `;
 
 const MainContainer = styled.div`
   padding-top: 150px;
   padding-bottom: 50px;
+  width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 9fr;
+  transform: ${props =>
+    props.isSideOpen ? "translateX(300px) " : "translateX(0px)"};
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
 const MenuContainer = styled.div`
@@ -42,8 +48,18 @@ const MenuStatusBar = styled.div`
 
 const ProjectListContainer = styled.div`
   /* background-color: gray; */
-  transform: ${props => `translateX(${props.position}px)`};
-  transition: 0.3s ease-in-out;
+  /* transform: ${props => `translateX(${props.position}px)`}; */
+  transform: ${props =>
+    props.isSideOpen
+      ? ` translateX(${
+          props.position
+        }px) perspective(500px) translate3d(0px,-30px,-30px);`
+      : ` translateX(${
+          props.position
+        }px)perspective(500px) translate3d(0px,0px,0px); `};
+    /* ${props => `translateX(${props.position}px)`}; */
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  /* transition: 0.3s ease-in-out; */
   /* width: 500px;
   height: 80vw;
   overflow-y: auto;
@@ -71,13 +87,13 @@ export default () => {
     <Wrapper isSideOpen={isSideOpen} onWheel={onWheel}>
       <Header />
       <SideBar />
-      <MainContainer>
+      <MainContainer isSideOpen={isSideOpen}>
         <MenuContainer>
           <SidebarControlButton />
           <MenuTitle>Home</MenuTitle>
           <MenuStatusBar />
         </MenuContainer>
-        <ProjectListContainer position={position}>
+        <ProjectListContainer position={position} isSideOpen={isSideOpen}>
           <Slider />
         </ProjectListContainer>
       </MainContainer>
