@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 const Wrapper = styled.div`
   top: 0;
   height: 100vh;
-  background-color: white;
-  width: 300px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  z-index: -1;
+  z-index: 1;
+  transition: 0.5s linear;
 `;
 
 const MenuItem = styled.div`

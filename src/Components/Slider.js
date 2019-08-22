@@ -2,17 +2,23 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  overflow-x: auto;
   background-color: lightgray;
   flex: 1;
 `;
 
 const Project = styled.div`
+  /* transform: rotate(90deg) translateY(-100px); */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 40px;
   width: 300px;
-  height: 300px;
+  height: 390px;
   &:nth-child(even) {
     background-color: rgba(255, 0, 0, 0.3);
   }

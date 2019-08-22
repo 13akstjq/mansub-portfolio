@@ -36,10 +36,11 @@ const MenuStatusBar = styled.div`
 `;
 
 const ProjectListContainer = styled.div`
-  width: 300px;
+  /* width: 500px;
+  height: 80vw;
   overflow-y: auto;
-  transform: rotate(-90deg);
-  transform-origin: top right;
+  transform: rotate(-90deg) translateY(-500px);
+  transform-origin: top right; */
 `;
 
 export default () => {
