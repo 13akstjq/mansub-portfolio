@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Header from "../Components/Header";
 import styled from "styled-components";
 import SideBar from "../Components/SideBar";
 import SidebarControlButton from "../Components/SidebarControlButton";
 import Slider from "../Components/Slider";
-
+import { AppContext } from "../Context/AppContext";
 const Wrapper = styled.div`
   width: 100vw;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: ${props => (props.isSideOpen ? "300px" : "0px")} 1fr;
   height: 100vh;
   overflow: hidden;
 `;
@@ -23,12 +23,17 @@ const MainContainer = styled.div`
 
 const MenuContainer = styled.div`
   /* background-color: red; */
+  align-items: center;
   padding: 3px;
+  padding-left: 40px;
   display: flex;
+  font-size: 30px;
+  font-weight: 900;
 `;
 
 const MenuTitle = styled.span`
   /* background-color: yellow; */
+  margin-left: 10px;
 `;
 
 const MenuStatusBar = styled.div`
@@ -36,6 +41,9 @@ const MenuStatusBar = styled.div`
 `;
 
 const ProjectListContainer = styled.div`
+  /* background-color: gray; */
+  transform: ${props => `translateX(${props.position}px)`};
+  transition: 0.3s ease-in-out;
   /* width: 500px;
   height: 80vw;
   overflow-y: auto;
@@ -44,8 +52,23 @@ const ProjectListContainer = styled.div`
 `;
 
 export default () => {
+  const [position, setPosition] = useState(0);
+  const { selectedProject, setSelectedProject, isSideOpen } = useContext(
+    AppContext
+  );
+  console.log(selectedProject);
+  const onWheel = e => {
+    console.log(e.deltaY);
+    if (e.deltaY > 0) {
+      setPosition(position - 100);
+    }
+    if (e.deltaY < 0) {
+      setPosition(position + 100);
+    }
+  };
+
   return (
-    <Wrapper>
+    <Wrapper isSideOpen={isSideOpen} onWheel={onWheel}>
       <Header />
       <SideBar />
       <MainContainer>
@@ -54,7 +77,7 @@ export default () => {
           <MenuTitle>Home</MenuTitle>
           <MenuStatusBar />
         </MenuContainer>
-        <ProjectListContainer>
+        <ProjectListContainer position={position}>
           <Slider />
         </ProjectListContainer>
       </MainContainer>

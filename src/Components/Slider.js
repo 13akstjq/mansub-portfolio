@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  padding: 40px;
   align-items: center;
   display: grid;
   grid-auto-flow: column;
   grid-gap: 20px;
   overflow-x: auto;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   flex: 1;
 `;
 

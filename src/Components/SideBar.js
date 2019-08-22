@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
 
 const Wrapper = styled.div`
+  background-color: rgba(255, 255, 255, 0.8);
   top: 0;
   height: 100vh;
+  width: ${props => (props.isSideOpen ? "300px" : "0px")};
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  padding-top: 200px;
   z-index: 1;
-  transition: 0.5s linear;
+  transition: 0.3s ease-in-out;
+  white-space: nowrap;
 `;
 
 const MenuItem = styled.div`
   margin-left: 20px;
+  margin-bottom: 80px;
 `;
 
 const Title = styled.div`
-  font-weight: 600;
-  font-size: 30px;
+  font-weight: 900;
+  font-size: 40px;
   color: ${props => props.theme.darkGreyColor};
   margin-bottom: 10px;
 `;
@@ -30,8 +35,9 @@ const SubTitle = styled.div`
 `;
 
 export default () => {
+  const { isSideOpen } = useContext(AppContext);
   return (
-    <Wrapper>
+    <Wrapper isSideOpen={isSideOpen}>
       <MenuItem>
         <Link to="/">
           <Title>Home</Title>
