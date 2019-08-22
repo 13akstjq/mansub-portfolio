@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Login from "./Login";
-
 const Header = styled.div`
+  position: fixed;
+  width: 100vw;
   height: 50px;
   display: flex;
   justify-content: space-between;
