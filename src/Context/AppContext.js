@@ -4,15 +4,20 @@ import React, { createContext, useState } from "react";
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-  const [selectedProject, setSelectedProject] = useState(0);
+  const [selectedProject, setSelectedProject] = useState(1);
+  const projects = [1, 2, 3, 4, 5, 6, 7, 8];
   const [isSideOpen, setIsSideOpen] = useState(false);
+  const [scrollIndex, setScrollIndex] = useState(0);
   return (
     <AppContext.Provider
       value={{
+        scrollIndex,
+        setScrollIndex,
         selectedProject,
         setSelectedProject,
         isSideOpen,
-        setIsSideOpen
+        setIsSideOpen,
+        projects
       }}
     >
       {children}

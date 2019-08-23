@@ -24,6 +24,7 @@ const AuthButton = styled.div`
   cursor: pointer;
   padding: 5px 10px;
   border: 1px solid ${props => props.theme.lightGrayColor};
+  border-radius: 3px;
 `;
 
 export default () => {

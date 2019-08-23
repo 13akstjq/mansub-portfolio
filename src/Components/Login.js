@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   /* height: 0px; */
   position: fixed;
   right: 0px;
-  top: 50px;
+  top: 80px;
   transition: 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
   ${props =>
     props.isClicked && !props.isFinish

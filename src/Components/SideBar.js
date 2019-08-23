@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   top: 0;
   height: 100vh;
   width: ${props => (props.isSideOpen ? "300px" : "0px")};
+  box-shadow: ${props =>
+    props.isSideOpen ? "0 19px 38px rgba(0,0,0,0.30);" : null};
   overflow: hidden;
   /* display: flex; */
   position: absolute;

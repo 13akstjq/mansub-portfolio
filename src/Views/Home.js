@@ -47,39 +47,45 @@ const MenuStatusBar = styled.div`
 `;
 
 const ProjectListContainer = styled.div`
-  /* background-color: gray; */
-  /* transform: ${props => `translateX(${props.position}px)`}; */
   transform: ${props =>
     props.isSideOpen
       ? ` translateX(${
           props.position
-        }px) perspective(500px) translate3d(0px,-30px,-30px);`
+        }px) perspective(500px) translate3d(-30px,-30px,-30px);`
       : ` translateX(${
           props.position
         }px)perspective(500px) translate3d(0px,0px,0px); `};
-    /* ${props => `translateX(${props.position}px)`}; */
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
-  /* transition: 0.3s ease-in-out; */
-  /* width: 500px;
-  height: 80vw;
-  overflow-y: auto;
-  transform: rotate(-90deg) translateY(-500px);
-  transform-origin: top right; */
 `;
 
 export default () => {
   const [position, setPosition] = useState(0);
-  const { selectedProject, setSelectedProject, isSideOpen } = useContext(
-    AppContext
-  );
-  console.log(selectedProject);
+  const {
+    scrollIndex,
+    setScrollIndex,
+    projects,
+    selectedProject,
+    setSelectedProject,
+    isSideOpen
+  } = useContext(AppContext);
   const onWheel = e => {
-    console.log(e.deltaY);
-    if (e.deltaY > 0) {
+    // console.log(projects.length * 3);
+    if (e.deltaY > 0 && scrollIndex < (projects.length - 3) * 3) {
       setPosition(position - 100);
+      setScrollIndex(scrollIndex + 1);
+      if (scrollIndex > 0 && (scrollIndex + 1) % 3 === 0) {
+        console.log(selectedProject + 1);
+        setSelectedProject(selectedProject + 1);
+      }
     }
-    if (e.deltaY < 0) {
+    if (e.deltaY < 0 && scrollIndex > 0) {
       setPosition(position + 100);
+      setScrollIndex(scrollIndex - 1);
+      if (scrollIndex > 0 && (scrollIndex - 1) % 3 === 0) {
+        console.log(selectedProject - 1);
+        setSelectedProject(selectedProject - 1);
+      }
+      setScrollIndex(scrollIndex - 1);
     }
   };
 

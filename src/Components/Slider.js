@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AppContext } from "../Context/AppContext";
+import BigCard from "./BigCard";
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -10,35 +12,45 @@ const Wrapper = styled.div`
   overflow-x: auto;
   /* background-color: lightgray; */
   flex: 1;
-`;
-
-const Project = styled.div`
-  /* transform: rotate(90deg) translateY(-100px); */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  width: 300px;
-  height: 390px;
-  &:nth-child(even) {
-    background-color: rgba(255, 0, 0, 0.3);
+  /* div:nth-child(odd) {
+    background-color: lightgray;
   }
-  &:nth-child(odd) {
-    background-color: rgba(0, 255, 0, 0.3);
+  div:nth-child(even) {
+    background-color: darkgray;
+  } */
+  div:nth-child(${props => props.selectedProject}) {
+    transform: perspective(500px) translate3d(0px, 0px, 30px);
   }
 `;
 
 export default () => {
+  const { selectedProject } = useContext(AppContext);
   return (
-    <Wrapper>
-      <Project>1</Project>
-      <Project>2</Project>
-      <Project>3</Project>
-      <Project>4</Project>
-      <Project>5</Project>
-      <Project>6</Project>
-      <Project>7</Project>
-      <Project>8</Project>
+    <Wrapper selectedProject={selectedProject}>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        1
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        2
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        3
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        4
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        5
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        6
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        7
+      </BigCard>
+      <BigCard title={"제목"} name={"Han ManSub"} category={"React"}>
+        8
+      </BigCard>
     </Wrapper>
   );
 };
