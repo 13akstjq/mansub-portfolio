@@ -6,6 +6,7 @@ const HambugMenu = styled.span`
   transform: rotate(90deg);
   font-size: 30px;
   font-weight: 900;
+  justify-self: flex-end;
   cursor: pointer;
 `;
 export default () => {

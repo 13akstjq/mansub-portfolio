@@ -5,6 +5,7 @@ import SideBar from "../Components/SideBar";
 import SidebarControlButton from "../Components/SidebarControlButton";
 import Slider from "../Components/Slider";
 import { AppContext } from "../Context/AppContext";
+import ScrollRangeBar from "../Components/ScrollRangeBar";
 const Wrapper = styled.div`
   width: 100vw;
   /* display: grid;
@@ -29,21 +30,24 @@ const MainContainer = styled.div`
 
 const MenuContainer = styled.div`
   /* background-color: red; */
-  align-items: center;
-  padding: 3px;
-  padding-left: 40px;
-  display: flex;
-  font-size: 30px;
-  font-weight: 900;
+  align-items: flex-end;
+  padding: 3px 40px;
+
+  width: ${props => (props.isSideOpen ? "76vw" : "93vw")};
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.2fr 0.4fr 10fr;
+  padding-right: 40px;
+
+  transform: ${props =>
+    props.isSideOpen ? "translateX(50px) " : "translateX(0px)"};
 `;
 
 const MenuTitle = styled.span`
+  font-size: 30px;
+  font-weight: 900;
   /* background-color: yellow; */
   margin-left: 10px;
-`;
-
-const MenuStatusBar = styled.div`
-  /* background-color: orange; */
 `;
 
 const ProjectListContainer = styled.div`
@@ -94,10 +98,10 @@ export default () => {
       <Header />
       <SideBar />
       <MainContainer isSideOpen={isSideOpen}>
-        <MenuContainer>
+        <MenuContainer isSideOpen={isSideOpen}>
           <SidebarControlButton />
           <MenuTitle>Home</MenuTitle>
-          <MenuStatusBar />
+          <ScrollRangeBar />
         </MenuContainer>
         <ProjectListContainer position={position} isSideOpen={isSideOpen}>
           <Slider />

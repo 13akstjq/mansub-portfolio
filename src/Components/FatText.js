@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = styled.span`
+const Text = styled.div`
   font-weight: 600;
-  font-size: ${props => props.size};
+  font-size: ${props => props.size}px;
 `;
-export default ({ size, text }) => <Text size={size}>{text}</Text>;
+export default ({ size, text }) => {
+  console.log(size);
+  return <Text size={size}>{text}</Text>;
+};

@@ -10,15 +10,7 @@ const Wrapper = styled.div`
   grid-auto-flow: column;
   grid-gap: 20px;
   overflow-x: auto;
-  /* background-color: lightgray; */
-  flex: 1;
-  /* div:nth-child(odd) {
-    background-color: lightgray;
-  }
-  div:nth-child(even) {
-    background-color: darkgray;
-  } */
-  div:nth-child(${props => props.selectedProject}) {
+  & > div:nth-child(${props => props.selectedProject}) {
     transform: perspective(500px) translate3d(0px, 0px, 30px);
   }
 `;
