@@ -6,7 +6,11 @@ import SidebarControlButton from "../Components/SidebarControlButton";
 import Slider from "../Components/Slider";
 import { AppContext } from "../Context/AppContext";
 import ScrollRangeBar from "../Components/ScrollRangeBar";
+
 const Wrapper = styled.div`
+  position : absolute;
+  top : 0px;
+  left : 0px;
   width: 100vw;
   /* display: grid;
   grid-template-columns: ${props =>
@@ -97,11 +101,12 @@ export default () => {
     <Wrapper isSideOpen={isSideOpen} onWheel={onWheel}>
       <Header />
       <SideBar />
+
       <MainContainer isSideOpen={isSideOpen}>
         <MenuContainer isSideOpen={isSideOpen}>
           <SidebarControlButton />
           <MenuTitle>Home</MenuTitle>
-          <ScrollRangeBar />
+          <ScrollRangeBar />  
         </MenuContainer>
         <ProjectListContainer position={position} isSideOpen={isSideOpen}>
           <Slider />

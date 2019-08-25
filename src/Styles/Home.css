@@ -1,0 +1,16 @@
+.my-node-enter,
+.my-node-appear {
+  opacity: 0;
+}
+.my-node-enter-active,
+.my-node-appear-active {
+  opacity: 1;
+  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+}

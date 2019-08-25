@@ -1,0 +1,16 @@
+.card-enter,
+.card-appear {
+  transform: rotateY(-20deg) translate3d(-300px, 0px, -20px);
+}
+.card-enter-active,
+.card-appear-active {
+  transform: rotateY(0deg) translate3d(0px, 0px, 0px);
+  transition: all cubic-bezier(0.17, 0.91, 0.37, 1.14) 1300ms;
+}
+.card-exit {
+  transform: translateX(0px);
+}
+.card-exit-active {
+  transform: translateX(-100px);
+  transition: all cubic-bezier(0.17, 0.91, 0.37, 1.14) 1500ms;
+}

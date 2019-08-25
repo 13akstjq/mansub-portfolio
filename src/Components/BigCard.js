@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import FatText from "./FatText";
 import Avatar from "./Avatar";
+import { Link } from "react-router-dom";
 
 const Video = styled.div``;
 
@@ -49,6 +50,7 @@ const Name = styled.span`
 `;
 
 export default ({
+  id,
   url,
   video,
   name,
@@ -58,19 +60,21 @@ export default ({
   likeCount
 }) => {
   return (
-    <Wrapper>
-      <Video />
-      <DescContainer>
-        <TitleContainer>
-          <Title size={20} text={title} />
-          <Category>{category}</Category>
-        </TitleContainer>
-        <InfoContainer>
-          <Avatar />
-          <Name>{name}</Name>
-          {likeCount}
-        </InfoContainer>
-      </DescContainer>
-    </Wrapper>
+    <Link to={`/post/${id}`}>
+      <Wrapper>
+        <Video />
+        <DescContainer>
+          <TitleContainer>
+            <Title size={20} text={title} />
+            <Category>{category}</Category>
+          </TitleContainer>
+          <InfoContainer>
+            <Avatar />
+            <Name>{name}</Name>
+            {likeCount}
+          </InfoContainer>
+        </DescContainer>
+      </Wrapper>
+    </Link>
   );
 };

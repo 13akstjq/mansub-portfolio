@@ -6,6 +6,5 @@ const Text = styled.div`
   font-size: ${props => props.size}px;
 `;
 export default ({ size, text }) => {
-  console.log(size);
   return <Text size={size}>{text}</Text>;
 };
