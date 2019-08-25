@@ -13,12 +13,13 @@ export default () => {
       <Route
         render={({ location }) => {
           console.log(location);
+          const path = location.pathname.split("/")[1];
           return (
             <TransitionGroup>
               <CSSTransition
                 key={location.key}
-                timeout={500}
-                classNames="my-node"
+                timeout={1000}
+                classNames={path === "post" ? "post" : "main"}
                 appear
               >
                 <Switch location={location}>

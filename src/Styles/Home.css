@@ -1,16 +1,33 @@
-.my-node-enter,
-.my-node-appear {
+.main-enter,
+.main-appear {
   opacity: 0;
 }
-.my-node-enter-active,
-.my-node-appear-active {
+.main-enter-active,
+.main-appear-active {
   opacity: 1;
   transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
 }
-.my-node-exit {
+.main-exit {
   opacity: 1;
 }
-.my-node-exit-active {
+.main-exit-active {
   opacity: 0;
   transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+}
+
+.post-enter,
+.post-appear {
+  transform: translateX(100vw);
+}
+.post-enter-active,
+.post-appear-active {
+  transform: translateX(0px);
+  transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
+}
+.post-exit {
+  transform: translateX(0px);
+}
+.post-exit-active {
+  transform: translate(100vw);
+  transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
 }

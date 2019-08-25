@@ -35,6 +35,7 @@ export default () => {
     <Wrapper selectedProject={selectedProject}>
       {projects.map(project => (
         <CSSTransition
+          key={project.id}
           in={true}
           timeout={project.id * 700}
           appear

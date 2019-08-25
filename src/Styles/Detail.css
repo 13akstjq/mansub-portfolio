@@ -1,0 +1,13 @@
+.description-enter,
+.description-appear {
+  transform: translate3d(0px, -200vh, 0px);
+}
+.description-enter-active,
+.description-appear-active {
+  transform: translate3d(0px, 0px, 0px);
+  transition: cubic-bezier(0.68, 0.37, 0.59, 0.83) 1300ms;
+}
+.description-appear-done,
+.description-enter-done {
+  /* background-color: yellow !important; */
+}

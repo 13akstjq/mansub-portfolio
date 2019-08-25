@@ -15,12 +15,12 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 7fr 3fr;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  & > ${Video}:nth-child(odd) {
-    background-color: #394271;
-  }
-  & > ${Video}:nth-child(even) {
+  & > ${Video} {
     background-color: #33a2a7;
   }
+  /* & > ${Video}:nth-child(even) {
+    background-color: #33a2a7;
+  } */
 `;
 const DescContainer = styled.div`
   background-color: #fdfefe;
