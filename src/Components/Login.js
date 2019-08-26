@@ -1,10 +1,11 @@
 // Import FirebaseAuth and firebase.
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "../Firebase/firebaseui-styling.global.css"; // Import globally.
 import firebase from "firebase/app";
 import "firebase/auth";
 import styled from "styled-components";
+import { UserContext } from "../Context/UserContext";
 // Configure Firebase.
 const config = {
   apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
@@ -32,11 +33,11 @@ const Wrapper = styled.div`
 
 export default ({ isClicked }) => {
   const [isFinish, setIsFinish] = useState(false);
-
+  const { setIsLoggedIn } = useContext(UserContext);
   const login = res => {
     localStorage.setItem("isLoggedIn", true);
+    setIsLoggedIn(true);
     setIsFinish(true);
-    // console.log(res);
   };
 
   // Configure FirebaseUI.

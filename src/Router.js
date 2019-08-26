@@ -12,7 +12,6 @@ export default () => {
     <Router>
       <Route
         render={({ location }) => {
-          console.log(location);
           const path = location.pathname.split("/")[1];
           return (
             <TransitionGroup>

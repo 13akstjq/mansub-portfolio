@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../Context/AppContext";
 import BigCard from "./BigCard";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import "../Styles/Slider.css";
 
@@ -14,9 +14,10 @@ const Wrapper = styled.div`
   grid-gap: 20px;
   overflow-x: auto;
   perspective: 800px;
-  & > div:nth-child(${props => props.selectedProject}) {
-    transform: perspective(500px) translate3d(0px, 0px, 30px);
-  }
+  transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
+  /* & > a:nth-child(${props => props.selectedProject}) {
+    transform: scale(1.03);
+  } */
 `;
 
 export default () => {
@@ -40,8 +41,6 @@ export default () => {
           timeout={project.id * 700}
           appear
           classNames="card"
-          onEntered={() => console.log("asdfadf")}
-          onExit={() => console.log("onExit")}
         >
           <BigCard
             key={project.id}

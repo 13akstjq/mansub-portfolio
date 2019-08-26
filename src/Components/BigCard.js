@@ -9,7 +9,7 @@ const Video = styled.div``;
 const Wrapper = styled.div`
   width: 300px;
   height: 390px;
-  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
   border-radius: 10px;
   overflow: hidden;
   display: grid;
@@ -17,6 +17,9 @@ const Wrapper = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   & > ${Video} {
     background-color: #33a2a7;
+  }
+  &:hover {
+    transform : scale(1.03);
   }
   /* & > ${Video}:nth-child(even) {
     background-color: #33a2a7;
