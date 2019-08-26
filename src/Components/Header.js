@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
-import Login from "./Login";
 import PortfolioLogo from "../assets/image/portfolioLogo.jpg";
 import { UserContext } from "../Context/UserContext";
+import { AppContext } from "../Context/AppContext";
+import Login from "./Login";
 
 const Header = styled.div`
   position: fixed;
@@ -31,7 +32,7 @@ const AuthButton = styled.div`
 
 export default () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const [isClicked, setIsClicked] = useState(false);
+  const { isAuthOpen, setIsAuthOpen } = useContext(AppContext);
   useEffect(() => {
     if (isLoggedIn === true) {
       localStorage.setItem("isLoggedIn", "true");
@@ -40,8 +41,8 @@ export default () => {
     }
   }, [isLoggedIn]);
 
-  const toggleClicked = () => {
-    setIsClicked(!isClicked);
+  const toggleIsAuthOpen = () => {
+    setIsAuthOpen(!isAuthOpen);
     if (isLoggedIn) {
       localStorage.setItem("isLoggedIn", "false");
       setIsLoggedIn(false);
@@ -50,10 +51,10 @@ export default () => {
   return (
     <Header>
       <Logo src={PortfolioLogo} />
-      <AuthButton onClick={toggleClicked}>
+      <AuthButton onClick={toggleIsAuthOpen}>
         {!isLoggedIn ? "Login" : "Logout"}
       </AuthButton>
-      {!isLoggedIn && <Login isClicked={isClicked} />}
+      {/* <Login /> */}
     </Header>
   );
 };

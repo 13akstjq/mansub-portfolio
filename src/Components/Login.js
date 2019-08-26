@@ -1,11 +1,12 @@
 // Import FirebaseAuth and firebase.
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "../Firebase/firebaseui-styling.global.css"; // Import globally.
 import firebase from "firebase/app";
 import "firebase/auth";
 import styled from "styled-components";
 import { UserContext } from "../Context/UserContext";
+import { AppContext } from "../Context/AppContext";
 // Configure Firebase.
 const config = {
   apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
@@ -21,25 +22,29 @@ firebase.initializeApp(config);
 const Wrapper = styled.div`
   /* width: 0px; */
   /* height: 0px; */
+  z-index: 10;
   position: fixed;
   right: 0px;
   top: 80px;
   transition: 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
   ${props =>
-    props.isClicked && !props.isFinish
+    props.isAuthOpen && !props.isFinish
       ? "width : 160px; height: 160px; opacity : 1"
       : "width : 0px; height: 0px; opacity : 0"}
 `;
 
-export default ({ isClicked }) => {
+export default () => {
   const [isFinish, setIsFinish] = useState(false);
+  const { isAuthOpen } = useContext(AppContext);
   const { setIsLoggedIn } = useContext(UserContext);
   const login = res => {
     localStorage.setItem("isLoggedIn", true);
     setIsLoggedIn(true);
     setIsFinish(true);
   };
-
+  useEffect(() => {
+    console.log("isAuthOpen");
+  }, [isAuthOpen]);
   // Configure FirebaseUI.
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -58,7 +63,7 @@ export default ({ isClicked }) => {
   };
 
   return (
-    <Wrapper isClicked={isClicked} isFinish={isFinish}>
+    <Wrapper isAuthOpen={isAuthOpen} isFinish={isFinish}>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </Wrapper>
   );

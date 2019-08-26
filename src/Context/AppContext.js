@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [selectedProject, setSelectedProject] = useState(1);
   const projects = [1, 2, 3, 4, 5, 6, 7, 8];
   const [isSideOpen, setIsSideOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
   return (
     <AppContext.Provider
@@ -17,7 +18,9 @@ const AppContextProvider = ({ children }) => {
         setSelectedProject,
         isSideOpen,
         setIsSideOpen,
-        projects
+        projects,
+        isAuthOpen,
+        setIsAuthOpen
       }}
     >
       {children}

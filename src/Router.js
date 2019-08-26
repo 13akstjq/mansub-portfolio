@@ -7,6 +7,7 @@ import Conferenece from "./Views/Conferenece";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import "./Styles/Home.css";
+import Login from "./Components/Login";
 export default () => {
   return (
     <Router>
@@ -14,21 +15,24 @@ export default () => {
         render={({ location }) => {
           const path = location.pathname.split("/")[1];
           return (
-            <TransitionGroup>
-              <CSSTransition
-                key={location.key}
-                timeout={1000}
-                classNames={path === "post" ? "post" : "main"}
-                appear
-              >
-                <Switch location={location}>
-                  <Route path="/" exact component={Home} />
-                  <Route path="/post/:id" component={Detail} />
-                  <Route path="/Blog" exact component={Blog} />
-                  <Route path="/Conference" exact component={Conferenece} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
+            <>
+              <Login />
+              <TransitionGroup>
+                <CSSTransition
+                  key={location.key}
+                  timeout={1000}
+                  classNames={path === "post" ? "post" : "main"}
+                  appear
+                >
+                  <Switch location={location}>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/post/:id" component={Detail} />
+                    <Route path="/Blog" exact component={Blog} />
+                    <Route path="/Conference" exact component={Conferenece} />
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+            </>
           );
         }}
       />
