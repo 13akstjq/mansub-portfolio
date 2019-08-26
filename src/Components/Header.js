@@ -46,6 +46,7 @@ export default () => {
     if (isLoggedIn) {
       localStorage.setItem("isLoggedIn", "false");
       setIsLoggedIn(false);
+      window.location.reload();
     }
   };
   return (

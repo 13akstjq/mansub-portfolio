@@ -28,23 +28,27 @@ const Wrapper = styled.div`
   top: 80px;
   transition: 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
   ${props =>
-    props.isAuthOpen && !props.isFinish
+    props.isAuthOpen && !props.isLoggedIn
       ? "width : 160px; height: 160px; opacity : 1"
       : "width : 0px; height: 0px; opacity : 0"}
 `;
 
 export default () => {
-  const [isFinish, setIsFinish] = useState(false);
+  // const [isFinish, setIsFinish] = useState(false);
   const { isAuthOpen } = useContext(AppContext);
-  const { setIsLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const login = res => {
     localStorage.setItem("isLoggedIn", true);
     setIsLoggedIn(true);
-    setIsFinish(true);
+    // setIsFinish(true);
   };
   useEffect(() => {
-    console.log("isAuthOpen");
-  }, [isAuthOpen]);
+    // if (!isLoggedIn) {
+    //   setIsFinish(false);
+    // }
+    console.log("isAuthOpen", isAuthOpen);
+    // console.log("isfinish", isFinish);
+  }, [isLoggedIn, isAuthOpen]);
   // Configure FirebaseUI.
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -63,7 +67,7 @@ export default () => {
   };
 
   return (
-    <Wrapper isAuthOpen={isAuthOpen} isFinish={isFinish}>
+    <Wrapper isAuthOpen={isAuthOpen} isLoggedIn={isLoggedIn}>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </Wrapper>
   );
