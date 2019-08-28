@@ -90,11 +90,12 @@ const DemoProject = styled.div`
   width: 100%;
   height: 100%;
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
-  width: ${props => (props.DemoType === "mobile" ? "30%" : "100%")};
+  width: ${props => (props.DemoType === "mobile" ? "375px" : "100%")};
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 `;
 
 const FullDemoButton = styled.div`
+  padding: 5px;
   color: ${props => props.theme.darkGreyColor};
   font-size: 30px;
   position: absolute;
@@ -104,6 +105,7 @@ const FullDemoButton = styled.div`
 `;
 
 const FullDescButton = styled.div`
+  padding: 5px;
   position: absolute;
   top: 45%;
   left: 10px;
@@ -128,13 +130,16 @@ const DescriptionContainer = styled.div`
 `;
 
 export default ({ history }) => {
-  const [DemoType, setDemoType] = useState("mobile");
+  const [DemoType, setDemoType] = useState("desktop");
   const [showFullDemo, setShowFullDemo] = useState(false);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const toggleDemoType = type => setDemoType(type);
   const toggleShowFullDemo = () => setShowFullDemo(!showFullDemo);
   const toggleShowFullDesc = () => setShowFullDesc(!showFullDesc);
-  const goBack = () => history.goBack();
+  console.log(history);
+  const goBack = () => {
+    history.push("/");
+  };
   return (
     <Wrapper>
       <ShowContainer showFullDemo={showFullDemo} showFullDesc={showFullDesc}>
@@ -151,13 +156,23 @@ export default ({ history }) => {
           <VisitButton>Visit</VisitButton>
         </Header>
         <DemoContainer>
-          <DemoProject DemoType={DemoType}></DemoProject>
+          <DemoProject DemoType={DemoType}>
+            <iframe
+              width="100%"
+              height="100%"
+              frameborder="0"
+              scrolling="yes"
+              marginheight="0"
+              marginwidth="0"
+              src="https://manstagram.netlify.com/#/"
+            ></iframe>
+          </DemoProject>
         </DemoContainer>
         <FullDemoButton onClick={toggleShowFullDemo}>
           {showFullDemo ? "<" : "||"}{" "}
         </FullDemoButton>
       </ShowContainer>
-      <CSSTransition in={true} classNames="description" timeout={1300} appear>
+      <CSSTransition in={true} classNames="description" timeout={0} appear>
         <DescriptionContainer
           showFullDemo={showFullDemo}
           showFullDesc={showFullDesc}
