@@ -1,3 +1,5 @@
+/* 모든 화면에 적용되는 CSSTransition 코드  */
+
 .main-enter,
 .main-appear {
   opacity: 0;
@@ -14,6 +16,8 @@
   opacity: 0;
   transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
 }
+
+/* 게시물 상세보기에서 적용되는 CSSTransition */
 
 .post-enter,
 .post-appear {

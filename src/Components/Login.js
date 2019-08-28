@@ -1,5 +1,5 @@
 // Import FirebaseAuth and firebase.
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "../Firebase/firebaseui-styling.global.css"; // Import globally.
 import firebase from "firebase/app";
