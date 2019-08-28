@@ -2,11 +2,11 @@
 
 ### ToDo
 
-- [ ] firebase Auth
-- [ ] horizontal scroll
+- [X] firebase Auth
+- [X] horizontal scroll
 - [ ] chat system
-- [ ] post Like
-- [ ] post Upload
+- [X] post Like
+- [] post Upload
 - [ ] admin
 - [ ] layout
 
