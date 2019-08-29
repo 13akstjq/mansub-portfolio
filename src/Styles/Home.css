@@ -65,3 +65,29 @@
 .post-appear-done > div:nth-child(2) {
   width: 40%;
 }
+
+.page__title-enter,
+.page__title-appear {
+  transform: translate3d(0px, -50px, 0px);
+  opacity: 0;
+}
+
+.page__title-enter-active,
+.page__title-appear-active {
+  transform: translate3d(0px, 0px, 0px);
+  opacity: 1;
+  transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
+}
+
+.page__title-appear-done,
+.page__title-enter-done {
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.page__title-exit {
+  opacity: 1;
+}
+.page__title-exit-active {
+  opacity: 0;
+  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+}

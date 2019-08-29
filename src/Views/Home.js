@@ -6,15 +6,13 @@ import SidebarControlButton from "../Components/SidebarControlButton";
 import Slider from "../Components/Slider";
 import { AppContext } from "../Context/AppContext";
 import ScrollRangeBar from "../Components/ScrollRangeBar";
+import { CSSTransition } from "react-transition-group";
 
 const Wrapper = styled.div`
-  position : absolute;
-  top : 0px;
-  left : 0px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100vw;
-  /* display: grid;
-  grid-template-columns: ${props =>
-    props.isSideOpen ? "300px" : "0px"} 1fr; */
   height: 100vh;
   overflow: hidden;
   transition: 0.5s ease-in-out;
@@ -47,7 +45,7 @@ const MenuContainer = styled.div`
     props.isSideOpen ? "translateX(50px) " : "translateX(0px)"};
 `;
 
-const MenuTitle = styled.span`
+const MenuTitle = styled.div`
   font-size: 30px;
   font-weight: 900;
   /* background-color: yellow; */
@@ -57,12 +55,8 @@ const MenuTitle = styled.span`
 const ProjectListContainer = styled.div`
   transform: ${props =>
     props.isSideOpen
-      ? ` translateX(${
-          props.position
-        }px) perspective(500px) translate3d(-30px,-30px,-30px);`
-      : ` translateX(${
-          props.position
-        }px)perspective(500px) translate3d(0px,0px,0px); `};
+      ? ` translateX(${props.position}px) perspective(500px) translate3d(-30px,-30px,-30px);`
+      : ` translateX(${props.position}px)perspective(500px) translate3d(0px,0px,0px); `};
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
@@ -76,24 +70,35 @@ export default () => {
     setSelectedProject,
     isSideOpen
   } = useContext(AppContext);
+
   const onWheel = e => {
+    // e.preventDefault();
     // console.log(projects.length * 3);
     if (e.deltaY > 0 && scrollIndex < (projects.length - 3) * 3) {
-      setPosition(position - 100);
+      // console.log(scrollIndex + 1);
       setScrollIndex(scrollIndex + 1);
-      if (scrollIndex > 0 && (scrollIndex + 1) % 3 === 0) {
-        console.log(selectedProject + 1);
+      setPosition(position - 100);
+      if (
+        scrollIndex > 0 &&
+        (scrollIndex + 1) % 3 === 0 &&
+        selectedProject <= projects.length - 3
+      ) {
+        // console.log("test");
         setSelectedProject(selectedProject + 1);
       }
     }
     if (e.deltaY < 0 && scrollIndex > 0) {
-      setPosition(position + 100);
       setScrollIndex(scrollIndex - 1);
-      if (scrollIndex > 0 && (scrollIndex - 1) % 3 === 0) {
-        console.log(selectedProject - 1);
+      setPosition(position + 100);
+      // console.log(scrollIndex - 1);
+      if (
+        scrollIndex > 0 &&
+        selectedProject > 1 &&
+        (scrollIndex - 1) % 3 === 0
+      ) {
+        // console.log(selectedProject - 1);
         setSelectedProject(selectedProject - 1);
       }
-      setScrollIndex(scrollIndex - 1);
     }
   };
 
@@ -105,11 +110,18 @@ export default () => {
       <MainContainer isSideOpen={isSideOpen}>
         <MenuContainer isSideOpen={isSideOpen}>
           <SidebarControlButton />
-          <MenuTitle>Home</MenuTitle>
-          <ScrollRangeBar />  
+          <CSSTransition
+            in={true}
+            timeout={1300}
+            appear
+            classNames="page__title"
+          >
+            <MenuTitle>Home</MenuTitle>
+          </CSSTransition>
+          <ScrollRangeBar />
         </MenuContainer>
         <ProjectListContainer position={position} isSideOpen={isSideOpen}>
-          <Slider />
+          <Slider contents={projects} />
         </ProjectListContainer>
       </MainContainer>
     </Wrapper>
