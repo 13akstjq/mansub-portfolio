@@ -7,6 +7,7 @@ import SidebarControlButton from "../Components/SidebarControlButton";
 import ScrollRangeBar from "../Components/ScrollRangeBar";
 import Slider from "../Components/Slider";
 import { CSSTransition } from "react-transition-group";
+import { getBlog, postTagToPostList } from "../Services/BlogService";
 
 import "../Styles/Home.css";
 
@@ -67,10 +68,12 @@ const ProjectListContainer = styled.div`
 
 export default () => {
   const [position, setPosition] = useState(0);
+  const [blogHtml, setBlogHtml] = useState("");
   const {
     scrollIndex,
     setScrollIndex,
     posts,
+    setPosts,
     selectedProject,
     setSelectedProject,
     isSideOpen
@@ -79,6 +82,17 @@ export default () => {
   useEffect(() => {
     setSelectedProject(1);
     setScrollIndex(0);
+    //blog 정보를 가져옴
+    getBlog().then(html => {
+      // tag에 bloghtml 넣음.
+      setBlogHtml(html);
+      // bloghtml에서 게시물 부분만 선택
+      const postList = document.getElementsByClassName("post-item");
+      // 게시물 부분을 넣어주고 postList를 만듬
+      postTagToPostList(postList);
+      // tag다시 공백
+      setBlogHtml("");
+    });
   }, []);
 
   const onWheel = e => {
@@ -134,6 +148,7 @@ export default () => {
           <Slider contents={posts} />
         </ProjectListContainer>
       </MainContainer>
+      <div id="blog" dangerouslySetInnerHTML={{ __html: blogHtml }}></div>
     </Wrapper>
   );
 };
