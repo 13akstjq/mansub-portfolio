@@ -7,7 +7,10 @@ import Conferenece from "./Views/Conferenece";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import "./Styles/Home.css";
+import "./Styles/BlogDetail.css";
 import Login from "./Components/Login";
+import BlogDetail from "./Views/BlogDetail";
+
 export default () => {
   return (
     <Router>
@@ -21,13 +24,24 @@ export default () => {
                 <CSSTransition
                   key={location.key}
                   timeout={1000}
-                  classNames={path === "post" ? "post" : "main"}
+                  classNames={
+                    path === "post"
+                      ? "post"
+                      : path === "blogDetail"
+                      ? "blog-detail"
+                      : "main"
+                  }
                   appear
                 >
                   <Switch location={location}>
                     <Route path="/" exact component={Home} />
                     <Route path="/post/:id" component={Detail} />
                     <Route path="/Blog" exact component={Blog} />
+                    <Route
+                      path="/blogDetail/:id"
+                      exact
+                      component={BlogDetail}
+                    />
                     <Route path="/Conference" exact component={Conferenece} />
                   </Switch>
                 </CSSTransition>

@@ -46,7 +46,7 @@ export default () => {
     // if (!isLoggedIn) {
     //   setIsFinish(false);
     // }
-    console.log("isAuthOpen", isAuthOpen);
+    // console.log("isAuthOpen", isAuthOpen);
     // console.log("isfinish", isFinish);
   }, [isLoggedIn, isAuthOpen]);
   // Configure FirebaseUI.

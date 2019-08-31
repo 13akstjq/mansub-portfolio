@@ -66,6 +66,7 @@
   width: 40%;
 }
 
+/* 현재 페이지의 title의 이동 transition */
 .page__title-enter,
 .page__title-appear {
   transform: translate3d(0px, -50px, 0px);
@@ -85,9 +86,12 @@
 }
 
 .page__title-exit {
-  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
 }
 .page__title-exit-active {
-  opacity: 0;
-  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+  transform: translate3d(0px, 50px, 0px);
+  transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+}
+.page__title-exit-done {
+  transform: translate3d(0px, 50px, 0px);
 }

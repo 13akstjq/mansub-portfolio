@@ -1,0 +1,22 @@
+/* 블로그 게시물 상세보기에서 적용되는 CSSTransition */
+
+/* 처음에 오른쪽에 위치 */
+.blog-detail-enter,
+.blog-detail-appear {
+  transform: translateX(100vw);
+}
+
+/* DemoContainer는 원래자리로 이동 */
+.blog-detail-enter-active,
+.blog-detail-appear-active {
+  transform: translateX(0px);
+  transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
+}
+
+.blog-detail-exit {
+  transform: translateX(0px);
+}
+.blog-detail-exit-active {
+  transform: translate(100vw);
+  transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
+}

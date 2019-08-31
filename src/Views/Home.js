@@ -118,7 +118,10 @@ export default () => {
           >
             <MenuTitle>Home</MenuTitle>
           </CSSTransition>
-          <ScrollRangeBar />
+          <ScrollRangeBar
+            contentLength={projects.length}
+            selectedContentIndex={selectedProject}
+          />
         </MenuContainer>
         <ProjectListContainer position={position} isSideOpen={isSideOpen}>
           <Slider contents={projects} />

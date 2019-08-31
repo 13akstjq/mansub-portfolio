@@ -33,13 +33,7 @@ export default ({ contents }) => {
           appear
           classNames="card"
         >
-          <BigCard
-            key={content.id}
-            id={content.id}
-            title={content.title}
-            name={content.name}
-            category={content.category}
-          />
+          <BigCard key={content.id} {...content} />
         </CSSTransition>
       ))}
     </Wrapper>

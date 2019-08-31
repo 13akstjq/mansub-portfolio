@@ -2,12 +2,70 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import FatText from "./FatText";
 import Avatar from "./Avatar";
-import { Link } from "react-router-dom";
-import { EmptyHeart, FullHeart } from "./Icons";
+import { Link, withRouter } from "react-router-dom";
+import {
+  EmptyHeart,
+  FullHeart,
+  ReactIcon,
+  ReduxIcon,
+  JsIcon,
+  TsIcon,
+  GithubIcon,
+  GraphqlIcon
+} from "./Icons";
 import { UserContext } from "../Context/UserContext";
 import { AppContext } from "../Context/AppContext";
 
-const Video = styled.div``;
+export const bgColorFilter = (category, theme) => {
+  let bgColor = "#F3F3F3";
+  switch (category) {
+    case "react":
+      bgColor = theme.reactColor;
+      break;
+    case "reactnative":
+      bgColor = theme.reactnativeColor;
+      break;
+    case "git":
+      bgColor = theme.gitColor;
+      break;
+    case "github":
+      bgColor = theme.githubColor;
+      break;
+    case "aws":
+      bgColor = theme.awsColor;
+      break;
+    case "node":
+      bgColor = theme.nodeColor;
+      break;
+    case "vue":
+      bgColor = theme.vueColor;
+      break;
+    case "js":
+      bgColor = theme.jsColor;
+      break;
+    case "ts":
+      bgColor = theme.tsColor;
+      break;
+    case "prisma":
+      bgColor = theme.prismaColor;
+      break;
+    case "graphql":
+      bgColor = theme.graphqlColor;
+      break;
+    case "redux":
+      bgColor = theme.reduxColor;
+      break;
+    default:
+      break;
+  }
+  return bgColor;
+};
+
+const Video = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   width: 300px;
@@ -17,10 +75,10 @@ const Wrapper = styled.div`
   overflow: hidden;
   display: grid;
   color: ${props => props.theme.darkGreyColor};
-  grid-template-rows: 7fr 3fr;
+  grid-template-rows: 7fr minmax(0px, 4fr);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   & > ${Video} {
-    background-color: #33a2a7;
+    background-color: ${props => bgColorFilter(props.category, props.theme)};
   }
   &:hover {
     transform: scale(1.03);
@@ -30,14 +88,29 @@ const DescContainer = styled.div`
   background-color: #fdfefe;
   padding: 8px;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1.8fr 1fr;
 `;
 const TitleContainer = styled.div`
-  align-self: center;
+  height: 100%;
+  position: relative;
+  align-self: flex-start;
 `;
 
 const Title = styled(FatText)`
   margin-bottom: 8px;
+`;
+
+const SubTitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  justify-content: space-between;
+`;
+
+const CreatedAt = styled.div`
+  right: 0px;
+  color: ${props => props.theme.lightGreyColor};
 `;
 
 const Category = styled.span`
@@ -46,9 +119,10 @@ const Category = styled.span`
 
 const InfoContainer = styled.div`
   display: flex;
-  padding: 10px 0px;
-  align-items: center;
+  padding-top: 10px;
+  align-items: flex-end;
   justify-content: space-between;
+  transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
 const UserContainer = styled.div`
@@ -69,57 +143,86 @@ const LikeContainer = styled.div`
 const LikeCount = styled.span`
   margin-right: 10px;
 `;
-export default ({
-  id,
-  url,
-  video,
-  name,
-  title,
-  category,
-  timestamp,
-  likeCount
-}) => {
-  const [isLikedS, setIsLikedS] = useState(false);
-  const [likeCountS, setLikeCountS] = useState((likeCount = 0));
-  const { isLoggedIn } = useContext(UserContext);
-  const { setIsAuthOpen } = useContext(AppContext);
-  const toggleLike = e => {
-    e.preventDefault();
-    if (isLoggedIn) {
-      if (isLikedS) {
-        setIsLikedS(false);
-        setLikeCountS(likeCountS - 1);
+export default withRouter(
+  ({
+    id,
+    url,
+    video,
+    name,
+    title,
+    category,
+    createdAt,
+    likeCount,
+    location
+  }) => {
+    const pathName = location.pathname;
+    const [isLikedS, setIsLikedS] = useState(false);
+    const [likeCountS, setLikeCountS] = useState((likeCount = 0));
+    const { isLoggedIn } = useContext(UserContext);
+    const { setIsAuthOpen } = useContext(AppContext);
+    const toggleLike = e => {
+      e.preventDefault();
+      if (isLoggedIn) {
+        if (isLikedS) {
+          setIsLikedS(false);
+          setLikeCountS(likeCountS - 1);
+        } else {
+          setIsLikedS(true);
+          setLikeCountS(likeCountS + 1);
+        }
       } else {
-        setIsLikedS(true);
-        setLikeCountS(likeCountS + 1);
+        alert("좋아요는 로그인이 필요한 기능입니다!!!");
+        setIsAuthOpen(true);
       }
-    } else {
-      alert("좋아요는 로그인이 필요한 기능입니다!!!");
-      setIsAuthOpen(true);
-    }
-  };
+    };
 
-  return (
-    <Link to={`/post/${id}`}>
-      <Wrapper>
-        <Video />
-        <DescContainer>
-          <TitleContainer>
-            <Title size={20} text={title} />
-            <Category>{category}</Category>
-          </TitleContainer>
-          <InfoContainer>
-            <UserContainer>
-              <Avatar />
-              <Name>{name}</Name>
-            </UserContainer>
-            <LikeContainer onClick={toggleLike}>
-              <LikeCount>{likeCountS}</LikeCount>
-              {isLikedS ? <FullHeart></FullHeart> : <EmptyHeart></EmptyHeart>}
-            </LikeContainer>
-          </InfoContainer>
-        </DescContainer>
-      </Wrapper>
-    </Link>
-  );
-};
+    return (
+      <Link to={pathName === "/" ? `/post/${id}` : `/blogDetail/${id}`}>
+        <Wrapper category={category}>
+          <Video>
+            {((pathName === "/Blog" && category === "react") ||
+              category === "reactnative") && <ReactIcon></ReactIcon>}
+            {pathName === "/Blog" && category === "redux" && (
+              <ReduxIcon></ReduxIcon>
+            )}
+            {pathName === "/Blog" &&
+              (category === "js" || category === "es6") && <JsIcon></JsIcon>}
+            {pathName === "/Blog" && category === "typescript" && (
+              <TsIcon></TsIcon>
+            )}
+
+            {pathName === "/Blog" &&
+              (category === "git" || category === "github") && (
+                <GithubIcon></GithubIcon>
+              )}
+            {pathName === "/Blog" && category === "nodejs" && (
+              <ReactIcon></ReactIcon>
+            )}
+            {pathName === "/Blog" && category === "graphql" && (
+              <GraphqlIcon></GraphqlIcon>
+            )}
+          </Video>
+          <DescContainer>
+            <TitleContainer>
+              <Title size={18} text={title} />
+              <SubTitleContainer>
+                <Category>{category}</Category>
+                <CreatedAt>{createdAt}</CreatedAt>
+              </SubTitleContainer>
+            </TitleContainer>
+            <InfoContainer>
+              <UserContainer>
+                <Avatar />
+                <Name>{name}</Name>
+              </UserContainer>
+              <LikeContainer onClick={toggleLike}>
+                <LikeCount>{likeCountS}</LikeCount>
+                {isLikedS ? <FullHeart></FullHeart> : <EmptyHeart></EmptyHeart>}
+              </LikeContainer>
+            </InfoContainer>
+          </DescContainer>
+        </Wrapper>
+      </Link>
+    );
+  }
+);

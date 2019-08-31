@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { AppContext } from "../Context/AppContext";
 
 const Wrapper = styled.div`
   margin-left: 20px;
@@ -34,20 +33,24 @@ const TotalNumber = styled.div`
   margin-left: 10px;
   color: rgba(0, 0, 0, 0.8);
 `;
-export default () => {
-  const { selectedProject, projects } = useContext(AppContext);
-
+export default ({ contentLength, selectedContentIndex }) => {
   return (
     <Wrapper>
-      <ProjectNumber>0{selectedProject}</ProjectNumber>
+      <ProjectNumber>
+        {selectedContentIndex >= 10
+          ? selectedContentIndex
+          : `0${selectedContentIndex}`}
+      </ProjectNumber>
       <LineContainer>
         <TotalLine />
         <CurrentLine
-          selectedProject={selectedProject}
-          length={projects.length}
+          selectedProject={selectedContentIndex}
+          length={contentLength}
         />
       </LineContainer>
-      <TotalNumber>0{projects.length}</TotalNumber>
+      <TotalNumber>
+        {contentLength >= 10 ? contentLength : `0${contentLength}`}
+      </TotalNumber>
     </Wrapper>
   );
 };

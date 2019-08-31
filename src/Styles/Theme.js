@@ -6,5 +6,15 @@ export default {
   purpleColor: "#8565fc",
   redColor: "#ED4956",
   blueColor: "#3897f0",
-  boxBorder: "1px solid #e6e6e6;"
+  boxBorder: "1px solid #e6e6e6;",
+  reactColor: "#58D4F6",
+  reduxColor: "#7348B7",
+  jsColor: "#F0D91D",
+  awsColor: "#F1941C",
+  githubColor: "#24282E",
+  nodeColor: "#87C000",
+  graphqlColor: "#DF34A6",
+  prismaColor: "#0C3349",
+  tsColor: "#0077C7",
+  vueColor: "#41B381"
 };

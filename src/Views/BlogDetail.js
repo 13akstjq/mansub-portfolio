@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
 import { Mobile, Desktop } from "../Components/Icons";
+import { AppContext } from "../Context/AppContext";
+import { getBlog, postTagToPostList } from "../Services/BlogService";
+import { bgColorFilter } from "../Components/BigCard";
+
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -12,23 +15,12 @@ const Wrapper = styled.div`
   background-color: transparent;
   overflow: hidden;
   display: flex;
-  /* grid-template-columns: ${props =>
-    props.showFullDemo
-      ? "100% 0%"
-      : props.showFullDesc
-      ? "0% 100%"
-      : "60% 40%"}; */
 `;
 
 const ShowContainer = styled.div`
-  width: ${props =>
-    props.showFullDemo
-      ? "100% !important"
-      : props.showFullDesc
-      ? "0% !important"
-      : "60%"};
+  width: 100%;
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
-  background-color: #33a2a7;
+  background-color: ${props => bgColorFilter(props.category, props.theme)};
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   display: grid;
@@ -94,55 +86,34 @@ const DemoProject = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 `;
 
-const FullDemoButton = styled.div`
-  padding: 5px;
-  color: ${props => props.theme.darkGreyColor};
-  font-size: 30px;
-  position: absolute;
-  top: 45%;
-  right: 10px;
-  cursor: pointer;
-`;
-
-const FullDescButton = styled.div`
-  padding: 5px;
-  position: absolute;
-  top: 45%;
-  left: 10px;
-  font-size: 30px;
-  cursor: pointer;
-`;
-
-const DescriptionContainer = styled.div`
-  width: ${props =>
-    props.showFullDesc
-      ? "100% !important"
-      : props.showFullDemo
-      ? "0% !important"
-      : "40%"};
-  /* transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06); */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  color: ${props => props.theme.lightGreyColor};
-`;
-
 export default ({ history, location }) => {
   const [DemoType, setDemoType] = useState("desktop");
-  const [showFullDemo, setShowFullDemo] = useState(false);
-  const [showFullDesc, setShowFullDesc] = useState(false);
-  const toggleDemoType = type => setDemoType(type);
-  const toggleShowFullDemo = () => setShowFullDemo(!showFullDemo);
-  const toggleShowFullDesc = () => setShowFullDesc(!showFullDesc);
+  const [blogHtml, setBlogHtml] = useState("");
   const postId = location.pathname.split("/")[2];
+  const { posts, setPosts } = useContext(AppContext);
+  const post = posts[postId];
+  useEffect(() => {
+    //blog 정보를 가져옴
+    getBlog().then(html => {
+      // tag에 bloghtml 넣음.
+      setBlogHtml(html);
+      // bloghtml에서 게시물 부분만 선택
+      const postList = document.getElementsByClassName("post-item");
+      // 게시물 부분을 넣어주고 postList를 만듬
+      // console.log(postList);
+      setPosts(postTagToPostList(postList));
+      // tag다시 공백
+      setBlogHtml("");
+    });
+  }, []);
+
+  const toggleDemoType = type => setDemoType(type);
   const goBack = () => {
-    history.push("/");
+    history.push("/Blog");
   };
   return (
     <Wrapper>
-      <ShowContainer showFullDemo={showFullDemo} showFullDesc={showFullDesc}>
+      <ShowContainer category={post && post.category}>
         <Header>
           <BackButton onClick={goBack}>{"< Back"}</BackButton>
           <ResponsivButton>
@@ -159,33 +130,24 @@ export default ({ history, location }) => {
           <DemoProject DemoType={DemoType}>
             <iframe
               key={postId}
-              title={"portfolio"}
+              title={"blog"}
               width="100%"
               height="100%"
               frameBorder="0"
               scrolling="yes"
               marginHeight="0"
               marginWidth="0"
-              src="https://manstagram.netlify.com/#/"
+              style={{
+                backgroundColor: "white",
+                borderRadius: "10px",
+                WebkitOverflowScrolling: "touch"
+              }}
+              src={post ? post.url : ""}
             ></iframe>
           </DemoProject>
         </DemoContainer>
-        <FullDemoButton onClick={toggleShowFullDemo}>
-          {showFullDemo ? "<" : "||"}{" "}
-        </FullDemoButton>
       </ShowContainer>
-      <CSSTransition in={true} classNames="description" timeout={0} appear>
-        <DescriptionContainer
-          showFullDemo={showFullDemo}
-          showFullDesc={showFullDesc}
-        >
-          설명
-          <FullDescButton onClick={toggleShowFullDesc}>
-            {" "}
-            {showFullDesc ? ">" : "||"}{" "}
-          </FullDescButton>
-        </DescriptionContainer>
-      </CSSTransition>
+      <div id="blog" dangerouslySetInnerHTML={{ __html: blogHtml }}></div>
     </Wrapper>
   );
 };

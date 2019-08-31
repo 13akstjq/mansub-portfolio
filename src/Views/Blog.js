@@ -82,17 +82,22 @@ export default () => {
   useEffect(() => {
     setSelectedProject(1);
     setScrollIndex(0);
-    //blog 정보를 가져옴
-    getBlog().then(html => {
-      // tag에 bloghtml 넣음.
-      setBlogHtml(html);
-      // bloghtml에서 게시물 부분만 선택
-      const postList = document.getElementsByClassName("post-item");
-      // 게시물 부분을 넣어주고 postList를 만듬
-      postTagToPostList(postList);
-      // tag다시 공백
-      setBlogHtml("");
-    });
+
+    // 포스트 정보가 스토어에 이미 있는 경우에는 요청하지 않음.
+    if (posts.length === 0) {
+      console.log("블로그 정보 요청");
+      getBlog().then(html => {
+        // tag에 bloghtml 넣음.
+        setBlogHtml(html);
+        // bloghtml에서 게시물 부분만 선택
+        const postList = document.getElementsByClassName("post-item");
+        // 게시물 부분을 넣어주고 postList를 만듬
+        setPosts(postTagToPostList(postList));
+        // tag다시 공백
+        setBlogHtml("");
+      });
+    } else {
+    }
   }, []);
 
   const onWheel = e => {
@@ -142,7 +147,10 @@ export default () => {
           >
             <MenuTitle>Blog</MenuTitle>
           </CSSTransition>
-          <ScrollRangeBar />
+          <ScrollRangeBar
+            contentLength={posts.length}
+            selectedContentIndex={selectedProject}
+          />
         </MenuContainer>
         <ProjectListContainer position={position} isSideOpen={isSideOpen}>
           <Slider contents={posts} />
