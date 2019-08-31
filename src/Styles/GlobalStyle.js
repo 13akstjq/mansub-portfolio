@@ -13,7 +13,11 @@ export default createGlobalStyle`
     }
     a {
       text-decoration : none;
+      color : rgba(255,255,255,0.8);
     }
     
+    a:focus {
+      color : #8565fc;
+    }
     
 `;

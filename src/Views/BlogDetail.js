@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import "../Styles/Detail.css";
-import { Mobile, Desktop } from "../Components/Icons";
+import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
 import { AppContext } from "../Context/AppContext";
 import { getBlog, postTagToPostList } from "../Services/BlogService";
 import { bgColorFilter } from "../Components/BigCard";
@@ -62,7 +62,7 @@ const DesktopButton = styled.div`
   cursor: pointer;
 `;
 
-const VisitButton = styled.div`
+const VisitButton = styled.a`
   padding: 3px 10px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.3);
@@ -115,7 +115,10 @@ export default ({ history, location }) => {
     <Wrapper>
       <ShowContainer category={post && post.category}>
         <Header>
-          <BackButton onClick={goBack}>{"< Back"}</BackButton>
+          <BackButton onClick={goBack}>
+            <LeftArrow></LeftArrow>
+            {" Back"}
+          </BackButton>
           <ResponsivButton>
             <MobileButton onClick={() => toggleDemoType("mobile")}>
               <Mobile selected={DemoType === "mobile"}></Mobile>
@@ -124,7 +127,9 @@ export default ({ history, location }) => {
               <Desktop selected={DemoType === "desktop"}></Desktop>
             </DesktopButton>
           </ResponsivButton>
-          <VisitButton>Visit</VisitButton>
+          <VisitButton target="_blank" href={post && post.url}>
+            Visit
+          </VisitButton>
         </Header>
         <DemoContainer>
           <DemoProject DemoType={DemoType}>

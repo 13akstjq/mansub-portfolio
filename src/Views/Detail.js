@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
-import { Mobile, Desktop } from "../Components/Icons";
+import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -144,7 +144,10 @@ export default ({ history, location }) => {
     <Wrapper>
       <ShowContainer showFullDemo={showFullDemo} showFullDesc={showFullDesc}>
         <Header>
-          <BackButton onClick={goBack}>{"< Back"}</BackButton>
+          <BackButton onClick={goBack}>
+            <LeftArrow></LeftArrow>
+            {"Back"}
+          </BackButton>
           <ResponsivButton>
             <MobileButton onClick={() => toggleDemoType("mobile")}>
               <Mobile selected={DemoType === "mobile"}></Mobile>

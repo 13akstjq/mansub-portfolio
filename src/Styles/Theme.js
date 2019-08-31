@@ -11,6 +11,7 @@ export default {
   reduxColor: "#7348B7",
   jsColor: "#F0D91D",
   awsColor: "#F1941C",
+  gitColor: "#24282E",
   githubColor: "#24282E",
   nodeColor: "#87C000",
   graphqlColor: "#DF34A6",

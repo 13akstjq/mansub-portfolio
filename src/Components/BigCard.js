@@ -17,7 +17,7 @@ import { UserContext } from "../Context/UserContext";
 import { AppContext } from "../Context/AppContext";
 
 export const bgColorFilter = (category, theme) => {
-  let bgColor = "#F3F3F3";
+  let bgColor = "#999";
   switch (category) {
     case "react":
       bgColor = theme.reactColor;
