@@ -8,16 +8,16 @@ import styled from "styled-components";
 import { UserContext } from "../Context/UserContext";
 import { AppContext } from "../Context/AppContext";
 // Configure Firebase.
-const config = {
-  apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
-  authDomain: "mansub-portfolio.firebaseapp.com",
-  databaseURL: "https://mansub-portfolio.firebaseio.com",
-  projectId: "mansub-portfolio",
-  storageBucket: "mansub-portfolio.appspot.com",
-  messagingSenderId: "13321522848",
-  appId: "1:13321522848:web:ebe5e5c7f4da6619"
-};
-firebase.initializeApp(config);
+// const config = {
+//   apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
+//   authDomain: "mansub-portfolio.firebaseapp.com",
+//   databaseURL: "https://mansub-portfolio.firebaseio.com",
+//   projectId: "mansub-portfolio",
+//   storageBucket: "mansub-portfolio.appspot.com",
+//   messagingSenderId: "13321522848",
+//   appId: "1:13321522848:web:ebe5e5c7f4da6619"
+// };
+// firebase.initializeApp(config);
 
 const Wrapper = styled.div`
   /* width: 0px; */

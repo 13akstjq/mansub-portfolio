@@ -17,4 +17,22 @@ firebase.initializeApp(config);
 
 const firestore = new firebase.firestore();
 
+const PROJECTS = "Projects";
+
+export const getProjects = () => {
+  const projectsCollection = firestore.collection(PROJECTS);
+  return (
+    projectsCollection
+      // .orderBy("createdAt", "desc")
+      .get()
+      .then(docSnapshots => {
+        return docSnapshots.docs.map(doc => {
+          let data = doc.data();
+          data.id = doc.id;
+          return data;
+        });
+      })
+  );
+};
+
 export { firestore };

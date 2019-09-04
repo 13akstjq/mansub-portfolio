@@ -2,7 +2,7 @@ import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    ${reset};
+    
     * {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -20,4 +20,8 @@ export default createGlobalStyle`
       color : #8565fc;
     }
     
+    
+    /* div :not(.markdown__container){
+      color : red;
+    } */
 `;

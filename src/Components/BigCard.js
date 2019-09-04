@@ -1,8 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styled from "styled-components";
 import FatText from "./FatText";
 import Avatar from "./Avatar";
 import { Link, withRouter } from "react-router-dom";
+import oneDayOneCommit from "../assets/video/1Day1Commit.mp4";
+import portfolio from "../assets/video/portfolio.mp4";
+import manstagram from "../assets/video/manstagram.mp4";
+
 import {
   EmptyHeart,
   FullHeart,
@@ -61,7 +65,12 @@ export const bgColorFilter = (category, theme) => {
   return bgColor;
 };
 
-const Video = styled.div`
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+`;
+
+const SkillImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +86,7 @@ const Wrapper = styled.div`
   color: ${props => props.theme.darkGreyColor};
   grid-template-rows: 7fr minmax(0px, 4fr);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  & > ${Video} {
+  & > ${SkillImage} {
     background-color: ${props => bgColorFilter(props.category, props.theme)};
   }
   &:hover {
@@ -146,8 +155,7 @@ const LikeCount = styled.span`
 export default withRouter(
   ({
     id,
-    url,
-    video,
+    thumbnail,
     name,
     title,
     category,
@@ -155,6 +163,7 @@ export default withRouter(
     likeCount,
     location
   }) => {
+    const videoRef = useRef();
     const pathName = location.pathname;
     const [isLikedS, setIsLikedS] = useState(false);
     const [likeCountS, setLikeCountS] = useState((likeCount = 0));
@@ -176,32 +185,58 @@ export default withRouter(
       }
     };
 
+    const thumbnailCheck = thumbnail => {
+      if (thumbnail === "manstagram") {
+        return manstagram;
+      } else if (thumbnail === "oneDayOneCommit") {
+        return oneDayOneCommit;
+      } else if (thumbnail === "portfolio") {
+        return portfolio;
+      }
+    };
+
     return (
       <Link to={pathName === "/" ? `/post/${id}` : `/blogDetail/${id}`}>
         <Wrapper category={category}>
-          <Video>
-            {((pathName === "/Blog" && category === "react") ||
-              category === "reactnative") && <ReactIcon></ReactIcon>}
-            {pathName === "/Blog" && category === "redux" && (
-              <ReduxIcon></ReduxIcon>
-            )}
-            {pathName === "/Blog" &&
-              (category === "js" || category === "es6") && <JsIcon></JsIcon>}
-            {pathName === "/Blog" && category === "typescript" && (
-              <TsIcon></TsIcon>
-            )}
-
-            {pathName === "/Blog" &&
-              (category === "git" || category === "github") && (
-                <GithubIcon></GithubIcon>
+          {pathName === "/" ? (
+            <Video
+              ref={videoRef}
+              // autoPlay
+              onMouseEnter={() => {
+                const test = videoRef.current.play();
+              }}
+              onMouseLeave={() => {
+                videoRef.current.pause();
+              }}
+              loop
+              src={thumbnailCheck(thumbnail)}
+            ></Video>
+          ) : (
+            <SkillImage>
+              {((pathName === "/Blog" && category === "react") ||
+                category === "reactnative") && <ReactIcon></ReactIcon>}
+              {pathName === "/Blog" && category === "redux" && (
+                <ReduxIcon></ReduxIcon>
               )}
-            {pathName === "/Blog" && category === "nodejs" && (
-              <ReactIcon></ReactIcon>
-            )}
-            {pathName === "/Blog" && category === "graphql" && (
-              <GraphqlIcon></GraphqlIcon>
-            )}
-          </Video>
+              {pathName === "/Blog" &&
+                (category === "js" || category === "es6") && <JsIcon></JsIcon>}
+              {pathName === "/Blog" && category === "typescript" && (
+                <TsIcon></TsIcon>
+              )}
+
+              {pathName === "/Blog" &&
+                (category === "git" || category === "github") && (
+                  <GithubIcon></GithubIcon>
+                )}
+              {pathName === "/Blog" && category === "nodejs" && (
+                <ReactIcon></ReactIcon>
+              )}
+              {pathName === "/Blog" && category === "graphql" && (
+                <GraphqlIcon></GraphqlIcon>
+              )}
+            </SkillImage>
+          )}
+
           <DescContainer>
             <TitleContainer>
               <Title size={18} text={title} />

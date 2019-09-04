@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
 import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
+import ReactMarkdown from "react-markdown";
+import { getProjects } from "../Firebase/Firebase";
+import { AppContext } from "../Context/AppContext";
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -130,16 +133,35 @@ const DescriptionContainer = styled.div`
 `;
 
 export default ({ history, location }) => {
+  const { projects } = useContext(AppContext);
+  const [project, setProject] = useState();
   const [DemoType, setDemoType] = useState("desktop");
   const [showFullDemo, setShowFullDemo] = useState(false);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const toggleDemoType = type => setDemoType(type);
   const toggleShowFullDemo = () => setShowFullDemo(!showFullDemo);
   const toggleShowFullDesc = () => setShowFullDesc(!showFullDesc);
-  const postId = location.pathname.split("/")[2];
+  const projectId = location.pathname.split("/")[2];
   const goBack = () => {
     history.push("/");
   };
+
+  // useEffect(() => {
+  //   getProjects().then(projects => {
+  //     console.log(projects);
+  //     setProjects(projects);
+  //     projects.forEach(project => {
+  //       if (project.id === projectId) {
+  //         setProject(project);
+  //       }
+  //     });
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    setProject(projects[projectId - 1]);
+  }, []);
+
   return (
     <Wrapper>
       <ShowContainer showFullDemo={showFullDemo} showFullDesc={showFullDesc}>
@@ -161,7 +183,7 @@ export default ({ history, location }) => {
         <DemoContainer>
           <DemoProject DemoType={DemoType}>
             <iframe
-              key={postId}
+              key={projectId}
               title={"portfolio"}
               width="100%"
               height="100%"
@@ -169,7 +191,7 @@ export default ({ history, location }) => {
               scrolling="yes"
               marginHeight="0"
               marginWidth="0"
-              src="https://manstagram.netlify.com/#/"
+              src={project && project.url}
             ></iframe>
           </DemoProject>
         </DemoContainer>
@@ -182,7 +204,7 @@ export default ({ history, location }) => {
           showFullDemo={showFullDemo}
           showFullDesc={showFullDesc}
         >
-          설명
+          <ReactMarkdown source={project && project.markdown}></ReactMarkdown>
           <FullDescButton onClick={toggleShowFullDesc}>
             {" "}
             {showFullDesc ? ">" : "||"}{" "}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Header from "../Components/Header";
 import styled from "styled-components";
 import SideBar from "../Components/SideBar";
@@ -7,6 +7,7 @@ import Slider from "../Components/Slider";
 import { AppContext } from "../Context/AppContext";
 import ScrollRangeBar from "../Components/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
+import { getProjects } from "../Firebase/Firebase";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -62,10 +63,12 @@ const ProjectListContainer = styled.div`
 
 export default () => {
   const [position, setPosition] = useState(0);
+  const [projectsS, setProjectsS] = useState([]);
   const {
     scrollIndex,
     setScrollIndex,
     projects,
+    setProjects,
     selectedProject,
     setSelectedProject,
     isSideOpen
@@ -101,6 +104,14 @@ export default () => {
       }
     }
   };
+
+  // useEffect(() => {
+  //   getProjects().then(res => {
+  //     setProjects(res);
+  //     setprojects(res);
+  //     console.log(res);
+  //   });
+  // }, []);
 
   return (
     <Wrapper isSideOpen={isSideOpen} onWheel={onWheel}>

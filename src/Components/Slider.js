@@ -22,7 +22,6 @@ const Wrapper = styled.div`
 
 export default ({ contents }) => {
   const { selectedProject } = useContext(AppContext);
-
   return (
     <Wrapper selectedProject={selectedProject}>
       {contents.map(content => (
