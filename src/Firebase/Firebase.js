@@ -18,6 +18,7 @@ firebase.initializeApp(config);
 const firestore = new firebase.firestore();
 
 const PROJECTS = "Projects";
+const USERS = "Users";
 
 export const getProjects = () => {
   const projectsCollection = firestore.collection(PROJECTS);
@@ -33,6 +34,19 @@ export const getProjects = () => {
         });
       })
   );
+};
+
+// uid가 없으면 새로 만들고 있으면 안만듬.
+export const signin = ({ displayName, photoURL, uid, email }) => {
+  firestore
+    .collection(USERS)
+    .doc(uid)
+    .set({
+      uid,
+      email,
+      displayName,
+      photoURL
+    });
 };
 
 export { firestore };

@@ -1,4 +1,3 @@
-// Import FirebaseAuth and firebase.
 import React, { useEffect, useContext } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "../Firebase/firebaseui-styling.global.css"; // Import globally.
@@ -7,21 +6,9 @@ import "firebase/auth";
 import styled from "styled-components";
 import { UserContext } from "../Context/UserContext";
 import { AppContext } from "../Context/AppContext";
-// Configure Firebase.
-// const config = {
-//   apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
-//   authDomain: "mansub-portfolio.firebaseapp.com",
-//   databaseURL: "https://mansub-portfolio.firebaseio.com",
-//   projectId: "mansub-portfolio",
-//   storageBucket: "mansub-portfolio.appspot.com",
-//   messagingSenderId: "13321522848",
-//   appId: "1:13321522848:web:ebe5e5c7f4da6619"
-// };
-// firebase.initializeApp(config);
+import { signin } from "../Firebase/Firebase";
 
 const Wrapper = styled.div`
-  /* width: 0px; */
-  /* height: 0px; */
   z-index: 10;
   position: fixed;
   right: 0px;
@@ -34,31 +21,24 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-  // const [isFinish, setIsFinish] = useState(false);
   const { isAuthOpen } = useContext(AppContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const login = res => {
-    localStorage.setItem("isLoggedIn", true);
+  const login = ({ user }) => {
+    signin(user);
+    const loggedInUser = {
+      displayName: user.displayName,
+      uid: user.uid,
+      photoURL: user.uid,
+      email: user.email
+    };
+    sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     setIsLoggedIn(true);
-    // setIsFinish(true);
   };
-  useEffect(() => {
-    // if (!isLoggedIn) {
-    //   setIsFinish(false);
-    // }
-    // console.log("isAuthOpen", isAuthOpen);
-    // console.log("isfinish", isFinish);
-  }, [isLoggedIn, isAuthOpen]);
-  // Configure FirebaseUI.
   const uiConfig = {
-    // Popup signin flow rather than redirect flow.
     signInFlow: "popup",
-    // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
     callbacks: {
-      // Avoid redirects after sign-in.
       signInSuccessWithAuthResult: res => login(res)
     },
-    // We will display Google and Facebook as auth providers.
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,

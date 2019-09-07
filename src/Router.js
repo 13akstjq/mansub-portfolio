@@ -10,6 +10,8 @@ import "./Styles/Home.css";
 import "./Styles/BlogDetail.css";
 import Login from "./Components/Login";
 import BlogDetail from "./Views/BlogDetail";
+import ChatbotButton from "./Components/ChatbotButton";
+import Chatbot from "./Components/Chatbot";
 
 export default () => {
   return (
@@ -20,6 +22,8 @@ export default () => {
           return (
             <>
               <Login />
+              <Chatbot></Chatbot>
+              <ChatbotButton></ChatbotButton>
               <TransitionGroup>
                 <CSSTransition
                   key={location.key}

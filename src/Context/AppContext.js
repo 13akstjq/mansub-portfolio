@@ -90,6 +90,7 @@ const AppContextProvider = ({ children }) => {
   const [isSideOpen, setIsSideOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   return (
     <AppContext.Provider
       value={{
@@ -104,7 +105,9 @@ const AppContextProvider = ({ children }) => {
         setPosts,
         setProjects,
         isAuthOpen,
-        setIsAuthOpen
+        setIsAuthOpen,
+        isChatOpen,
+        setIsChatOpen
       }}
     >
       {children}
