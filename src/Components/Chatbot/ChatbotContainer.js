@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import ChatbotPresenter from "./ChatbotPresenter";
 import { AppContext } from "../../Context/AppContext";
 
 export default () => {
-  const { isChatOpen, setIsChatOpen } = useContext(AppContext);
-  console.log(isChatOpen);
+  const { isChatOpen, setIsChatOpen, isJobLess } = useContext(AppContext);
+  const [isShowTimeTable, setIsShowTimeTable] = useState(false);
+  const today = new Date();
+  const currentHours = today.getHours();
+
   return (
     <ChatbotPresenter
+      isJobLess={isJobLess}
       isChatOpen={isChatOpen}
       setIsChatOpen={setIsChatOpen}
+      isChatPossible={currentHours >= 9 && currentHours <= 21 ? true : false}
+      isShowTimeTable={isShowTimeTable}
+      setIsShowTimeTable={setIsShowTimeTable}
     ></ChatbotPresenter>
   );
 };

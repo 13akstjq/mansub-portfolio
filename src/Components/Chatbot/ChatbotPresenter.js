@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CloseButton } from "../Icons";
+import { CloseButton, Moon } from "../Icons";
 
 const Wrapper = styled.div`
   width: ${props => (props.isChatOpen ? "320px" : "0px")};
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   z-index: 12;
   position: fixed;
   display: grid;
-  grid-template-rows: 1fr 2fr 8fr;
+  grid-template-rows: 1fr 1.3fr 8fr;
   bottom: 20px;
   right: 20px;
   transition: all 0.3s ease-in-out;
@@ -29,18 +29,57 @@ const CloseButtonContainer = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 8fr 2fr;
   padding: 0px 20px;
-  justify-content: space-between;
 `;
 
 const TiemIcon = styled.div``;
 
-const InfoContent = styled.div``;
+const InfoContent = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1.5fr;
+  font-size: 13px;
+`;
 
-const JobSearchContainer = styled.div``;
+const JobSearchContainer = styled.div`
+  font-weight: 600;
+`;
 
-const TimeTableContainer = styled.div``;
+const TimeTableContainer = styled.div`
+  display: grid;
+  position: relative;
+`;
+
+const ChatStatusContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ChatStatusText = styled.span`
+  margin-right: 5px;
+`;
+const ChatStatusCircle = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: ${props => (props.isChatPossible ? "#2ecc71" : "#c0392b")};
+`;
+
+const TimeTableText = styled.span`
+  cursor: pointer;
+`;
+
+const TimeTable = styled.div`
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  bottom: -80px;
+  background-color: black;
+  color: #999;
+  font-weight: 600;
+  transition: all 1s ease-in-out;
+`;
 
 const RoomListContainer = styled.div`
   background-color: white;
@@ -54,7 +93,14 @@ const RoomListHeader = styled.div``;
 
 const RoomList = styled.div``;
 
-export default ({ isChatOpen, setIsChatOpen }) => {
+export default ({
+  isChatOpen,
+  setIsChatOpen,
+  isJobLess,
+  isChatPossible,
+  isShowTimeTable,
+  setIsShowTimeTable
+}) => {
   return (
     <Wrapper isChatOpen={isChatOpen}>
       <Header>
@@ -65,12 +111,36 @@ export default ({ isChatOpen, setIsChatOpen }) => {
       </Header>
       <InfoContainer>
         <InfoContent>
-          <JobSearchContainer>구직 중</JobSearchContainer>
+          <JobSearchContainer>
+            {isJobLess
+              ? "활발히 구직 중입니다 ☺️"
+              : "---에서 ---를 개발 중입니다."}
+          </JobSearchContainer>
           <TimeTableContainer>
-            지금 문의하시면 바로 답장을 못할 수도 있스비낟.
+            <ChatStatusContainer>
+              <ChatStatusText>
+                {isChatPossible
+                  ? "연락 가능한 시간이에요 "
+                  : "연락 가능한 시간이 아니에요 "}
+              </ChatStatusText>
+              <ChatStatusCircle
+                isChatPossible={isChatPossible}
+              ></ChatStatusCircle>
+            </ChatStatusContainer>
+            <TimeTableText onClick={() => setIsShowTimeTable(!isShowTimeTable)}>
+              연락 가능시간 보기 🕐
+            </TimeTableText>
+            {isShowTimeTable && (
+              <TimeTable>
+                월, 화, 수, 목, 금 <br /> 09:00 AM ~ 22:00 PM <br /> Timezone:
+                Asia/Seoul
+              </TimeTable>
+            )}
           </TimeTableContainer>
         </InfoContent>
-        <TiemIcon>달/해 아이콘 </TiemIcon>
+        <TiemIcon>
+          <Moon></Moon>
+        </TiemIcon>
       </InfoContainer>
       <RoomListContainer></RoomListContainer>
     </Wrapper>

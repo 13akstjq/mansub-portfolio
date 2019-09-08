@@ -91,6 +91,7 @@ const AppContextProvider = ({ children }) => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isJobLess, setIsJobLess] = useState(true);
   return (
     <AppContext.Provider
       value={{
@@ -107,7 +108,8 @@ const AppContextProvider = ({ children }) => {
         isAuthOpen,
         setIsAuthOpen,
         isChatOpen,
-        setIsChatOpen
+        setIsChatOpen,
+        isJobLess
       }}
     >
       {children}
