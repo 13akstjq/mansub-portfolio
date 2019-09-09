@@ -92,6 +92,12 @@ const AppContextProvider = ({ children }) => {
   const [scrollIndex, setScrollIndex] = useState(0);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isJobLess, setIsJobLess] = useState(true);
+  const myProfile = {
+    photoURL:
+      "https://lh5.googleusercontent.com/-kG11ADe4UGg/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcP3fiMD1hBY2wDpsWkJJmA4Wv9_Q/photo.jpg",
+    name: "한만섭",
+    email: "13akstjq@gmail.com"
+  };
   return (
     <AppContext.Provider
       value={{
@@ -109,7 +115,8 @@ const AppContextProvider = ({ children }) => {
         setIsAuthOpen,
         isChatOpen,
         setIsChatOpen,
-        isJobLess
+        isJobLess,
+        myProfile
       }}
     >
       {children}

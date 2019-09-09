@@ -17,5 +17,6 @@ export default {
   graphqlColor: "#DF34A6",
   prismaColor: "#0C3349",
   tsColor: "#0077C7",
-  vueColor: "#41B381"
+  vueColor: "#41B381",
+  chatbotBgColor: "#f3f5fc"
 };

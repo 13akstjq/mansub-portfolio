@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { CloseButton, Moon } from "../Icons";
-
+import { CloseButton, Sunny, Moon, SendButton } from "../Icons";
+import Room from "../Room";
 const Wrapper = styled.div`
   width: ${props => (props.isChatOpen ? "320px" : "0px")};
   height: ${props => (props.isChatOpen ? "570px" : "0px")};
   opacity: ${props => (props.isChatOpen ? "1" : "0")};
-  background-color: #f3f5fc;
+  background-color: ${props => props.theme.chatbotBgColor};
   border-radius: 5px;
   z-index: 12;
   position: fixed;
@@ -20,7 +20,10 @@ const Wrapper = styled.div`
 
 const Header = styled.div`
   display: flex;
+  font-size: 24px;
   padding: 20px 30px;
+  padding-bottom: 0px;
+  font-weight: 600;
   justify-content: space-between;
 `;
 
@@ -32,6 +35,7 @@ const InfoContainer = styled.div`
   display: grid;
   grid-template-columns: 8fr 2fr;
   padding: 0px 20px;
+  align-items: center;
 `;
 
 const TiemIcon = styled.div``;
@@ -80,8 +84,11 @@ const TimeTable = styled.div`
   font-weight: 600;
   transition: all 1s ease-in-out;
 `;
-
+const ChatbotRow = styled.div`
+  overflow: scroll;
+`;
 const RoomListContainer = styled.div`
+  display: grid;
   background-color: white;
   margin: 10px;
   margin-bottom: 20px;
@@ -89,9 +96,29 @@ const RoomListContainer = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.13);
 `;
 
+const StartMessage = styled.div``;
 const RoomListHeader = styled.div``;
 
 const RoomList = styled.div``;
+
+const CreateChatButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+const FirstCreateChatButton = styled(CreateChatButton)`
+  width: 150px;
+  height: 40px;
+  font-size: 13px;
+  background-color: ${props => props.theme.chatbotBgColor};
+  border-radius: 7px;
+  margin: auto;
+  margin-bottom: 10px;
+  & > span {
+    margin-left: 5px;
+  }
+`;
 
 export default ({
   isChatOpen,
@@ -99,7 +126,10 @@ export default ({
   isJobLess,
   isChatPossible,
   isShowTimeTable,
-  setIsShowTimeTable
+  setIsShowTimeTable,
+  currentHours,
+  rooms,
+  myProfile
 }) => {
   return (
     <Wrapper isChatOpen={isChatOpen}>
@@ -139,10 +169,25 @@ export default ({
           </TimeTableContainer>
         </InfoContent>
         <TiemIcon>
-          <Moon></Moon>
+          {currentHours < 18 ? <Sunny size="50" /> : <Moon size="50" />}
         </TiemIcon>
       </InfoContainer>
-      <RoomListContainer></RoomListContainer>
+      <ChatbotRow>
+        <RoomListContainer>
+          {rooms && rooms.length === 0 && (
+            <>
+              <Room
+                photoURL={myProfile.photoURL}
+                name={myProfile.name}
+                lastMessage={`안녕하세요 😊 　　　　　　　　궁금한 것이 있으시면 무엇이든 물어봐주세요.`}
+              ></Room>
+              <FirstCreateChatButton>
+                <SendButton size="13" /> <span>새 대화 시작</span>
+              </FirstCreateChatButton>
+            </>
+          )}
+        </RoomListContainer>
+      </ChatbotRow>
     </Wrapper>
   );
 };

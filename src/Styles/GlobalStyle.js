@@ -20,7 +20,20 @@ export default createGlobalStyle`
       color : #8565fc;
     }
     
-    
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #919191;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
     /* div :not(.markdown__container){
       color : red;
     } */

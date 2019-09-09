@@ -11,6 +11,8 @@ const Wrapper = styled.div`
   align-items: center;
   display: grid;
   grid-auto-flow: column;
+  /* grid-template-columns : repeat( , 300px); */
+  grid-auto-columns : 300px;
   grid-gap: 20px;
   overflow-x: auto;
   perspective: 800px;
