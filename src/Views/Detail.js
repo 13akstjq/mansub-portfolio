@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
 import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
-import ReactMarkdown from "react-markdown";
 import { AppContext } from "../Context/AppContext";
 const Wrapper = styled.div`
   position: fixed;
@@ -115,7 +114,6 @@ const DescriptionContainer = styled.div`
       : props.showFullDemo
       ? "0% !important"
       : "40%"};
-  /* transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06); */
   position: relative;
   display: flex;
   justify-content: center;
@@ -138,18 +136,6 @@ export default ({ history, location }) => {
   const goBack = () => {
     history.push("/");
   };
-
-  // useEffect(() => {
-  //   getProjects().then(projects => {
-  //     console.log(projects);
-  //     setProjects(projects);
-  //     projects.forEach(project => {
-  //       if (project.id === projectId) {
-  //         setProject(project);
-  //       }
-  //     });
-  //   });
-  // }, []);
 
   useEffect(() => {
     setProject(projects[projectId - 1]);

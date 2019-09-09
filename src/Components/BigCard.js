@@ -77,8 +77,6 @@ const SkillImage = styled.div`
 `;
 
 const Wrapper = styled.div`
-  /* width: 300px; */
-  /* height: 390px; */
   transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
   border-radius: 10px;
   overflow: hidden;
@@ -200,18 +198,7 @@ export default withRouter(
       <Link to={pathName === "/" ? `/post/${id}` : `/blogDetail/${id}`}>
         <Wrapper category={category}>
           {pathName === "/" ? (
-            <Video
-              ref={videoRef}
-              // autoPlay
-              onMouseEnter={() => {
-                const test = videoRef.current.play();
-              }}
-              onMouseLeave={() => {
-                videoRef.current.pause();
-              }}
-              loop
-              src={thumbnailCheck(thumbnail)}
-            ></Video>
+            <Video></Video>
           ) : (
             <SkillImage>
               {((pathName === "/Blog" && category === "react") ||

@@ -8,13 +8,17 @@ import "../Styles/Slider.css";
 import { SideBarContext } from "../Context/SideBarContext";
 
 const Wrapper = styled.div`
+  /* width: 300px;
+  transform-origin: right 90px;
+  height: 100vw;
+  transform: rotate(-90deg);
+  overflow-y: scroll; */
   padding: 40px;
   align-items: center;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 300px;
   grid-gap: 20px;
-  overflow-x: auto;
   perspective: 800px;
   transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;

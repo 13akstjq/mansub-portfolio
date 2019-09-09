@@ -2,11 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import Header from "../Components/Header";
 import styled from "styled-components";
 import SideBar from "../Components/SideBar";
-import { AppContext } from "../Context/AppContext";
 import SidebarControlButton from "../Components/SidebarControlButton";
 import ScrollRangeBar from "../Components/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
-import { getBlog, postTagToPostList } from "../Services/BlogService";
 
 import "../Styles/Home.css";
 import { SideBarContext } from "../Context/SideBarContext";
@@ -51,16 +49,7 @@ const MenuContainer = styled.div`
 const MenuTitle = styled.div`
   font-size: 30px;
   font-weight: 900;
-  /* background-color: yellow; */
   margin-left: 10px;
-`;
-
-const ProjectListContainer = styled.div`
-  transform: ${props =>
-    props.isSideOpen
-      ? ` translateX(${props.position}px) perspective(500px) translate3d(-30px,-30px,-30px);`
-      : ` translateX(${props.position}px)perspective(500px) translate3d(0px,0px,0px); `};
-  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
 export default () => {

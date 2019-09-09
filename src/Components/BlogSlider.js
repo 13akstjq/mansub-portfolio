@@ -33,7 +33,6 @@ export default () => {
     setScrollIndex,
     posts,
     setPosts,
-    projects,
     setSelectedProject,
     selectedProject,
     projects: contents

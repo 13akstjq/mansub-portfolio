@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Header from "../Components/Header";
 import styled from "styled-components";
 import SideBar from "../Components/SideBar";
@@ -31,7 +31,6 @@ const MainContainer = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  /* background-color: red; */
   align-items: flex-end;
   padding: 3px 40px;
 
@@ -48,7 +47,6 @@ const MenuContainer = styled.div`
 const MenuTitle = styled.div`
   font-size: 30px;
   font-weight: 900;
-  /* background-color: yellow; */
   margin-left: 10px;
 `;
 
