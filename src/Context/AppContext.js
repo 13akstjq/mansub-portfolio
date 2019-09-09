@@ -15,7 +15,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub",
       category: ["react", "Hooks"],
       url: "https://manstagram.netlify.com/#/",
-      markdowm: "'# This is a header\n\nAnd this is a paragraph'"
+      postURL: ""
     },
     {
       id: 2,
@@ -24,8 +24,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub",
       category: ["React , Hooks"],
       url: "https://mansub.netlify.com",
-      markdowm:
-        "## React + Hooks + Firebase 로 개발한 포트폴리오 사이트 입니다. "
+      postURL: ""
     },
     {
       id: 3,
@@ -35,8 +34,8 @@ const AppContextProvider = ({ children }) => {
       category: "Vanilla JS",
       url:
         "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
-      markdowm:
-        "## vanilla JS로 개발한 1일 1 커밋을 도와주는 구글 크롬 확장프로그램입니다. "
+      postURL:
+        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html"
     },
     {
       id: 4,
@@ -45,7 +44,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub4",
       category: "react4",
       url: "",
-      markdowm: " "
+      postURL: " "
     },
     {
       id: 5,
@@ -54,7 +53,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub5",
       category: "react5",
       url: "",
-      markdowm: " "
+      postURL: " "
     },
     {
       id: 6,
@@ -63,7 +62,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub6",
       category: "react6",
       url: "",
-      markdowm: " "
+      postURL: " "
     },
     {
       id: 7,
@@ -72,7 +71,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub7",
       category: "react7",
       url: "",
-      markdowm: " "
+      postURL: " "
     },
     {
       id: 8,
@@ -81,7 +80,7 @@ const AppContextProvider = ({ children }) => {
       name: "Han ManSub8",
       category: "react8",
       url: "",
-      markdowm: " "
+      postURL: " "
     }
   ];
 

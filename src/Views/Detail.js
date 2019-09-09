@@ -4,7 +4,6 @@ import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
 import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
 import ReactMarkdown from "react-markdown";
-import { getProjects } from "../Firebase/Firebase";
 import { AppContext } from "../Context/AppContext";
 const Wrapper = styled.div`
   position: fixed;
@@ -15,12 +14,6 @@ const Wrapper = styled.div`
   background-color: transparent;
   overflow: hidden;
   display: flex;
-  /* grid-template-columns: ${props =>
-    props.showFullDemo
-      ? "100% 0%"
-      : props.showFullDesc
-      ? "0% 100%"
-      : "60% 40%"}; */
 `;
 
 const ShowContainer = styled.div`
@@ -78,7 +71,6 @@ const VisitButton = styled.div`
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  /* color: ${props => props.theme.lightGreyColor}; */
 `;
 
 const DemoContainer = styled.div`
@@ -130,6 +122,7 @@ const DescriptionContainer = styled.div`
   align-items: center;
   background-color: white;
   color: ${props => props.theme.lightGreyColor};
+  padding-left: 20px;
 `;
 
 export default ({ history, location }) => {
@@ -204,7 +197,18 @@ export default ({ history, location }) => {
           showFullDemo={showFullDemo}
           showFullDesc={showFullDesc}
         >
-          <ReactMarkdown source={project && project.markdown}></ReactMarkdown>
+          {/* <ReactMarkdown source={project && project.markdown}></ReactMarkdown> */}
+          <iframe
+            key={projectId}
+            title={"portfolioPost"}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            scrolling="yes"
+            marginHeight="0"
+            marginWidth="0"
+            src={project && project.postURL}
+          ></iframe>
           <FullDescButton onClick={toggleShowFullDesc}>
             {" "}
             {showFullDesc ? ">" : "||"}{" "}
