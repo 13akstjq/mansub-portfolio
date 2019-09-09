@@ -5,19 +5,28 @@ import { ThemeProvider } from "styled-components";
 import Theme from "./Styles/Theme";
 import AppContextProvider from "./Context/AppContext";
 import UserContextProvider from "./Context/UserContext";
+import SideBarContextProvider from "./Context/SideBarContext";
+import AuthContextProvider from "./Context/AuthContext";
+import ChatbotContextProvider from "./Context/ChatbotContext";
 function App() {
   return (
     <div className="App">
-      <AppContextProvider>
-        <UserContextProvider>
-          <ThemeProvider theme={Theme}>
-            <>
-              <GlobalStyle />
-              <Router />
-            </>
-          </ThemeProvider>
-        </UserContextProvider>
-      </AppContextProvider>
+      <AuthContextProvider>
+        <ChatbotContextProvider>
+          <SideBarContextProvider>
+            <AppContextProvider>
+              <UserContextProvider>
+                <ThemeProvider theme={Theme}>
+                  <>
+                    <GlobalStyle />
+                    <Router />
+                  </>
+                </ThemeProvider>
+              </UserContextProvider>
+            </AppContextProvider>
+          </SideBarContextProvider>
+        </ChatbotContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }

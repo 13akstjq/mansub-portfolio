@@ -128,8 +128,7 @@ export default ({
   isShowTimeTable,
   setIsShowTimeTable,
   currentHours,
-  rooms,
-  myProfile
+  messages
 }) => {
   return (
     <Wrapper isChatOpen={isChatOpen}>
@@ -173,20 +172,7 @@ export default ({
         </TiemIcon>
       </InfoContainer>
       <ChatbotRow>
-        <RoomListContainer>
-          {rooms && rooms.length === 0 && (
-            <>
-              <Room
-                photoURL={myProfile.photoURL}
-                name={myProfile.name}
-                lastMessage={`안녕하세요 😊 　　　　　　　　궁금한 것이 있으시면 무엇이든 물어봐주세요.`}
-              ></Room>
-              <FirstCreateChatButton>
-                <SendButton size="13" /> <span>새 대화 시작</span>
-              </FirstCreateChatButton>
-            </>
-          )}
-        </RoomListContainer>
+        <RoomListContainer>{messages && <Room></Room>}</RoomListContainer>
       </ChatbotRow>
     </Wrapper>
   );

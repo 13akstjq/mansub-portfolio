@@ -1,14 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ChatbotPresenter from "./ChatbotPresenter";
 import { AppContext } from "../../Context/AppContext";
+import { getMessages } from "../../Firebase/Firebase";
+import { UserContext } from "../../Context/UserContext";
+import { ChatbotContext } from "../../Context/ChatbotContext";
 
 export default () => {
   const { isChatOpen, setIsChatOpen, isJobLess, myProfile } = useContext(
-    AppContext
+    ChatbotContext
   );
+  const { loggedInUser } = useContext(UserContext);
   const [isShowTimeTable, setIsShowTimeTable] = useState(false);
   const today = new Date();
   const currentHours = today.getHours();
+  console.log("chatbot");
+  useEffect(() => {
+    console.log("didmount");
+  }, []);
+  if (loggedInUser === null) {
+  }
 
   return (
     <ChatbotPresenter
@@ -19,8 +29,7 @@ export default () => {
       currentHours={currentHours}
       isShowTimeTable={isShowTimeTable}
       setIsShowTimeTable={setIsShowTimeTable}
-      myProfile={myProfile}
-      rooms={[]}
+      messages={[]}
     ></ChatbotPresenter>
   );
 };

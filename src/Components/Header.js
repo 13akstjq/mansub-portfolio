@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import PortfolioLogo from "../assets/image/portfolioLogo.jpg";
 import { UserContext } from "../Context/UserContext";
-import { AppContext } from "../Context/AppContext";
+import { AuthContext } from "../Context/AuthContext";
 // import Login from "./Login";
 
 const Header = styled.div`
@@ -32,7 +32,8 @@ const AuthButton = styled.div`
 
 export default () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const { isAuthOpen, setIsAuthOpen } = useContext(AppContext);
+  const { isAuthOpen, setIsAuthOpen } = useContext(AuthContext);
+  console.log("Header");
   // useEffect(() => {
   //   if (isLoggedIn === true) {
   //     sessionStorage.setItem("loggedInUser", "true");

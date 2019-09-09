@@ -169,6 +169,7 @@ export default withRouter(
     const [likeCountS, setLikeCountS] = useState((likeCount = 0));
     const { isLoggedIn } = useContext(UserContext);
     const { setIsAuthOpen } = useContext(AppContext);
+    console.log("BigCard");
     const toggleLike = e => {
       e.preventDefault();
       if (isLoggedIn) {

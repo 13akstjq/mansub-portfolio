@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { AppContext } from "../Context/AppContext";
 import BigCard from "./BigCard";
@@ -6,6 +6,7 @@ import { CSSTransition } from "react-transition-group";
 
 import "../Styles/Slider.css";
 import { SideBarContext } from "../Context/SideBarContext";
+import { getBlog, postTagToPostList } from "../Services/BlogService";
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -30,6 +31,8 @@ export default () => {
   const {
     scrollIndex,
     setScrollIndex,
+    posts,
+    setPosts,
     projects,
     setSelectedProject,
     selectedProject,
@@ -37,18 +40,40 @@ export default () => {
   } = useContext(AppContext);
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
+  const [blogHtml, setBlogHtml] = useState("");
+  useEffect(() => {
+    setSelectedProject(1);
+    setScrollIndex(0);
+
+    // 포스트 정보가 스토어에 이미 있는 경우에는 요청하지 않음.
+    if (posts.length === 0) {
+      console.log("블로그 정보 요청");
+      getBlog().then(html => {
+        // tag에 bloghtml 넣음.
+        setBlogHtml(html);
+        // bloghtml에서 게시물 부분만 선택
+        const postList = document.getElementsByClassName("post-item");
+        // 게시물 부분을 넣어주고 postList를 만듬
+        setPosts(postTagToPostList(postList));
+        // tag다시 공백
+        setBlogHtml("");
+      });
+    } else {
+    }
+  }, []);
 
   const onWheel = e => {
+    console.log("slider");
     // e.preventDefault();
     // console.log(projects.length * 3);
-    if (e.deltaY > 0 && scrollIndex < (projects.length - 3) * 3) {
+    if (e.deltaY > 0 && scrollIndex < (posts.length - 3) * 3) {
       // console.log(scrollIndex + 1);
       setScrollIndex(scrollIndex + 1);
       setPosition(position - 100);
       if (
         scrollIndex > 0 &&
         (scrollIndex + 1) % 3 === 0 &&
-        selectedProject <= projects.length - 3
+        selectedProject <= posts.length - 3
       ) {
         // console.log("test");
         setSelectedProject(selectedProject + 1);
@@ -72,17 +97,18 @@ export default () => {
   return (
     <ProjectListContainer position={position} isSideOpen={isSideOpen}>
       <Wrapper onWheel={onWheel} isSideOpen={isSideOpen}>
-        {contents.map(content => (
+        {posts.map(post => (
           <CSSTransition
-            key={content.id}
+            key={post.id}
             in={true}
-            timeout={content.id * 700}
+            timeout={post.id * 700}
             appear
             classNames="card"
           >
-            <BigCard key={content.id} {...content} />
+            <BigCard key={post.id} {...post} />
           </CSSTransition>
         ))}
+        <div id="blog" dangerouslySetInnerHTML={{ __html: blogHtml }}></div>
       </Wrapper>
     </ProjectListContainer>
   );

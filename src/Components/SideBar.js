@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AppContext } from "../Context/AppContext";
+import { SideBarContext } from "../Context/SideBarContext";
 
 const Wrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
@@ -38,7 +38,8 @@ const SubTitle = styled.div`
 `;
 
 export default () => {
-  const { isSideOpen } = useContext(AppContext);
+  console.log("sidebar---------------");
+  const { isSideOpen } = useContext(SideBarContext);
   return (
     <Wrapper isSideOpen={isSideOpen}>
       <MenuItem>

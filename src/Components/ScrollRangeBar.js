@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { AppContext } from "../Context/AppContext";
 
 const Wrapper = styled.div`
   margin-left: 20px;
@@ -33,7 +35,12 @@ const TotalNumber = styled.div`
   margin-left: 10px;
   color: rgba(0, 0, 0, 0.8);
 `;
-export default ({ contentLength, selectedContentIndex }) => {
+export default withRouter(({ location }) => {
+  const { projects, selectedProject: selectedContentIndex, posts } = useContext(
+    AppContext
+  );
+  const content = location.pathname.split("/")[1] === "Blog" ? posts : projects;
+  const contentLength = content.length;
   return (
     <Wrapper>
       <ProjectNumber>
@@ -53,4 +60,4 @@ export default ({ contentLength, selectedContentIndex }) => {
       </TotalNumber>
     </Wrapper>
   );
-};
+});

@@ -3,9 +3,9 @@ import React, { createContext, useState } from "react";
 const MANSTAGRAM = "manstagram";
 const ONEDAY_ONECOMMIT = "oneDayOneCommit";
 const PORTFOLIO = "portfolio";
-export const AppContext = createContext();
+export const ProjectContext = createContext();
 
-const AppContextProvider = ({ children }) => {
+const ProjectContextProvider = ({ children }) => {
   const [selectedProject, setSelectedProject] = useState(1);
   const localProjects = [
     {
@@ -86,10 +86,7 @@ const AppContextProvider = ({ children }) => {
 
   const [projects, setProjects] = useState(localProjects);
   const [posts, setPosts] = useState([]);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isJobLess, setIsJobLess] = useState(true);
   const myProfile = {
     photoURL:
       "https://lh5.googleusercontent.com/-kG11ADe4UGg/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcP3fiMD1hBY2wDpsWkJJmA4Wv9_Q/photo.jpg",
@@ -97,7 +94,7 @@ const AppContextProvider = ({ children }) => {
     email: "13akstjq@gmail.com"
   };
   return (
-    <AppContext.Provider
+    <ProjectContext.Provider
       value={{
         scrollIndex,
         setScrollIndex,
@@ -107,17 +104,12 @@ const AppContextProvider = ({ children }) => {
         posts,
         setPosts,
         setProjects,
-        isAuthOpen,
-        setIsAuthOpen,
-        isChatOpen,
-        setIsChatOpen,
-        isJobLess,
         myProfile
       }}
     >
       {children}
-    </AppContext.Provider>
+    </ProjectContext.Provider>
   );
 };
 
-export default AppContextProvider;
+export default ProjectContextProvider;

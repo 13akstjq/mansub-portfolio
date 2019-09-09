@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../Context/AppContext";
+import { SideBarContext } from "../Context/SideBarContext";
 
 const HambugMenu = styled.span`
   transform: rotate(90deg);
@@ -10,7 +10,8 @@ const HambugMenu = styled.span`
   cursor: pointer;
 `;
 export default () => {
-  const { isSideOpen, setIsSideOpen } = useContext(AppContext);
+  const { isSideOpen, setIsSideOpen } = useContext(SideBarContext);
+  console.log("sidebar button");
   //사이드바 토글 버튼
   const toggleSidebar = p => {
     setIsSideOpen(!p);

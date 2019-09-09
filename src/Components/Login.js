@@ -5,8 +5,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import styled from "styled-components";
 import { UserContext } from "../Context/UserContext";
-import { AppContext } from "../Context/AppContext";
-import { signin } from "../Firebase/Firebase";
+import { signin, SearchUserByUid, createRoom } from "../Firebase/Firebase";
+import { AuthContext } from "../Context/AuthContext";
 
 const Wrapper = styled.div`
   z-index: 10;
@@ -21,9 +21,15 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-  const { isAuthOpen } = useContext(AppContext);
+  const { isAuthOpen } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const login = ({ user }) => {
+  const login = async ({ user }) => {
+    const DBUser = await SearchUserByUid(user.uid);
+    // 회원 정보가 없었다면 채팅 방을 만들어줌.
+    if (DBUser.length === 0) {
+      console.log("방 생성");
+      createRoom(user.uid);
+    }
     signin(user);
     const loggedInUser = {
       displayName: user.displayName,
