@@ -33,18 +33,18 @@ const AuthButton = styled.div`
 export default () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { isAuthOpen, setIsAuthOpen } = useContext(AppContext);
-  useEffect(() => {
-    if (isLoggedIn === true) {
-      localStorage.setItem("isLoggedIn", "true");
-    } else {
-      localStorage.setItem("isLoggedIn", "false");
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn === true) {
+  //     sessionStorage.setItem("loggedInUser", "true");
+  //   } else {
+  //     sessionStorage.setItem("loggedInUser", "false");
+  //   }
+  // }, [isLoggedIn]);
 
   const toggleIsAuthOpen = () => {
     setIsAuthOpen(!isAuthOpen);
     if (isLoggedIn) {
-      localStorage.setItem("isLoggedIn", "false");
+      sessionStorage.setItem("loggedInUser", null);
       setIsLoggedIn(false);
       window.location.reload();
     }
