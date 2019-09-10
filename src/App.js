@@ -8,24 +8,29 @@ import UserContextProvider from "./Context/UserContext";
 import SideBarContextProvider from "./Context/SideBarContext";
 import AuthContextProvider from "./Context/AuthContext";
 import ChatbotContextProvider from "./Context/ChatbotContext";
+import ProjectContextProvider, {
+  ProjectContext
+} from "./Context/ProjectContext";
 function App() {
   return (
     <div className="App">
       <AuthContextProvider>
-        <ChatbotContextProvider>
-          <SideBarContextProvider>
-            <AppContextProvider>
-              <UserContextProvider>
-                <ThemeProvider theme={Theme}>
-                  <>
-                    <GlobalStyle />
-                    <Router />
-                  </>
-                </ThemeProvider>
-              </UserContextProvider>
-            </AppContextProvider>
-          </SideBarContextProvider>
-        </ChatbotContextProvider>
+        <ProjectContextProvider>
+          <ChatbotContextProvider>
+            <SideBarContextProvider>
+              <AppContextProvider>
+                <UserContextProvider>
+                  <ThemeProvider theme={Theme}>
+                    <>
+                      <GlobalStyle />
+                      <Router />
+                    </>
+                  </ThemeProvider>
+                </UserContextProvider>
+              </AppContextProvider>
+            </SideBarContextProvider>
+          </ChatbotContextProvider>
+        </ProjectContextProvider>
       </AuthContextProvider>
     </div>
   );

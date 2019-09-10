@@ -83,6 +83,7 @@ const TimeTable = styled.div`
   color: #999;
   font-weight: 600;
   transition: all 1s ease-in-out;
+  z-index: 10;
 `;
 const ChatbotRow = styled.div`
   overflow: scroll;
@@ -168,11 +169,17 @@ export default ({
           </TimeTableContainer>
         </InfoContent>
         <TiemIcon>
-          {currentHours < 18 ? <Sunny size="50" /> : <Moon size="50" />}
+          {currentHours > 6 && currentHours < 18 ? (
+            <Sunny size="50" />
+          ) : (
+            <Moon size="50" />
+          )}
         </TiemIcon>
       </InfoContainer>
       <ChatbotRow>
-        <RoomListContainer>{messages && <Room></Room>}</RoomListContainer>
+        {/* <RoomListContainer> */}
+        {messages && <Room messages={messages}></Room>}
+        {/* </RoomListContainer> */}
       </ChatbotRow>
     </Wrapper>
   );

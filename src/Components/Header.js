@@ -32,7 +32,6 @@ const AuthButton = styled.div`
 export default () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { isAuthOpen, setIsAuthOpen } = useContext(AuthContext);
-  console.log("Header");
 
   const toggleIsAuthOpen = () => {
     setIsAuthOpen(!isAuthOpen);

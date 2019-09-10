@@ -65,7 +65,11 @@ export const bgColorFilter = (category, theme) => {
   return bgColor;
 };
 
-const Video = styled.video`
+const Image = styled.img`
+  /* background-image: ${props => `url(${props.photo})`}; */
+  /* background-image : ${props => props.photo};
+  background-position: center;
+  background-size: cover; */
   width: 100%;
   height: 100%;
 `;
@@ -159,15 +163,14 @@ export default withRouter(
     category,
     createdAt,
     likeCount,
-    location
+    location,
+    photo
   }) => {
-    const videoRef = useRef();
     const pathName = location.pathname;
     const [isLikedS, setIsLikedS] = useState(false);
     const [likeCountS, setLikeCountS] = useState((likeCount = 0));
     const { isLoggedIn } = useContext(UserContext);
     const { setIsAuthOpen } = useContext(AppContext);
-    console.log("BigCard");
     const toggleLike = e => {
       e.preventDefault();
       if (isLoggedIn) {
@@ -184,21 +187,11 @@ export default withRouter(
       }
     };
 
-    const thumbnailCheck = thumbnail => {
-      if (thumbnail === "manstagram") {
-        return manstagram;
-      } else if (thumbnail === "oneDayOneCommit") {
-        return oneDayOneCommit;
-      } else if (thumbnail === "portfolio") {
-        return portfolio;
-      }
-    };
-
     return (
       <Link to={pathName === "/" ? `/post/${id}` : `/blogDetail/${id}`}>
         <Wrapper category={category}>
           {pathName === "/" ? (
-            <Video></Video>
+            <Image src={photo}></Image>
           ) : (
             <SkillImage>
               {((pathName === "/Blog" && category === "react") ||

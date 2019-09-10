@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { AppContext } from "../Context/AppContext";
 import BigCard from "./BigCard";
 import { CSSTransition } from "react-transition-group";
 
 import "../Styles/Slider.css";
 import { SideBarContext } from "../Context/SideBarContext";
+import { AppContext } from "../Context/AppContext";
 
 const Wrapper = styled.div`
   /* width: 300px;

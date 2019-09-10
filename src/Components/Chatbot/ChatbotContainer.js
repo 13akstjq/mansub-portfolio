@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import ChatbotPresenter from "./ChatbotPresenter";
-import { AppContext } from "../../Context/AppContext";
 import { getMessages } from "../../Firebase/Firebase";
 import { UserContext } from "../../Context/UserContext";
 import { ChatbotContext } from "../../Context/ChatbotContext";
@@ -13,12 +12,15 @@ export default () => {
   const [isShowTimeTable, setIsShowTimeTable] = useState(false);
   const today = new Date();
   const currentHours = today.getHours();
+  const [messages, setMessages] = useState([]);
   console.log("chatbot");
   useEffect(() => {
-    console.log("didmount");
+    if (loggedInUser !== null) {
+      getMessages(loggedInUser.uid).then(res => {
+        setMessages(res);
+      });
+    }
   }, []);
-  if (loggedInUser === null) {
-  }
 
   return (
     <ChatbotPresenter
@@ -29,7 +31,7 @@ export default () => {
       currentHours={currentHours}
       isShowTimeTable={isShowTimeTable}
       setIsShowTimeTable={setIsShowTimeTable}
-      messages={[]}
+      messages={messages}
     ></ChatbotPresenter>
   );
 };

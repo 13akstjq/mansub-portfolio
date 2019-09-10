@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 export default () => {
   const { isAuthOpen } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  console.log("login-------------------");
   const login = async ({ user }) => {
     const DBUser = await SearchUserByUid(user.uid);
     // 회원 정보가 없었다면 채팅 방을 만들어줌.

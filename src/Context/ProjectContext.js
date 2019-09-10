@@ -1,8 +1,13 @@
 import React, { createContext, useState } from "react";
+import onedayonecommit from "../assets/image/onedayonecommit.png";
+import mansubportfolio from "../assets/image/mansubportfolio.png";
+import manstagram from "../assets/image/manstagram.png";
+
 //컨텍스트 생성
 const MANSTAGRAM = "manstagram";
 const ONEDAY_ONECOMMIT = "oneDayOneCommit";
 const PORTFOLIO = "portfolio";
+
 export const ProjectContext = createContext();
 
 const ProjectContextProvider = ({ children }) => {
@@ -15,7 +20,8 @@ const ProjectContextProvider = ({ children }) => {
       name: "Han ManSub",
       category: ["react", "Hooks"],
       url: "https://manstagram.netlify.com/#/",
-      postURL: ""
+      postURL: "",
+      photo: { manstagram }
     },
     {
       id: 2,
@@ -24,7 +30,8 @@ const ProjectContextProvider = ({ children }) => {
       name: "Han ManSub",
       category: ["React , Hooks"],
       url: "https://mansub.netlify.com",
-      postURL: ""
+      postURL: "",
+      photo: { mansubportfolio }
     },
     {
       id: 3,
@@ -35,7 +42,8 @@ const ProjectContextProvider = ({ children }) => {
       url:
         "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
       postURL:
-        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html"
+        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
+      photo: { onedayonecommit }
     },
     {
       id: 4,
@@ -44,7 +52,8 @@ const ProjectContextProvider = ({ children }) => {
       name: "Han ManSub4",
       category: "react4",
       url: "",
-      postURL: " "
+      postURL: " ",
+      photo: {}
     },
     {
       id: 5,
@@ -53,7 +62,8 @@ const ProjectContextProvider = ({ children }) => {
       name: "Han ManSub5",
       category: "react5",
       url: "",
-      postURL: " "
+      postURL: " ",
+      photo: {}
     },
     {
       id: 6,
@@ -62,25 +72,8 @@ const ProjectContextProvider = ({ children }) => {
       name: "Han ManSub6",
       category: "react6",
       url: "",
-      postURL: " "
-    },
-    {
-      id: 7,
-      thumbnail: "",
-      title: "제목7",
-      name: "Han ManSub7",
-      category: "react7",
-      url: "",
-      postURL: " "
-    },
-    {
-      id: 8,
-      thumbnail: "",
-      title: "제목8",
-      name: "Han ManSub8",
-      category: "react8",
-      url: "",
-      postURL: " "
+      postURL: " ",
+      photo: {}
     }
   ];
 
