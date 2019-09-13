@@ -13,14 +13,13 @@ export default () => {
   const today = new Date();
   const currentHours = today.getHours();
   const [messages, setMessages] = useState([]);
-  console.log("chatbot");
   useEffect(() => {
     if (loggedInUser !== null) {
       getMessages(loggedInUser.uid).then(res => {
         setMessages(res);
       });
     }
-  }, []);
+  }, [loggedInUser]);
 
   return (
     <ChatbotPresenter

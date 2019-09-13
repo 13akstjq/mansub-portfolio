@@ -38,7 +38,6 @@ const SubTitle = styled.div`
 `;
 
 export default () => {
-  console.log("sidebar---------------");
   const { isSideOpen } = useContext(SideBarContext);
   return (
     <Wrapper isSideOpen={isSideOpen}>

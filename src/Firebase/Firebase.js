@@ -91,22 +91,11 @@ export const createRoom = uid => {
 
 // 메세지 불러오는 메소드
 export const getMessages = uid => {
-  // const roomsCollection = firestore.collection(ROOMS);
-  // return roomsCollection
-  //   .where("uid", "==", uid)
-  //   .get()
-  //   .then(docSnapshots => {
-  //     return docSnapshots.docs.map(doc => {
-  //       let data = doc.data();
-  //       data.id = doc.id;
-  //       console.log(data);
-  //       return data;
-  //     });
-  //   });
   const MessagesCollection = firestore
     .collection(ROOMS)
     .doc(uid)
-    .collection(MESSAGES);
+    .collection(MESSAGES)
+    .orderBy("createdAt");
   return MessagesCollection.get().then(docSnapshots => {
     return docSnapshots.docs.map(doc => {
       let data = doc.data();
@@ -114,6 +103,18 @@ export const getMessages = uid => {
       return data;
     });
   });
+};
+
+export const sendQuestion = (text, uid) => {
+  firestore
+    .collection(ROOMS)
+    .doc(uid)
+    .collection(MESSAGES)
+    .add({
+      isQuestion: true,
+      text,
+      createdAt: new Date()
+    });
 };
 
 export { firestore };

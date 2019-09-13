@@ -11,7 +11,6 @@ const HambugMenu = styled.span`
 `;
 export default () => {
   const { isSideOpen, setIsSideOpen } = useContext(SideBarContext);
-  console.log("sidebar button");
   //사이드바 토글 버튼
   const toggleSidebar = p => {
     setIsSideOpen(!p);

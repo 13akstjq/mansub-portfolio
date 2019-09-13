@@ -49,7 +49,6 @@ const Wrapper = styled.button`
 
 export default () => {
   const { isChatOpen, setIsChatOpen } = useContext(ChatbotContext);
-  console.log("chatbutton");
   return (
     <Wrapper isChatOpen={isChatOpen} onClick={() => setIsChatOpen(!isChatOpen)}>
       톡

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import Avatar from "./Avatar";
 import { SendButton } from "./Icons";
+import useInput from "../Hooks/useInput";
+import { UserContext } from "../Context/UserContext";
+import { sendQuestion } from "../Firebase/Firebase";
 
 const Room = styled.div`
   display: grid;
@@ -22,6 +25,8 @@ const ChatInputContainer = styled.div`
   justify-content: space-around;
 `;
 
+const ChatForm = styled.form``;
+
 const ChatInput = styled.input`
   text-decoration: none;
   padding: 10px 5px;
@@ -36,6 +41,7 @@ const MessagesContainer = styled.div``;
 const MyMessageContainer = styled.div`
   position: relative;
   border-radius: 4px;
+  margin-bottom: 10px;
 `;
 
 const MyMessageHeader = styled.div`
@@ -50,8 +56,8 @@ const MyMessage = styled.div`
   max-width: 180px;
   font-size: 13px;
   background-color: rgb(238, 241, 244);
-  position: absolute;
-  left: 41px;
+  /* position: absolute; */
+  margin-left: 41px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
@@ -60,14 +66,23 @@ const MyMessage = styled.div`
 
 const YourMessageContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   border-radius: 4px;
+  margin-bottom: 10px;
 `;
 
 const YourMessage = styled.div`
+  margin-left: 5px;
   font-size: 13px;
+  padding: 7px 12px;
   background-color: rgb(238, 241, 244);
-  position: absolute;
-  right: 10px;
+  margin-right: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 1px;
 `;
 
 const Writer = styled.div`
@@ -83,6 +98,42 @@ const TimeStamp = styled.div`
 `;
 export default ({ messages }) => {
   console.log(messages);
+  const [newMessage, setNewMessage] = useState([]);
+  const chatbotInput = useInput("");
+  const { loggedInUser } = useContext(UserContext);
+  const onSubmit = e => {
+    e.preventDefault();
+    setNewMessage(chatbotInput.value);
+    sendQuestion(chatbotInput.value, loggedInUser.uid);
+    chatbotInput.setValue("");
+  };
+  const createdAtFilter = messages => {
+    messages.forEach(message => {
+      const seconds = message.createdAt.seconds;
+      //초로 날짜를 구하고 싶으면 1000을 곱해서 해야함.
+      // const date = new Date();
+      // const time = date.getTime();
+      // console.log(time);
+      // 위의 time은 milli까지 포함한 것이기 때문에
+      const temp = new Date(seconds * 1000);
+      const timeStamp = String(temp).split(" ");
+      console.log(timeStamp);
+      message.timeStamp =
+        timeStamp[1] +
+        " " +
+        timeStamp[2] +
+        " " +
+        timeStamp[3] +
+        " " +
+        timeStamp[4];
+    });
+  };
+
+  useEffect(() => {
+    createdAtFilter(messages);
+    // console.log(messages);
+  }, [messages]);
+
   return (
     <Room>
       <MessagesContainer>
@@ -90,6 +141,7 @@ export default ({ messages }) => {
           if (message.isQuestion) {
             return (
               <YourMessageContainer key={message.id}>
+                <TimeStamp>{message.timeStamp}</TimeStamp>
                 <YourMessage>{message.text}</YourMessage>
               </YourMessageContainer>
             );
@@ -99,19 +151,31 @@ export default ({ messages }) => {
                 <MyMessageHeader>
                   <Avatar size="sm"></Avatar>
                   <Writer>{"Han ManSub"}</Writer>
-                  <TimeStamp>
-                    {message.createdAt.seconds / 1000 / 3600}
-                  </TimeStamp>
+                  <TimeStamp>{message.timeStamp}</TimeStamp>
                 </MyMessageHeader>
                 <MyMessage>{message.text}</MyMessage>
               </MyMessageContainer>
             );
           }
         })}
+
+        {
+          <YourMessageContainer>
+            <YourMessage>{newMessage.text}</YourMessage>
+          </YourMessageContainer>
+        }
       </MessagesContainer>
       <ChatInputContainer>
         <span>이모지</span>
-        <ChatInput placeholder="메세지를 입력해주세요."></ChatInput>
+        <ChatForm onSubmit={onSubmit}>
+          <ChatInput
+            // {...chatbotInput}
+            value={chatbotInput.value}
+            onChange={chatbotInput.onChange}
+            type="text"
+            placeholder="메세지를 입력해주세요."
+          ></ChatInput>
+        </ChatForm>
         <SendButton size="20" fill="#aaa"></SendButton>
       </ChatInputContainer>
     </Room>
