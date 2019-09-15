@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Avatar from "./Avatar";
 import { SendButton } from "./Icons";
@@ -37,7 +37,12 @@ const ChatInput = styled.input`
   }
 `;
 
-const MessagesContainer = styled.div``;
+const MessagesContainer = styled.div`
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+`;
 const MyMessageContainer = styled.div`
   position: relative;
   border-radius: 4px;
@@ -97,16 +102,37 @@ const TimeStamp = styled.div`
   font-size: 11px;
 `;
 export default ({ messages }) => {
-  console.log(messages);
-  const [newMessage, setNewMessage] = useState([]);
+  const messageList = useRef(null);
+  const [newMessages, setNewMessages] = useState([]);
   const chatbotInput = useInput("");
   const { loggedInUser } = useContext(UserContext);
   const onSubmit = e => {
     e.preventDefault();
-    setNewMessage(chatbotInput.value);
+    setNewMessages([
+      ...newMessages,
+      {
+        text: chatbotInput.value,
+        timeStamp: getTimeStamp(new Date())
+      }
+    ]);
+
     sendQuestion(chatbotInput.value, loggedInUser.uid);
     chatbotInput.setValue("");
   };
+
+  const getTimeStamp = date => {
+    const timeStamp = String(date).split(" ");
+    return (
+      timeStamp[1] +
+      " " +
+      timeStamp[2] +
+      " " +
+      timeStamp[3] +
+      " " +
+      timeStamp[4]
+    );
+  };
+
   const createdAtFilter = messages => {
     messages.forEach(message => {
       const seconds = message.createdAt.seconds;
@@ -116,16 +142,7 @@ export default ({ messages }) => {
       // console.log(time);
       // 위의 time은 milli까지 포함한 것이기 때문에
       const temp = new Date(seconds * 1000);
-      const timeStamp = String(temp).split(" ");
-      console.log(timeStamp);
-      message.timeStamp =
-        timeStamp[1] +
-        " " +
-        timeStamp[2] +
-        " " +
-        timeStamp[3] +
-        " " +
-        timeStamp[4];
+      message.timeStamp = getTimeStamp(temp);
     });
   };
 
@@ -134,9 +151,15 @@ export default ({ messages }) => {
     // console.log(messages);
   }, [messages]);
 
+  useEffect(() => {
+    messageList.current.scrollTo({
+      top: 100000
+    });
+  }, [newMessages]);
+
   return (
     <Room>
-      <MessagesContainer>
+      <MessagesContainer ref={messageList}>
         {messages.map(message => {
           if (message.isQuestion) {
             return (
@@ -159,11 +182,14 @@ export default ({ messages }) => {
           }
         })}
 
-        {
-          <YourMessageContainer>
-            <YourMessage>{newMessage.text}</YourMessage>
-          </YourMessageContainer>
-        }
+        {newMessages &&
+          newMessages.length > 0 &&
+          newMessages.map((newMessage, index) => (
+            <YourMessageContainer key={index}>
+              <TimeStamp>{newMessage.timeStamp}</TimeStamp>
+              <YourMessage>{newMessage.text}</YourMessage>
+            </YourMessageContainer>
+          ))}
       </MessagesContainer>
       <ChatInputContainer>
         <span>이모지</span>

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   left: 0px;
   width: 100vw;
 `;
-const MainContainer = styled.div`
+const MainContainer = styled.div` 
   height: 100vh;
   display: flex;
   justify-content: center;
