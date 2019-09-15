@@ -34,7 +34,7 @@ export default () => {
     const loggedInUser = {
       displayName: user.displayName,
       uid: user.uid,
-      photoURL: user.uid,
+      photoURL: user.photoURL,
       email: user.email
     };
     sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));

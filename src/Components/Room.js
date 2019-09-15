@@ -5,6 +5,7 @@ import { SendButton } from "./Icons";
 import useInput from "../Hooks/useInput";
 import { UserContext } from "../Context/UserContext";
 import { sendQuestion } from "../Firebase/Firebase";
+import { sendMessageToSlack, getReply } from "../Services/SlackService";
 
 const Room = styled.div`
   display: grid;
@@ -106,8 +107,14 @@ export default ({ messages }) => {
   const [newMessages, setNewMessages] = useState([]);
   const chatbotInput = useInput("");
   const { loggedInUser } = useContext(UserContext);
+  getReply();
   const onSubmit = e => {
     e.preventDefault();
+    sendMessageToSlack(
+      chatbotInput.value,
+      loggedInUser.displayName,
+      loggedInUser.photoURL
+    );
     setNewMessages([
       ...newMessages,
       {

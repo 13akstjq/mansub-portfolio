@@ -1,8 +1,10 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import dotenv from "dotenv";
+dotenv.config();
 const config = {
-  apiKey: "AIzaSyDnjwThO3x_a6YKmI_52jm9oUcNOOVNaPQ",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "mansub-portfolio.firebaseapp.com",
   databaseURL: "https://mansub-portfolio.firebaseio.com",
   projectId: "mansub-portfolio",
