@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Avatar from "../Commons/Avatar";
-import { SendButton } from "../Commons/Icons";
+import { SendButton, SmilIcon } from "../Commons/Icons";
 import useInput from "../../Hooks/useInput";
 import { UserContext } from "../../Context/UserContext";
 import { sendQuestion } from "../../Services/FirebaseService";
 import { sendMessageToSlack, getReply } from "../../Services/SlackService";
+let emojis = require("emojis");
 
 const Room = styled.div`
   display: grid;
@@ -153,6 +154,8 @@ export default ({ messages }) => {
     });
   };
 
+  const showEmoji = emoji => emojis.unicode(emoji);
+  console.log(showEmoji(":heart:"));
   useEffect(() => {
     createdAtFilter(messages);
     // console.log(messages);
@@ -199,7 +202,7 @@ export default ({ messages }) => {
           ))}
       </MessagesContainer>
       <ChatInputContainer>
-        <span>이모지</span>
+        <SmilIcon size={18}></SmilIcon>
         <ChatForm onSubmit={onSubmit}>
           <ChatInput
             // {...chatbotInput}
