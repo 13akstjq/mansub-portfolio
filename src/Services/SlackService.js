@@ -12,7 +12,7 @@ export const sendMessageToSlack = async (text, displayName, photoURL) => {
       "https://slack.com/api/chat.postMessage",
     data: {
       text,
-      channel: "CN1GFM2NR",
+      channel: "CNCSB34AH",
       username: displayName,
       icon_url: photoURL
     },

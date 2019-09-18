@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
-import { ChatbotContext } from "../Context/ChatbotContext";
+import { ChatbotContext } from "../../Context/ChatbotContext";
 
 const bigSmall = keyframes`
     0% {

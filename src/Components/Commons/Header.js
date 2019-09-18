@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import PortfolioLogo from "../assets/image/portfolioLogo.jpg";
-import { UserContext } from "../Context/UserContext";
-import { AuthContext } from "../Context/AuthContext";
+import PortfolioLogo from "../../assets/image/portfolioLogo.jpg";
+import { UserContext } from "../../Context/UserContext";
+import { AuthContext } from "../../Context/AuthContext";
 
 const Header = styled.div`
   position: fixed;

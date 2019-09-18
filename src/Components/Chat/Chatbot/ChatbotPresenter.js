@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CloseButton, Sunny, Moon, SendButton } from "../Icons";
+import { CloseButton, Sunny, Moon, SendButton } from "../../Commons/Icons";
 import Room from "../Room";
 const Wrapper = styled.div`
   width: ${props => (props.isChatOpen ? "320px" : "0px")};

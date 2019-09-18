@@ -8,11 +8,6 @@ import { SideBarContext } from "../Context/SideBarContext";
 import { AppContext } from "../Context/AppContext";
 
 const Wrapper = styled.div`
-  /* width: 300px;
-  transform-origin: right 90px;
-  height: 100vw;
-  transform: rotate(-90deg);
-  overflow-y: scroll; */
   padding: 40px;
   align-items: center;
   display: grid;

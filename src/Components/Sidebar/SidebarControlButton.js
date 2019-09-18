@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { SideBarContext } from "../Context/SideBarContext";
+import { SideBarContext } from "../../Context/SideBarContext";
 
 const HambugMenu = styled.span`
   transform: rotate(90deg);

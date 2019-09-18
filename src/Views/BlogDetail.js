@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import "../Styles/Detail.css";
-import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
+import { Mobile, Desktop, LeftArrow } from "../Components/Commons/Icons";
 import { AppContext } from "../Context/AppContext";
 import { getBlog, postTagToPostList } from "../Services/BlogService";
 import { bgColorFilter } from "../Components/BigCard";

@@ -8,9 +8,7 @@ import UserContextProvider from "./Context/UserContext";
 import SideBarContextProvider from "./Context/SideBarContext";
 import AuthContextProvider from "./Context/AuthContext";
 import ChatbotContextProvider from "./Context/ChatbotContext";
-import ProjectContextProvider, {
-  ProjectContext
-} from "./Context/ProjectContext";
+import ProjectContextProvider from "./Context/ProjectContext";
 function App() {
   return (
     <div className="App">

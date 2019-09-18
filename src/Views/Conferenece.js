@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../Components/Header";
+import Header from "../Components/Commons/Header";
 import styled from "styled-components";
-import SideBar from "../Components/SideBar";
+import SideBar from "../Components/Sidebar/SideBar";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   left: 0px;
   width: 100vw;
 `;
-const MainContainer = styled.div` 
+const MainContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;

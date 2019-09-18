@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
-import Avatar from "./Avatar";
-import { SendButton } from "./Icons";
-import useInput from "../Hooks/useInput";
-import { UserContext } from "../Context/UserContext";
-import { sendQuestion } from "../Firebase/Firebase";
-import { sendMessageToSlack, getReply } from "../Services/SlackService";
+import Avatar from "../Commons/Avatar";
+import { SendButton } from "../Commons/Icons";
+import useInput from "../../Hooks/useInput";
+import { UserContext } from "../../Context/UserContext";
+import { sendQuestion } from "../../Services/FirebaseService";
+import { sendMessageToSlack, getReply } from "../../Services/SlackService";
 
 const Room = styled.div`
   display: grid;

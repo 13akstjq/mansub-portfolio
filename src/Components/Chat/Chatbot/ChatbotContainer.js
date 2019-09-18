@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import ChatbotPresenter from "./ChatbotPresenter";
-import { getMessages } from "../../Firebase/Firebase";
-import { UserContext } from "../../Context/UserContext";
-import { ChatbotContext } from "../../Context/ChatbotContext";
+import { getMessages } from "../../../Services/FirebaseService";
+import { UserContext } from "../../../Context/UserContext";
+import { ChatbotContext } from "../../../Context/ChatbotContext";
 
 export default () => {
   const { isChatOpen, setIsChatOpen, isJobLess, myProfile } = useContext(
@@ -20,8 +20,6 @@ export default () => {
       });
     }
   }, [loggedInUser]);
-
-  
 
   return (
     <ChatbotPresenter

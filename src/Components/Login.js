@@ -1,11 +1,15 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import "../Firebase/firebaseui-styling.global.css"; // Import globally.
+import "../Styles/firebaseui-styling.global.css"; // Import globally.
 import firebase from "firebase/app";
 import "firebase/auth";
 import styled from "styled-components";
 import { UserContext } from "../Context/UserContext";
-import { signin, SearchUserByUid, createRoom } from "../Firebase/Firebase";
+import {
+  signin,
+  SearchUserByUid,
+  createRoom
+} from "../Services/FirebaseService";
 import { AuthContext } from "../Context/AuthContext";
 
 const Wrapper = styled.div`

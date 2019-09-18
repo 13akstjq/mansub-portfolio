@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
-import { Mobile, Desktop, LeftArrow } from "../Components/Icons";
+import { Mobile, Desktop, LeftArrow } from "../Components/Commons/Icons";
 import { AppContext } from "../Context/AppContext";
 const Wrapper = styled.div`
   position: fixed;

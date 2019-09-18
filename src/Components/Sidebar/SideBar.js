@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { SideBarContext } from "../Context/SideBarContext";
+import { SideBarContext } from "../../Context/SideBarContext";
 
 const Wrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.8);

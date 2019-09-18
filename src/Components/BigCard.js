@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from "react";
 import styled from "styled-components";
-import FatText from "./FatText";
-import Avatar from "./Avatar";
+import FatText from "./Commons/FatText";
+import Avatar from "./Commons/Avatar";
 import { Link, withRouter } from "react-router-dom";
 import oneDayOneCommit from "../assets/video/1Day1Commit.mp4";
 import portfolio from "../assets/video/portfolio.mp4";
@@ -16,7 +16,7 @@ import {
   TsIcon,
   GithubIcon,
   GraphqlIcon
-} from "./Icons";
+} from "./Commons/Icons";
 import { UserContext } from "../Context/UserContext";
 import { AppContext } from "../Context/AppContext";
 

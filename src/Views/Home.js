@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Header from "../Components/Header";
+import Header from "../Components/Commons/Header";
 import styled from "styled-components";
-import SideBar from "../Components/SideBar";
-import SidebarControlButton from "../Components/SidebarControlButton";
+import SideBar from "../Components/Sidebar/SideBar";
+import SidebarControlButton from "../Components/Sidebar/SidebarControlButton";
 import Slider from "../Components/Slider";
 import ScrollRangeBar from "../Components/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
