@@ -13,6 +13,8 @@ export default () => {
   const today = new Date();
   const currentHours = today.getHours();
   const [messages, setMessages] = useState([]);
+
+  // 로그인 하면 해당 유저의 메세지를 firebase에서 가져와서 보여주기
   useEffect(() => {
     if (loggedInUser !== null) {
       getMessages(loggedInUser.uid).then(res => {

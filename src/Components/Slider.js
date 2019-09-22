@@ -37,6 +37,7 @@ export default () => {
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
 
+  // 휠 이벤트 메소드
   const onWheel = e => {
     // e.preventDefault();
     // console.log(projects.length * 3);
@@ -49,20 +50,17 @@ export default () => {
         (scrollIndex + 1) % 3 === 0 &&
         selectedProject <= projects.length - 3
       ) {
-        // console.log("test");
         setSelectedProject(selectedProject + 1);
       }
     }
     if (e.deltaY < 0 && scrollIndex > 0) {
       setScrollIndex(scrollIndex - 1);
       setPosition(position + 100);
-      // console.log(scrollIndex - 1);
       if (
         scrollIndex > 0 &&
         selectedProject > 1 &&
         (scrollIndex - 1) % 3 === 0
       ) {
-        // console.log(selectedProject - 1);
         setSelectedProject(selectedProject - 1);
       }
     }

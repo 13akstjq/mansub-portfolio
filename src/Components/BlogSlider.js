@@ -40,6 +40,8 @@ export default () => {
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
   const [blogHtml, setBlogHtml] = useState("");
+
+  // 최근 블로그 10개 게시물 호출
   useEffect(() => {
     setSelectedProject(1);
     setScrollIndex(0);

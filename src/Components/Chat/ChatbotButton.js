@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ChatbotContext } from "../../Context/ChatbotContext";
 
+// 커졌다가 작아지는 애니메이션
 const bigSmall = keyframes`
     0% {
         transform : scale(1);

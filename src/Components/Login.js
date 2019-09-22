@@ -27,8 +27,11 @@ const Wrapper = styled.div`
 export default () => {
   const { isAuthOpen } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
+  // 로그인이 성공되었을 경우 호출될 login 함수
   const login = async ({ user }) => {
     const DBUser = await SearchUserByUid(user.uid);
+
     // 회원 정보가 없었다면 채팅 방을 만들어줌.
     if (DBUser.length === 0) {
       console.log("방 생성");
@@ -44,9 +47,12 @@ export default () => {
     sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     setIsLoggedIn(true);
   };
+
+  // firebase 로그인 ui 설정
   const uiConfig = {
     signInFlow: "popup",
     callbacks: {
+      // 로그인 성공 시 login함수 호출
       signInSuccessWithAuthResult: res => login(res)
     },
     signInOptions: [

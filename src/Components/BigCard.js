@@ -171,6 +171,8 @@ export default withRouter(
     const [likeCountS, setLikeCountS] = useState((likeCount = 0));
     const { isLoggedIn } = useContext(UserContext);
     const { setIsAuthOpen } = useContext(AppContext);
+
+    // 하트모양 좋아요 토글
     const toggleLike = e => {
       e.preventDefault();
       if (isLoggedIn) {

@@ -39,6 +39,8 @@ export default withRouter(({ location }) => {
   const { projects, selectedProject: selectedContentIndex, posts } = useContext(
     AppContext
   );
+
+  // 현재 페이지에 따른 text
   const content = location.pathname.split("/")[1] === "Blog" ? posts : projects;
   const contentLength = content.length;
   return (

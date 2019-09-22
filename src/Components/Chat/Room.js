@@ -7,7 +7,6 @@ import { UserContext } from "../../Context/UserContext";
 import { sendQuestion } from "../../Services/FirebaseService";
 import { sendMessageToSlack, getReply } from "../../Services/SlackService";
 let emojis = require("emojis");
-
 const Room = styled.div`
   display: grid;
   grid-template-rows: 1fr 54px;
@@ -20,6 +19,7 @@ const Room = styled.div`
 `;
 
 const ChatInputContainer = styled.div`
+  position: relative;
   padding: 0px 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
@@ -28,6 +28,27 @@ const ChatInputContainer = styled.div`
 `;
 
 const ChatForm = styled.form``;
+
+const EmojiContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+  width: 140px;
+  height: 140px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  visibility: ${props => (props.isEmojiClick ? "visibility" : "hidden")};
+  position: absolute;
+  top: -130px;
+  left: 0;
+`;
+
+const Emoji = styled.div`
+  cursor: pointer;
+`;
+
+const EmojiIconContainer = styled.div``;
 
 const ChatInput = styled.input`
   text-decoration: none;
@@ -100,15 +121,21 @@ const Writer = styled.div`
 `;
 
 const TimeStamp = styled.div`
+  text-align: right;
   color: lightgray;
   font-size: 11px;
 `;
 export default ({ messages }) => {
-  const messageList = useRef(null);
-  const [newMessages, setNewMessages] = useState([]);
+  const messageList = useRef(null); // 스크롤을 밑으로 내리기 위해서 사용
+  const [newMessages, setNewMessages] = useState([]); // 사용자가 작성한 메세지
   const chatbotInput = useInput("");
+  const [isEmojiClick, setIsEmojiClick] = useState(false);
   const { loggedInUser } = useContext(UserContext);
+
+  // 답장 받기
   getReply();
+
+  // 메세지 입력 폼 제출 메소드
   const onSubmit = e => {
     e.preventDefault();
     sendMessageToSlack(
@@ -128,6 +155,7 @@ export default ({ messages }) => {
     chatbotInput.setValue("");
   };
 
+  // 날짜를 입력받아 타임스탬프로 변환해주는 메소드
   const getTimeStamp = date => {
     const timeStamp = String(date).split(" ");
     return (
@@ -141,6 +169,7 @@ export default ({ messages }) => {
     );
   };
 
+  // 메세지 객체를 입력 받아서 timestamp를 filtering 해주는 메소드
   const createdAtFilter = messages => {
     messages.forEach(message => {
       const seconds = message.createdAt.seconds;
@@ -154,19 +183,48 @@ export default ({ messages }) => {
     });
   };
 
-  const showEmoji = emoji => emojis.unicode(emoji);
-  console.log(showEmoji(":heart:"));
+  // 처음에 메세지를 받아서 타임스탬프 필터링
   useEffect(() => {
     createdAtFilter(messages);
-    // console.log(messages);
   }, [messages]);
 
+  // 메세지를 보냈으면 채팅방 스크롤 최하단 위치
   useEffect(() => {
     messageList.current.scrollTo({
       top: 100000
     });
   }, [newMessages]);
 
+  // 이모지 코드 리스트
+  const emojiList = [
+    ":smile:",
+    ":smiley:",
+    ":sweat_smile:",
+    ":blush:",
+    ":confused:",
+    ":cry:",
+    ":disappointed:",
+    ":disappointed_relieved:",
+    ":fearful:",
+    ":expressionless:",
+    ":grin:",
+    ":grinning:",
+    ":heart_eyes:",
+    ":joy:",
+    ":kissing_heart:",
+    ":+1:",
+    ":-1:",
+    ":heart:",
+    ":sparkling_heart:",
+    ":broken_heart:"
+  ];
+  //emoji코드를 입력하면 이모지 출력
+  const showEmoji = emoji => emojis.unicode(emoji);
+
+  // emoji를 작성하던 메세지에 추가해주는 메소드
+  const appendEmojitoMessage = emoji => {
+    chatbotInput.setValue(chatbotInput.value + emoji);
+  };
   return (
     <Room>
       <MessagesContainer ref={messageList}>
@@ -202,7 +260,19 @@ export default ({ messages }) => {
           ))}
       </MessagesContainer>
       <ChatInputContainer>
-        <SmilIcon size={18}></SmilIcon>
+        <EmojiContainer isEmojiClick={isEmojiClick}>
+          {emojiList.map((emojiItem, index) => (
+            <Emoji
+              onClick={() => appendEmojitoMessage(showEmoji(emojiItem))}
+              key={index}
+            >
+              {showEmoji(emojiItem)}
+            </Emoji>
+          ))}
+        </EmojiContainer>
+        <EmojiIconContainer onClick={() => setIsEmojiClick(!isEmojiClick)}>
+          <SmilIcon size={18}></SmilIcon>
+        </EmojiIconContainer>
         <ChatForm onSubmit={onSubmit}>
           <ChatInput
             // {...chatbotInput}
