@@ -47,7 +47,7 @@ export const bgColorFilter = (category, theme) => {
     case "js":
       bgColor = theme.jsColor;
       break;
-    case "ts":
+    case "typescript":
       bgColor = theme.tsColor;
       break;
     case "prisma":
@@ -60,6 +60,7 @@ export const bgColorFilter = (category, theme) => {
       bgColor = theme.reduxColor;
       break;
     default:
+      bgColor = "#bdc3c7";
       break;
   }
   return bgColor;
@@ -171,7 +172,7 @@ export default withRouter(
     const [likeCountS, setLikeCountS] = useState((likeCount = 0));
     const { isLoggedIn } = useContext(UserContext);
     const { setIsAuthOpen } = useContext(AppContext);
-
+    console.log(category);
     // 하트모양 좋아요 토글
     const toggleLike = e => {
       e.preventDefault();

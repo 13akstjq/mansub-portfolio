@@ -1,4 +1,5 @@
 export default {
+  themeColor: "#8565FC",
   bgColor: "#FAFAFA",
   blackColor: "#262626",
   darkGreyColor: "#434a50",
@@ -16,7 +17,7 @@ export default {
   nodeColor: "#87C000",
   graphqlColor: "#DF34A6",
   prismaColor: "#0C3349",
-  tsColor: "#0077C7",
+  tsColor: "#007ACC",
   vueColor: "#41B381",
   chatbotBgColor: "#f3f5fc"
 };
