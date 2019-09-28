@@ -86,7 +86,7 @@ export const createRoom = uid => {
     .collection(MESSAGES)
     .add({
       isQuestion: false,
-      text: `안녕하세요 😊 　　　　　　　　　 궁금한 것이 있으시면 무엇이든 물어봐주세요.`,
+      text: `안녕하세요 😊 궁금한 것이 있으시면 무엇이든 물어봐주세요.`,
       createdAt: new Date()
     });
 };
@@ -107,16 +107,53 @@ export const getMessages = uid => {
   });
 };
 
-export const sendQuestion = (text, uid) => {
+export const sendQuestion = (text, uid, ts) => {
   firestore
     .collection(ROOMS)
     .doc(uid)
     .collection(MESSAGES)
-    .add({
+    .doc(ts)
+    .set({
       isQuestion: true,
       text,
+      ts,
       createdAt: new Date()
     });
+};
+
+export const SearchMessageByts = async (uid, ts) => {
+  const data = await firestore
+    .collection(ROOMS)
+    .doc(uid)
+    .collection(MESSAGES)
+    .where("ts", "==", ts)
+    .get()
+    .then(docSnapshots => {
+      return docSnapshots.docs.map(doc => {
+        let data = doc.data();
+        data.id = doc.id;
+        return data;
+      });
+    });
+  return data;
+};
+
+export const sendAnswer = async (text, uid, ts) => {
+  const data = await SearchMessageByts(uid, ts);
+  if (data.length === 0) {
+    console.log("새로운 답장");
+    firestore
+      .collection(ROOMS)
+      .doc(uid)
+      .collection(MESSAGES)
+      .doc(ts)
+      .set({
+        isQuestion: false,
+        text,
+        ts,
+        createdAt: new Date()
+      });
+  }
 };
 
 export { firestore };
