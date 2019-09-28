@@ -1,10 +1,14 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Avatar from "../Commons/Avatar";
-import { SendButton, SmilIcon } from "../Commons/Icons";
+import { SendButton, SmilIcon, Loading } from "../Commons/Icons";
 import useInput from "../../Hooks/useInput";
 import { UserContext } from "../../Context/UserContext";
-import { sendQuestion } from "../../Services/FirebaseService";
+import {
+  sendQuestion,
+  sendAnswer,
+  getMessages
+} from "../../Services/FirebaseService";
 import { sendMessageToSlack, getReply } from "../../Services/SlackService";
 let emojis = require("emojis");
 const Room = styled.div`
@@ -27,7 +31,12 @@ const ChatInputContainer = styled.div`
   justify-content: space-around;
 `;
 
-const ChatForm = styled.form``;
+const ChatForm = styled.form`
+  display: flex;
+  align-items: center;
+`;
+
+const SendButtonContainer = styled.div``;
 
 const EmojiContainer = styled.div`
   display: flex;
@@ -80,6 +89,7 @@ const MyMessageHeader = styled.div`
 `;
 
 const MyMessage = styled.div`
+  display: inline-block;
   padding: 7px 12px;
   max-width: 180px;
   font-size: 13px;
@@ -125,34 +135,72 @@ const TimeStamp = styled.div`
   color: lightgray;
   font-size: 11px;
 `;
-export default ({ messages }) => {
+
+const infiniteRotate = keyframes`
+  from {
+    transform : rotate(0deg);
+  }to {
+    transform : rotate(360deg);
+  }
+`;
+
+const LoadingContainer = styled.div`
+  transform-origin: center center;
+  animation: ${infiniteRotate} 1000ms infinite;
+`;
+
+export default () => {
   const messageList = useRef(null); // 스크롤을 밑으로 내리기 위해서 사용
+  const [messages, setMessages] = useState([]); // 기존 메세지
   const [newMessages, setNewMessages] = useState([]); // 사용자가 작성한 메세지
   const chatbotInput = useInput("");
   const [isEmojiClick, setIsEmojiClick] = useState(false);
   const { loggedInUser } = useContext(UserContext);
-
-  // 답장 받기
-  getReply();
+  const [loading, setLoading] = useState(false);
+  const [guideMessages, setGiudeMessages] = useState([
+    `안녕하세요 😊
+     궁금한 것이 있으시면 무엇이든 물어봐주세요.`
+  ]);
+  const logInGuideMessage = [
+    "로그인을 하셔야 챗봇 기능을 이용하실 수 있어요😭",
+    "우측 상단의 로그인 버튼을 누르시면 구글, 페이스북, 깃헙으로 간단히 로그인하실 수 있습니다☺️"
+  ];
+  // // 답장 받기
+  // getReply();
 
   // 메세지 입력 폼 제출 메소드
-  const onSubmit = e => {
+  const onSubmit = async e => {
+    chatbotInput.setValue("");
     e.preventDefault();
-    sendMessageToSlack(
+    if (!loggedInUser) {
+      // console.log(logInGuideMessage[Math.floor(Math.random() * 2)]);
+      setGiudeMessages([
+        ...guideMessages,
+        logInGuideMessage[Math.floor(Math.random() * 2)]
+      ]);
+
+      return;
+    }
+    setLoading(true);
+    //로딩중일 떄는 리턴시킴
+    if (loading) {
+      return;
+    }
+    const message = await sendMessageToSlack(
       chatbotInput.value,
       loggedInUser.displayName,
       loggedInUser.photoURL
     );
+    console.log(message);
     setNewMessages([
       ...newMessages,
       {
         text: chatbotInput.value,
-        timeStamp: getTimeStamp(new Date())
+        timeStamp: getTimeStamp(new Date()),
+        isQuestion: true
       }
     ]);
-
-    sendQuestion(chatbotInput.value, loggedInUser.uid);
-    chatbotInput.setValue("");
+    sendQuestion(chatbotInput.value, loggedInUser.uid, message.ts);
   };
 
   // 날짜를 입력받아 타임스탬프로 변환해주는 메소드
@@ -186,14 +234,71 @@ export default ({ messages }) => {
   // 처음에 메세지를 받아서 타임스탬프 필터링
   useEffect(() => {
     createdAtFilter(messages);
+    messageList.current.scrollTo({
+      top: 100000
+    });
+    refresh();
   }, [messages]);
 
-  // 메세지를 보냈으면 채팅방 스크롤 최하단 위치
+  // 처음에 메세지를 받아서 타임스탬프 필터링
   useEffect(() => {
     messageList.current.scrollTo({
       top: 100000
     });
-  }, [newMessages]);
+    setLoading(false);
+  }, [newMessages, guideMessages]);
+
+  const refresh = () => {
+    setTimeout(async () => {
+      let lastMessage = null;
+      // 최근 질문 가져오기
+      for (let i = messages.length - 1; i >= 0; i--) {
+        if (messages[i].isQuestion) {
+          lastMessage = messages[i];
+          break;
+        }
+      }
+
+      // 최근 질문이 있다면
+      if (
+        lastMessage &&
+        lastMessage.isQuestion &&
+        lastMessage.ts !== undefined
+      ) {
+        // 답장 불러오기
+        const replys = await getReply(lastMessage.ts);
+
+        //답장이 1개이상 있다면
+        if (replys.length > 1) {
+          replys.forEach(async (reply, index) => {
+            if (index > 0) {
+              await sendAnswer(reply.text, loggedInUser.uid, reply.ts);
+            }
+          });
+        }
+
+        // 10초마다 새로운 메세지를 가져와서 작성날자 필터링하고 newMessage는 없애줌
+        getMessages(loggedInUser.uid).then(messages => {
+          messages.forEach(message => {
+            const seconds = message.createdAt.seconds;
+            const temp = new Date(seconds * 1000);
+            message.timeStamp = getTimeStamp(temp);
+          });
+          setNewMessages([]);
+          setMessages(messages);
+        });
+      }
+    }, 10000);
+  };
+
+  // 로그인 하면 해당 유저의 메세지를 firebase에서 가져와서 보여주기
+  useEffect(() => {
+    if (loggedInUser !== null) {
+      getMessages(loggedInUser.uid).then(res => {
+        setMessages(res);
+      });
+    }
+  }, [loggedInUser]);
 
   // 이모지 코드 리스트
   const emojiList = [
@@ -228,6 +333,16 @@ export default ({ messages }) => {
   return (
     <Room>
       <MessagesContainer ref={messageList}>
+        {!loggedInUser &&
+          guideMessages.map((guideMessage, index) => (
+            <MyMessageContainer key={index}>
+              <MyMessageHeader>
+                <Avatar size="sm"></Avatar>
+                <Writer>{"Han ManSub"}</Writer>
+              </MyMessageHeader>
+              <MyMessage>{guideMessage}</MyMessage>
+            </MyMessageContainer>
+          ))}
         {messages.map(message => {
           if (message.isQuestion) {
             return (
@@ -252,12 +367,26 @@ export default ({ messages }) => {
 
         {newMessages &&
           newMessages.length > 0 &&
-          newMessages.map((newMessage, index) => (
-            <YourMessageContainer key={index}>
-              <TimeStamp>{newMessage.timeStamp}</TimeStamp>
-              <YourMessage>{newMessage.text}</YourMessage>
-            </YourMessageContainer>
-          ))}
+          newMessages.map((newMessage, index) => {
+            if (newMessage && newMessage.isQuestion) {
+              return (
+                <YourMessageContainer key={index}>
+                  <TimeStamp>{newMessage.timeStamp}</TimeStamp>
+                  <YourMessage>{newMessage.text}</YourMessage>
+                </YourMessageContainer>
+              );
+            } else {
+              return (
+                <MyMessageContainer key={index}>
+                  <MyMessageHeader>
+                    <Avatar size="sm"></Avatar>
+                    <Writer>{"Han ManSub"}</Writer>
+                  </MyMessageHeader>
+                  <MyMessage>{newMessage.text}</MyMessage>
+                </MyMessageContainer>
+              );
+            }
+          })}
       </MessagesContainer>
       <ChatInputContainer>
         <EmojiContainer isEmojiClick={isEmojiClick}>
@@ -281,8 +410,16 @@ export default ({ messages }) => {
             type="text"
             placeholder="메세지를 입력해주세요."
           ></ChatInput>
+          <SendButtonContainer onClick={onSubmit}>
+            {loading ? (
+              <LoadingContainer>
+                <Loading fill="#aaa"></Loading>
+              </LoadingContainer>
+            ) : (
+              <SendButton size="20" fill="#aaa"></SendButton>
+            )}
+          </SendButtonContainer>
         </ChatForm>
-        <SendButton size="20" fill="#aaa"></SendButton>
       </ChatInputContainer>
     </Room>
   );

@@ -123,8 +123,8 @@ export default ({
   isChatPossible,
   isShowTimeTable,
   setIsShowTimeTable,
-  currentHours,
-  messages
+  currentHours
+  // messages
 }) => {
   return (
     <Wrapper isChatOpen={isChatOpen}>
@@ -172,9 +172,7 @@ export default ({
         </TiemIcon>
       </InfoContainer>
       <ChatbotRow>
-        {/* <RoomListContainer> */}
-        {messages && <Room messages={messages}></Room>}
-        {/* </RoomListContainer> */}
+        <Room></Room>
       </ChatbotRow>
     </Wrapper>
   );
