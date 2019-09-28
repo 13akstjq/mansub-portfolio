@@ -21,7 +21,7 @@ const ProjectContextProvider = ({ children }) => {
       category: ["react", "Hooks"],
       url: "https://manstagram.netlify.com/#/",
       postURL: "",
-      photo: { manstagram }
+      photo: manstagram
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const ProjectContextProvider = ({ children }) => {
       category: ["React , Hooks"],
       url: "https://mansub.netlify.com",
       postURL: "",
-      photo: { mansubportfolio }
+      photo: mansubportfolio
     },
     {
       id: 3,
@@ -43,49 +43,44 @@ const ProjectContextProvider = ({ children }) => {
         "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
       postURL:
         "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
-      photo: { onedayonecommit }
-    },
-    {
-      id: 4,
-      thumbnail: "",
-      title: "제목4",
-      name: "Han ManSub4",
-      category: "react4",
-      url: "",
-      postURL: " ",
-      photo: {}
-    },
-    {
-      id: 5,
-      thumbnail: "",
-      title: "제목5",
-      name: "Han ManSub5",
-      category: "react5",
-      url: "",
-      postURL: " ",
-      photo: {}
-    },
-    {
-      id: 6,
-      thumbnail: "",
-      title: "제목6",
-      name: "Han ManSub6",
-      category: "react6",
-      url: "",
-      postURL: " ",
-      photo: {}
+      photo: onedayonecommit
     }
+    // {
+    //   id: 4,
+    //   thumbnail: "",
+    //   title: "제목4",
+    //   name: "Han ManSub4",
+    //   category: "react4",
+    //   url: "",
+    //   postURL: " ",
+    //   photo: {}
+    // },
+    // {
+    //   id: 5,
+    //   thumbnail: "",
+    //   title: "제목5",
+    //   name: "Han ManSub5",
+    //   category: "react5",
+    //   url: "",
+    //   postURL: " ",
+    //   photo: {}
+    // },
+    // {
+    //   id: 6,
+    //   thumbnail: "",
+    //   title: "제목6",
+    //   name: "Han ManSub6",
+    //   category: "react6",
+    //   url: "",
+    //   postURL: " ",
+    //   photo: {}
+    // }
   ];
 
   const [projects, setProjects] = useState(localProjects);
   const [posts, setPosts] = useState([]);
   const [scrollIndex, setScrollIndex] = useState(0);
-  const myProfile = {
-    photoURL:
-      "https://lh5.googleusercontent.com/-kG11ADe4UGg/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcP3fiMD1hBY2wDpsWkJJmA4Wv9_Q/photo.jpg",
-    name: "한만섭",
-    email: "13akstjq@gmail.com"
-  };
+
   return (
     <ProjectContext.Provider
       value={{
@@ -96,8 +91,7 @@ const ProjectContextProvider = ({ children }) => {
         projects,
         posts,
         setPosts,
-        setProjects,
-        myProfile
+        setProjects
       }}
     >
       {children}

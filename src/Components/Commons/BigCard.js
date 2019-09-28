@@ -1,11 +1,11 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import FatText from "./Commons/FatText";
-import Avatar from "./Commons/Avatar";
+import FatText from "./FatText";
+import Avatar from "./Avatar";
 import { Link, withRouter } from "react-router-dom";
-import oneDayOneCommit from "../assets/video/1Day1Commit.mp4";
-import portfolio from "../assets/video/portfolio.mp4";
-import manstagram from "../assets/video/manstagram.mp4";
+// import oneDayOneCommit from "../assets/video/1Day1Commit.mp4";
+// import portfolio from "../assets/video/portfolio.mp4";
+// import manstagram from "../assets/video/manstagram.mp4";
 
 import {
   EmptyHeart,
@@ -16,9 +16,10 @@ import {
   TsIcon,
   GithubIcon,
   GraphqlIcon
-} from "./Commons/Icons";
-import { UserContext } from "../Context/UserContext";
-import { AppContext } from "../Context/AppContext";
+} from "./Icons";
+import { UserContext } from "../../Context/UserContext";
+import { AppContext } from "../../Context/AppContext";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const bgColorFilter = (category, theme) => {
   let bgColor = "#999";
@@ -171,8 +172,8 @@ export default withRouter(
     const [isLikedS, setIsLikedS] = useState(false);
     const [likeCountS, setLikeCountS] = useState((likeCount = 0));
     const { isLoggedIn } = useContext(UserContext);
-    const { setIsAuthOpen } = useContext(AppContext);
-    console.log(category);
+    const { setIsAuthOpen } = useContext(AuthContext);
+    // console.log(category);
     // 하트모양 좋아요 토글
     const toggleLike = e => {
       e.preventDefault();

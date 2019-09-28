@@ -1,10 +1,10 @@
 import React, { createContext, useState } from "react";
+
 //컨텍스트 생성
 
-export const ChatbotContext = createContext();
+export const MyProfile = createContext();
 
-const ChatbotContextProvider = ({ children }) => {
-  const [isChatOpen, setIsChatOpen] = useState(false);
+const MyProfileProvider = ({ children }) => {
   const [isJobLess] = useState(true);
   const myProfile = {
     photoURL:
@@ -13,17 +13,15 @@ const ChatbotContextProvider = ({ children }) => {
     email: "13akstjq@gmail.com"
   };
   return (
-    <ChatbotContext.Provider
+    <MyProfile.Provider
       value={{
-        isChatOpen,
-        setIsChatOpen,
         isJobLess,
         myProfile
       }}
     >
       {children}
-    </ChatbotContext.Provider>
+    </MyProfile.Provider>
   );
 };
 
-export default ChatbotContextProvider;
+export default MyProfileProvider;

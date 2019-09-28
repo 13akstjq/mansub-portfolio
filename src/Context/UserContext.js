@@ -3,6 +3,7 @@ import React, { createContext, useState } from "react";
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
+  // isLoggedIn, loggedInUser
   const sessionUser = sessionStorage.getItem("loggedInUser");
   const loginCheck = () =>
     sessionUser !== "null" && sessionUser !== null ? true : false;

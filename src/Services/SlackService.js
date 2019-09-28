@@ -1,9 +1,8 @@
 import dotenv from "dotenv";
 import axios from "axios";
-import { async } from "q";
 dotenv.config();
 const WEB_TOKEN = process.env.REACT_APP_SLACK_WEB_TOKEN;
-const USER_TOKEN = process.env.REACT_APP_SLACK_USER_TOKEN;
+// const USER_TOKEN = process.env.REACT_APP_SLACK_USER_TOKEN;
 export const sendMessageToSlack = async (text, displayName, photoURL) => {
   const result = await axios({
     method: "post",

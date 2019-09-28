@@ -1,5 +1,4 @@
 import React from "react";
-import { cursor } from "sisteransi";
 
 export const LeftArrow = ({ size = 21 }) => (
   <svg

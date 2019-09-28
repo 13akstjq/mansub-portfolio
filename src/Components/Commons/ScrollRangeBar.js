@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { AppContext } from "../Context/AppContext";
+import { ProjectContext } from "../../Context/ProjectContext";
+import { BlogContext } from "../../Context/BlogContext";
 
 const Wrapper = styled.div`
   margin-left: 20px;
@@ -36,13 +37,19 @@ const TotalNumber = styled.div`
   color: rgba(0, 0, 0, 0.8);
 `;
 export default withRouter(({ location }) => {
-  const { projects, selectedProject: selectedContentIndex, posts } = useContext(
-    AppContext
-  );
-
-  // 현재 페이지에 따른 text
+  const { projects, selectedProject } = useContext(ProjectContext);
+  const { posts, selectedPost } = useContext(BlogContext);
+  const [selectedContentIndex, setSelectedContentIndex] = useState(0);
   const content = location.pathname.split("/")[1] === "Blog" ? posts : projects;
   const contentLength = content.length;
+
+  useEffect(() => {
+    // 현재 페이지에 따른 text
+    location.pathname.split("/")[1] === "Blog"
+      ? setSelectedContentIndex(selectedPost)
+      : setSelectedContentIndex(selectedProject);
+  }, [selectedProject, selectedPost]);
+
   return (
     <Wrapper>
       <ProjectNumber>

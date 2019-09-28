@@ -3,8 +3,8 @@ import Header from "../Components/Commons/Header";
 import styled from "styled-components";
 import SideBar from "../Components/Sidebar/SideBar";
 import SidebarControlButton from "../Components/Sidebar/SidebarControlButton";
-import Slider from "../Components/Slider";
-import ScrollRangeBar from "../Components/ScrollRangeBar";
+import ProjectSlider from "../Components/Project/ProjectSlider";
+import ScrollRangeBar from "../Components/Commons/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
 import { SideBarContext } from "../Context/SideBarContext";
 
@@ -71,7 +71,7 @@ export default () => {
           </CSSTransition>
           <ScrollRangeBar />
         </MenuContainer>
-        <Slider />
+        <ProjectSlider />
       </MainContainer>
     </Wrapper>
   );

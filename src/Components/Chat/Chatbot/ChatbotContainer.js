@@ -5,9 +5,7 @@ import { UserContext } from "../../../Context/UserContext";
 import { ChatbotContext } from "../../../Context/ChatbotContext";
 
 export default () => {
-  const { isChatOpen, setIsChatOpen, isJobLess, myProfile } = useContext(
-    ChatbotContext
-  );
+  const { isChatOpen, setIsChatOpen, isJobLess } = useContext(ChatbotContext);
   const { loggedInUser } = useContext(UserContext);
   const [isShowTimeTable, setIsShowTimeTable] = useState(false);
   const today = new Date();

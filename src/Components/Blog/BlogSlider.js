@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-import { AppContext } from "../Context/AppContext";
-import BigCard from "./BigCard";
+import BigCard from "../Commons/BigCard";
 import { CSSTransition } from "react-transition-group";
 
-import "../Styles/Slider.css";
-import { SideBarContext } from "../Context/SideBarContext";
-import { getBlog, postTagToPostList } from "../Services/BlogService";
+import "../../Styles/Slider.css";
+import { SideBarContext } from "../../Context/SideBarContext";
+import { getBlog, postTagToPostList } from "../../Services/BlogService";
+import { BlogContext } from "../../Context/BlogContext";
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -33,17 +33,16 @@ export default () => {
     setScrollIndex,
     posts,
     setPosts,
-    setSelectedProject,
-    selectedProject,
-    projects: contents
-  } = useContext(AppContext);
+    setSelectedPost,
+    selectedPost
+  } = useContext(BlogContext);
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
   const [blogHtml, setBlogHtml] = useState("");
 
   // 최근 블로그 10개 게시물 호출
   useEffect(() => {
-    setSelectedProject(1);
+    setSelectedPost(1);
     setScrollIndex(0);
 
     // 포스트 정보가 스토어에 이미 있는 경우에는 요청하지 않음.
@@ -74,23 +73,19 @@ export default () => {
       if (
         scrollIndex > 0 &&
         (scrollIndex + 1) % 3 === 0 &&
-        selectedProject <= posts.length - 3
+        selectedPost <= posts.length - 3
       ) {
         // console.log("test");
-        setSelectedProject(selectedProject + 1);
+        setSelectedPost(selectedPost + 1);
       }
     }
     if (e.deltaY < 0 && scrollIndex > 0) {
       setScrollIndex(scrollIndex - 1);
       setPosition(position + 100);
       // console.log(scrollIndex - 1);
-      if (
-        scrollIndex > 0 &&
-        selectedProject > 1 &&
-        (scrollIndex - 1) % 3 === 0
-      ) {
-        // console.log(selectedProject - 1);
-        setSelectedProject(selectedProject - 1);
+      if (scrollIndex > 0 && selectedPost > 1 && (scrollIndex - 1) % 3 === 0) {
+        // console.log(selectedPost - 1);
+        setSelectedPost(selectedPost - 1);
       }
     }
   };

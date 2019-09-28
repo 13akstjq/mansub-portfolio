@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Detail from "./Views/Detail";
-import Home from "./Views/Home";
-import Blog from "./Views/Blog";
-import Conferenece from "./Views/Conferenece";
+import Detail from "./Routes/ProjectDetail";
+import Home from "./Routes/Home";
+import Blog from "./Routes/Blog";
+import Conferenece from "./Routes/Conferenece";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import "./Styles/Home.css";
 import "./Styles/BlogDetail.css";
-import Login from "./Components/Login";
-import BlogDetail from "./Views/BlogDetail";
+import Login from "./Components/Auth/Login";
+import BlogDetail from "./Routes/BlogDetail";
 import ChatbotButton from "./Components/Chat/ChatbotButton";
 import Chatbot from "./Components/Chat/Chatbot";
 

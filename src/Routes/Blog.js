@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Header from "../Components/Commons/Header";
 import styled from "styled-components";
 import SideBar from "../Components/Sidebar/SideBar";
 import SidebarControlButton from "../Components/Sidebar/SidebarControlButton";
-import ScrollRangeBar from "../Components/ScrollRangeBar";
+import ScrollRangeBar from "../Components/Commons/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
 
 import "../Styles/Home.css";
 import { SideBarContext } from "../Context/SideBarContext";
-import BlogSlider from "../Components/BlogSlider";
+import BlogSlider from "../Components/Blog/BlogSlider";
 
 const Wrapper = styled.div`
   position: absolute;

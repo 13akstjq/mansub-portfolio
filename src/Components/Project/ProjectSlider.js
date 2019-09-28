@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import BigCard from "./BigCard";
+import BigCard from "../Commons/BigCard";
 import { CSSTransition } from "react-transition-group";
-
-import "../Styles/Slider.css";
-import { SideBarContext } from "../Context/SideBarContext";
-import { AppContext } from "../Context/AppContext";
+import "../../Styles/Slider.css";
+import { SideBarContext } from "../../Context/SideBarContext";
+import { ProjectContext } from "../../Context/ProjectContext";
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -33,7 +32,7 @@ export default () => {
     setSelectedProject,
     selectedProject,
     projects: contents
-  } = useContext(AppContext);
+  } = useContext(ProjectContext);
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
 
@@ -65,7 +64,10 @@ export default () => {
       }
     }
   };
-
+  useEffect(() => {
+    setSelectedProject(1);
+    setScrollIndex(0);
+  }, []);
   return (
     <ProjectListContainer position={position} isSideOpen={isSideOpen}>
       <Wrapper onWheel={onWheel} isSideOpen={isSideOpen}>

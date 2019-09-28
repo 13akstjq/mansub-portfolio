@@ -1,134 +1,25 @@
-import React, { createContext, useState } from "react";
-import onedayonecommit from "../assets/image/onedayonecommit.png";
-import mansubportfolio from "../assets/image/mansubportfolio.png";
-import manstagram from "../assets/image/manstagram.png";
-//컨텍스트 생성
-const MANSTAGRAM = "manstagram";
-const ONEDAY_ONECOMMIT = "oneDayOneCommit";
-const PORTFOLIO = "portfolio";
-export const AppContext = createContext();
+import React from "react";
+import AuthContextProvider from "./AuthContext";
+import BlogContextProvider from "./BlogContext";
+import ProjectContextProvider from "./ProjectContext";
+import ChatbotContextProvider from "./ChatbotContext";
+import SideBarContextProvider from "./SideBarContext";
+import UserContextProvider from "./UserContext";
 
-const AppContextProvider = ({ children }) => {
-  const [selectedProject, setSelectedProject] = useState(1);
-  const localProjects = [
-    {
-      id: 1,
-      thumbnail: MANSTAGRAM,
-      title: "Instagram Clone",
-      name: "Han ManSub",
-      category: ["react", "Hooks"],
-      url: "https://manstagram.netlify.com/#/",
-      postURL: "",
-      photo: manstagram
-    },
-    {
-      id: 2,
-      thumbnail: PORTFOLIO,
-      title: "Portfolio site",
-      name: "Han ManSub",
-      category: ["React , Hooks"],
-      url: "https://mansub.netlify.com",
-      postURL: "",
-      photo: mansubportfolio
-    },
-    {
-      id: 3,
-      thumbnail: ONEDAY_ONECOMMIT,
-      title: "Chrome Extension - 1Day 1Commit",
-      name: "Han ManSub",
-      category: "Vanilla JS",
-      url:
-        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
-      postURL:
-        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
-      photo: onedayonecommit
-    },
-    {
-      id: 4,
-      thumbnail: "",
-      title: "제목4",
-      name: "Han ManSub4",
-      category: "react4",
-      url: "",
-      postURL: " ",
-      photo: ""
-    },
-    {
-      id: 5,
-      thumbnail: "",
-      title: "제목5",
-      name: "Han ManSub5",
-      category: "react5",
-      url: "",
-      postURL: " ",
-      photo: ""
-    },
-    {
-      id: 6,
-      thumbnail: "",
-      title: "제목6",
-      name: "Han ManSub6",
-      category: "react6",
-      url: "",
-      postURL: " ",
-      photo: ""
-    },
-    {
-      id: 7,
-      thumbnail: "",
-      title: "제목7",
-      name: "Han ManSub7",
-      category: "react7",
-      url: "",
-      postURL: " ",
-      photo: ""
-    },
-    {
-      id: 8,
-      thumbnail: "",
-      title: "제목8",
-      name: "Han ManSub8",
-      category: "react8",
-      url: "",
-      postURL: " ",
-      photo: ""
-    }
-  ];
-
-  const [projects, setProjects] = useState(localProjects);
-  const [posts, setPosts] = useState([]);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [scrollIndex, setScrollIndex] = useState(0);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isJobLess, setIsJobLess] = useState(true);
-  const myProfile = {
-    photoURL:
-      "https://lh5.googleusercontent.com/-kG11ADe4UGg/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcP3fiMD1hBY2wDpsWkJJmA4Wv9_Q/photo.jpg",
-    name: "한만섭",
-    email: "13akstjq@gmail.com"
-  };
+const AppContext = ({ children }) => {
   return (
-    <AppContext.Provider
-      value={{
-        scrollIndex,
-        setScrollIndex,
-        selectedProject,
-        setSelectedProject,
-        projects,
-        posts,
-        setPosts,
-        setProjects,
-        isAuthOpen,
-        setIsAuthOpen,
-        isChatOpen,
-        setIsChatOpen,
-        isJobLess,
-        myProfile
-      }}
-    >
-      {children}
-    </AppContext.Provider>
+    <AuthContextProvider>
+      <BlogContextProvider>
+        <ProjectContextProvider>
+          <ChatbotContextProvider>
+            <SideBarContextProvider>
+              <UserContextProvider>{children}</UserContextProvider>
+            </SideBarContextProvider>
+          </ChatbotContextProvider>
+        </ProjectContextProvider>
+      </BlogContextProvider>
+    </AuthContextProvider>
   );
 };
 
-export default AppContextProvider;
+export default AppContext;

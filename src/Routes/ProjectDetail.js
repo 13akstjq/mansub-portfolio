@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
+import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
 import { Mobile, Desktop, LeftArrow } from "../Components/Commons/Icons";
-import { AppContext } from "../Context/AppContext";
-import { getBlog, postTagToPostList } from "../Services/BlogService";
-import { bgColorFilter } from "../Components/BigCard";
-
+import { ProjectContext } from "../Context/ProjectContext";
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -18,9 +16,14 @@ const Wrapper = styled.div`
 `;
 
 const ShowContainer = styled.div`
-  width: 100%;
+  width: ${props =>
+    props.showFullDemo
+      ? "100% !important"
+      : props.showFullDesc
+      ? "0% !important"
+      : "60%"};
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
-  background-color: ${props => bgColorFilter(props.category, props.theme)};
+  background-color: #33a2a7;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   display: grid;
@@ -62,12 +65,11 @@ const DesktopButton = styled.div`
   cursor: pointer;
 `;
 
-const VisitButton = styled.a`
+const VisitButton = styled.div`
   padding: 3px 10px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  /* color: ${props => props.theme.lightGreyColor}; */
 `;
 
 const DemoContainer = styled.div`
@@ -86,38 +88,66 @@ const DemoProject = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 `;
 
+const FullDemoButton = styled.div`
+  padding: 5px;
+  color: ${props => props.theme.darkGreyColor};
+  font-size: 30px;
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  cursor: pointer;
+`;
+
+const FullDescButton = styled.div`
+  padding: 5px;
+  position: absolute;
+  top: 45%;
+  left: 10px;
+  font-size: 30px;
+  cursor: pointer;
+`;
+
+const DescriptionContainer = styled.div`
+  width: ${props =>
+    props.showFullDesc
+      ? "100% !important"
+      : props.showFullDemo
+      ? "0% !important"
+      : "40%"};
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: ${props => props.theme.lightGreyColor};
+  padding-left: 20px;
+`;
+
 export default ({ history, location }) => {
+  const { projects } = useContext(ProjectContext);
+  const [project, setProject] = useState();
   const [DemoType, setDemoType] = useState("desktop");
-  const [blogHtml, setBlogHtml] = useState("");
-  const postId = location.pathname.split("/")[2];
-  const { posts, setPosts } = useContext(AppContext);
-  const post = posts[postId];
+  const [showFullDemo, setShowFullDemo] = useState(false);
+  const [showFullDesc, setShowFullDesc] = useState(false);
+  const toggleDemoType = type => setDemoType(type);
+  const toggleShowFullDemo = () => setShowFullDemo(!showFullDemo);
+  const toggleShowFullDesc = () => setShowFullDesc(!showFullDesc);
+  const projectId = location.pathname.split("/")[2];
+  const goBack = () => {
+    history.push("/");
+  };
+
   useEffect(() => {
-    //blog 정보를 가져옴
-    getBlog().then(html => {
-      // tag에 bloghtml 넣음.
-      setBlogHtml(html);
-      // bloghtml에서 게시물 부분만 선택
-      const postList = document.getElementsByClassName("post-item");
-      // 게시물 부분을 넣어주고 postList를 만듬
-      // console.log(postList);
-      setPosts(postTagToPostList(postList));
-      // tag다시 공백
-      setBlogHtml("");
-    });
+    setProject(projects[projectId - 1]);
   }, []);
 
-  const toggleDemoType = type => setDemoType(type);
-  const goBack = () => {
-    history.push("/Blog");
-  };
   return (
     <Wrapper>
-      <ShowContainer category={post && post.category}>
+      <ShowContainer showFullDemo={showFullDemo} showFullDesc={showFullDesc}>
         <Header>
           <BackButton onClick={goBack}>
             <LeftArrow></LeftArrow>
-            {" Back"}
+            {"Back"}
           </BackButton>
           <ResponsivButton>
             <MobileButton onClick={() => toggleDemoType("mobile")}>
@@ -127,32 +157,50 @@ export default ({ history, location }) => {
               <Desktop selected={DemoType === "desktop"}></Desktop>
             </DesktopButton>
           </ResponsivButton>
-          <VisitButton target="_blank" href={post && post.url}>
-            Visit
-          </VisitButton>
+          <VisitButton>Visit</VisitButton>
         </Header>
         <DemoContainer>
           <DemoProject DemoType={DemoType}>
             <iframe
-              key={postId}
-              title={"blog"}
+              key={projectId}
+              title={"portfolio"}
               width="100%"
               height="100%"
               frameBorder="0"
               scrolling="yes"
               marginHeight="0"
               marginWidth="0"
-              style={{
-                backgroundColor: "white",
-                borderRadius: "10px",
-                WebkitOverflowScrolling: "touch"
-              }}
-              src={post ? post.url : ""}
+              src={project && project.url}
             ></iframe>
           </DemoProject>
         </DemoContainer>
+        <FullDemoButton onClick={toggleShowFullDemo}>
+          {showFullDemo ? "<" : "||"}{" "}
+        </FullDemoButton>
       </ShowContainer>
-      <div id="blog" dangerouslySetInnerHTML={{ __html: blogHtml }}></div>
+      <CSSTransition in={true} classNames="description" timeout={0} appear>
+        <DescriptionContainer
+          showFullDemo={showFullDemo}
+          showFullDesc={showFullDesc}
+        >
+          {/* <ReactMarkdown source={project && project.markdown}></ReactMarkdown> */}
+          <iframe
+            key={projectId}
+            title={"portfolioPost"}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            scrolling="yes"
+            marginHeight="0"
+            marginWidth="0"
+            src={project && project.postURL}
+          ></iframe>
+          <FullDescButton onClick={toggleShowFullDesc}>
+            {" "}
+            {showFullDesc ? ">" : "||"}{" "}
+          </FullDescButton>
+        </DescriptionContainer>
+      </CSSTransition>
     </Wrapper>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CloseButton, Sunny, Moon, SendButton } from "../../Commons/Icons";
+import { CloseButton, Sunny, Moon } from "../../Commons/Icons";
 import Room from "../Room";
 const Wrapper = styled.div`
   width: ${props => (props.isChatOpen ? "320px" : "0px")};
@@ -96,11 +96,6 @@ const RoomListContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.13);
 `;
-
-const StartMessage = styled.div``;
-const RoomListHeader = styled.div``;
-
-const RoomList = styled.div``;
 
 const CreateChatButton = styled.div`
   display: flex;
