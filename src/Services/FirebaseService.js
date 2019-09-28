@@ -153,6 +153,9 @@ export const sendAnswer = async (text, uid, ts) => {
         ts,
         createdAt: new Date()
       });
+    return true;
+  } else {
+    return false;
   }
 };
 

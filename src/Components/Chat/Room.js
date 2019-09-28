@@ -10,6 +10,7 @@ import {
   getMessages
 } from "../../Services/FirebaseService";
 import { sendMessageToSlack, getReply } from "../../Services/SlackService";
+import { ChatbotContext } from "../../Context/ChatbotContext";
 let emojis = require("emojis");
 const Room = styled.div`
   display: grid;
@@ -156,6 +157,7 @@ export default () => {
   const chatbotInput = useInput("");
   const [isEmojiClick, setIsEmojiClick] = useState(false);
   const { loggedInUser } = useContext(UserContext);
+  const { setIsGetReply } = useContext(ChatbotContext);
   const [loading, setLoading] = useState(false);
   const [guideMessages, setGiudeMessages] = useState([
     `안녕하세요 😊
@@ -272,7 +274,14 @@ export default () => {
         if (replys.length > 1) {
           replys.forEach(async (reply, index) => {
             if (index > 0) {
-              await sendAnswer(reply.text, loggedInUser.uid, reply.ts);
+              const isGetReply = await sendAnswer(
+                reply.text,
+                loggedInUser.uid,
+                reply.ts
+              );
+              if (isGetReply) {
+                setIsGetReply(true);
+              }
             }
           });
         }
@@ -288,7 +297,7 @@ export default () => {
           setMessages(messages);
         });
       }
-    }, 10000);
+    }, 5000);
   };
 
   // 로그인 하면 해당 유저의 메세지를 firebase에서 가져와서 보여주기
