@@ -90,7 +90,7 @@ export default () => {
       }
     }
   };
-
+  console.log(posts);
   return (
     <ProjectListContainer position={position} isSideOpen={isSideOpen}>
       <Wrapper onWheel={onWheel} isSideOpen={isSideOpen}>
@@ -98,7 +98,7 @@ export default () => {
           <CSSTransition
             key={post.id}
             in={true}
-            timeout={post.id * 700}
+            timeout={(post.id + 1) * 700}
             appear
             classNames="card"
           >
