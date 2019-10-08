@@ -300,4 +300,5 @@ export default ({ history, location }) => {
         </DescriptionContainer>
       </CSSTransition>
     </Wrapper>
+  );
 };
