@@ -55,6 +55,7 @@ export default () => {
       // 로그인 성공 시 login함수 호출
       signInSuccessWithAuthResult: res => login(res)
     },
+    signInSuccessUrl: "/",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
