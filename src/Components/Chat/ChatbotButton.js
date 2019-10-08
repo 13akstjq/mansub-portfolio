@@ -37,7 +37,7 @@ const Wrapper = styled.button`
   background-color: #8565fc;
   color: white;
   transition: 0.3s ease-in-out;
-  z-index: 11;
+  z-index: 9;
   cursor: pointer;
   &:hover {
     animation-name: ${bigSmall};
