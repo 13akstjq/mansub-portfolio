@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import "../Styles/Detail.css";
-import { Mobile, Desktop, LeftArrow } from "../Components/Commons/Icons";
+import { Mobile, Desktop, LeftIcon } from "../Components/Commons/Icons";
 import { getBlog, postTagToPostList } from "../Services/BlogService";
 import { bgColorFilter } from "../Components/Commons/BigCard";
 import { ProjectContext } from "../Context/ProjectContext";
@@ -38,7 +38,18 @@ const Header = styled.div`
 `;
 
 const BackButton = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 15px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+  opacity: 0.6;
+  &:hover {
+    opacity: 0.95;
+  }
+  & > span {
+    margin-left: 5px;
+  }
 `;
 
 const ResponsivButton = styled.div`
@@ -66,8 +77,13 @@ const VisitButton = styled.a`
   padding: 3px 10px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.3);
+  font-size: 15px;
   cursor: pointer;
-  /* color: ${props => props.theme.lightGreyColor}; */
+  opacity: 0.7;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    opacity: 0.95;
+  }
 `;
 
 const DemoContainer = styled.div`
@@ -116,7 +132,7 @@ export default ({ history, location }) => {
       <ShowContainer category={post && post.category}>
         <Header>
           <BackButton onClick={goBack}>
-            <LeftArrow></LeftArrow>
+            <LeftIcon></LeftIcon>
             {" Back"}
           </BackButton>
           <ResponsivButton>

@@ -5,6 +5,7 @@ export const ChatbotContext = createContext();
 
 const ChatbotContextProvider = ({ children }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isGetReply, setIsGetReply] = useState(false);
   const [isJobLess] = useState(true);
   const myProfile = {
     photoURL:
@@ -18,7 +19,9 @@ const ChatbotContextProvider = ({ children }) => {
         isChatOpen,
         setIsChatOpen,
         isJobLess,
-        myProfile
+        myProfile,
+        isGetReply,
+        setIsGetReply
       }}
     >
       {children}

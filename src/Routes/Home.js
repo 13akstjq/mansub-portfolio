@@ -14,13 +14,13 @@ const Wrapper = styled.div`
   left: 0px;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   transition: 0.5s ease-in-out;
 `;
 
 const MainContainer = styled.div`
   padding-top: 150px;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
   width: 100vw;
   height: 100vh;
   display: grid;

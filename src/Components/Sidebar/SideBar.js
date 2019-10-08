@@ -11,9 +11,10 @@ const Wrapper = styled.div`
   box-shadow: ${props =>
     props.isSideOpen ? "0 19px 38px rgba(0,0,0,0.30);" : null};
   overflow: hidden;
-  /* display: flex; */
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
   position: absolute;
-  flex-direction: column;
+  /* flex-direction: column; */
   padding-top: 200px;
   z-index: 1;
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
@@ -21,15 +22,15 @@ const Wrapper = styled.div`
 `;
 
 const MenuItem = styled.div`
-  margin-left: 20px;
-  margin-bottom: 80px;
+  margin-left: 2vw;
+  /* margin-bottom: 80px; */
 `;
 
 const Title = styled.div`
   font-weight: 900;
   font-size: 40px;
   color: ${props => props.theme.darkGreyColor};
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 `;
 const SubTitle = styled.div`
   font-weight: 100;

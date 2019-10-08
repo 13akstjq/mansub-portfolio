@@ -11,7 +11,7 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  z-index: 20;
 `;
 
 const Logo = styled.img`

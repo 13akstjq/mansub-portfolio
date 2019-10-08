@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   opacity: ${props => (props.isChatOpen ? "1" : "0")};
   background-color: ${props => props.theme.chatbotBgColor};
   border-radius: 5px;
-  z-index: 12;
+  z-index: 9;
   position: fixed;
   display: grid;
   grid-template-rows: 1fr 1.3fr 8fr;

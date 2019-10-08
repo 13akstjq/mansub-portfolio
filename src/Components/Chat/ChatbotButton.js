@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ChatbotContext } from "../../Context/ChatbotContext";
+import { Envelop } from "../Commons/Icons";
 
 // 커졌다가 작아지는 애니메이션
 const bigSmall = keyframes`
@@ -36,7 +37,7 @@ const Wrapper = styled.button`
   background-color: #8565fc;
   color: white;
   transition: 0.3s ease-in-out;
-  z-index: 11;
+  z-index: 9;
   cursor: pointer;
   &:hover {
     animation-name: ${bigSmall};
@@ -48,11 +49,56 @@ const Wrapper = styled.button`
   }
 `;
 
+const newMessageAnimation = keyframes`
+  0% {
+    transform : scale(1);
+  }12.5%{
+    transform : scale(1.1);
+  }25%{
+    transform : scale(0.9);
+
+  }37.5%{
+    transform : scale(1.1);
+  }50%{
+    transform : scale(1.0);
+  }100%{
+transform : scale(1);
+  }
+`;
+
+const NewMessageContainer = styled.div`
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f15544;
+  color: white;
+  animation: ${newMessageAnimation} 1000ms infinite;
+  visibility: ${props => (props.isGetReply ? "visibility" : "hidden")};
+  /* background-image: url("https://cdn4.vectorstock.com/i/1000x1000/03/78/new-message-icon-vector-21810378.jpg"); */
+  /* background-position: center; */
+  /* background-size: cover; */
+`;
+
 export default () => {
-  const { isChatOpen, setIsChatOpen } = useContext(ChatbotContext);
+  const { isChatOpen, setIsChatOpen, isGetReply, setIsGetReply } = useContext(
+    ChatbotContext
+  );
+  console.log(isGetReply);
   return (
-    <Wrapper isChatOpen={isChatOpen} onClick={() => setIsChatOpen(!isChatOpen)}>
+    <Wrapper
+      isChatOpen={isChatOpen}
+      onClick={() => {
+        setIsChatOpen(!isChatOpen);
+        setIsGetReply(false);
+      }}
+    >
       톡
+      <NewMessageContainer isGetReply={isGetReply}>
+        {/* <Envelop fill={"#F00"}></Envelop> */}N
+      </NewMessageContainer>
     </Wrapper>
   );
 };

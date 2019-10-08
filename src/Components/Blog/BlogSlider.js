@@ -9,6 +9,7 @@ import { getBlog, postTagToPostList } from "../../Services/BlogService";
 import { BlogContext } from "../../Context/BlogContext";
 
 const Wrapper = styled.div`
+  height: 100%;
   padding: 40px;
   align-items: center;
   display: grid;
@@ -47,7 +48,6 @@ export default () => {
 
     // 포스트 정보가 스토어에 이미 있는 경우에는 요청하지 않음.
     if (posts.length === 0) {
-      console.log("블로그 정보 요청");
       getBlog().then(html => {
         // tag에 bloghtml 넣음.
         setBlogHtml(html);
@@ -63,7 +63,6 @@ export default () => {
   }, []);
 
   const onWheel = e => {
-    console.log("slider");
     // e.preventDefault();
     // console.log(projects.length * 3);
     if (e.deltaY > 0 && scrollIndex < (posts.length - 3) * 3) {
@@ -89,7 +88,6 @@ export default () => {
       }
     }
   };
-
   return (
     <ProjectListContainer position={position} isSideOpen={isSideOpen}>
       <Wrapper onWheel={onWheel} isSideOpen={isSideOpen}>
@@ -97,7 +95,7 @@ export default () => {
           <CSSTransition
             key={post.id}
             in={true}
-            timeout={post.id * 700}
+            timeout={(post.id + 1) * 700}
             appear
             classNames="card"
           >

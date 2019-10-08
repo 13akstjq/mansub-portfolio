@@ -7,14 +7,14 @@
 .main-enter-active,
 .main-appear-active {
   opacity: 1;
-  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 150ms;
 }
 .main-exit {
   opacity: 1;
 }
 .main-exit-active {
   opacity: 0;
-  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 500ms;
+  transition: opacity cubic-bezier(0.16, 0.76, 0.79, 1.07) 150ms;
 }
 
 /* 게시물 상세보기에서 적용되는 CSSTransition */

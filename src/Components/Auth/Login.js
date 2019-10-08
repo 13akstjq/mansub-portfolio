@@ -15,17 +15,26 @@ import { AuthContext } from "../../Context/AuthContext";
 const Wrapper = styled.div`
   z-index: 10;
   position: fixed;
+  overflow: hidden;
   right: 0px;
   top: 80px;
   transition: 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
   ${props =>
     props.isAuthOpen && !props.isLoggedIn
-      ? "width : 160px; height: 160px; opacity : 1"
+      ? "width : 160px; height : 190px; opacity : 1"
       : "width : 0px; height: 0px; opacity : 0"}
 `;
-
+const Overlay = styled.div`
+  visibility: ${props => (props.isAuthOpen ? "visibility" : "hidden")};
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+`;
 export default () => {
-  const { isAuthOpen } = useContext(AuthContext);
+  const { isAuthOpen, setIsAuthOpen } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   // 로그인이 성공되었을 경우 호출될 login 함수
@@ -46,24 +55,33 @@ export default () => {
     };
     sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     setIsLoggedIn(true);
+    setIsAuthOpen(false);
+    return true;
   };
 
   // firebase 로그인 ui 설정
   const uiConfig = {
     signInFlow: "popup",
-    callbacks: {
-      // 로그인 성공 시 login함수 호출
-      signInSuccessWithAuthResult: res => login(res)
-    },
+    // signInSuccessUrl: "/",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID
-    ]
+    ],
+    callbacks: {
+      // 로그인 성공 시 login함수 호출
+      signInSuccessWithAuthResult: res => login(res)
+    }
   };
 
   return (
     <Wrapper isAuthOpen={isAuthOpen} isLoggedIn={isLoggedIn}>
+      <Overlay
+        onClick={() => {
+          setIsAuthOpen(!isAuthOpen);
+        }}
+        isAuthOpen={isAuthOpen}
+      ></Overlay>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </Wrapper>
   );
