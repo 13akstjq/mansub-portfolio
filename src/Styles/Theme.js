@@ -1,5 +1,6 @@
 export default {
   themeColor: "#8565FC",
+
   bgColor: "#FAFAFA",
   blackColor: "#262626",
   darkGreyColor: "#434a50",
@@ -19,5 +20,6 @@ export default {
   prismaColor: "#0C3349",
   tsColor: "#007ACC",
   vueColor: "#41B381",
-  chatbotBgColor: "#f3f5fc"
+  chatbotBgColor: "#f3f5fc",
+  transitionOne: "0.3s cubic-bezier(0, 1.21, 0.85, 1.06)"
 };

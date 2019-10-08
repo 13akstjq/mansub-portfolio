@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LeftArrow = ({ size = 21 }) => (
+export const LeftIcon = ({ size = 21 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -9,6 +9,42 @@ export const LeftArrow = ({ size = 21 }) => (
     viewBox="0 0 24 24"
   >
     <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+  </svg>
+);
+
+export const RightIcon = ({ size = 21 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    fill="#D3D4D5"
+    viewBox="0 0 24 24"
+  >
+    <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+  </svg>
+);
+
+export const UpIcon = ({ size = 21 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="#D3D4D5"
+  >
+    <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
+  </svg>
+);
+
+export const DownIcon = ({ size = 21 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="#D3D4D5"
+  >
+    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
   </svg>
 );
 
