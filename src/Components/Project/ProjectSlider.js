@@ -7,6 +7,7 @@ import { SideBarContext } from "../../Context/SideBarContext";
 import { ProjectContext } from "../../Context/ProjectContext";
 
 const Wrapper = styled.div`
+  height: 100%;
   padding: 40px;
   align-items: center;
   display: grid;

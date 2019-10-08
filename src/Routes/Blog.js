@@ -22,7 +22,6 @@ const Wrapper = styled.div`
 
 const MainContainer = styled.div`
   padding-top: 150px;
-  padding-bottom: 50px;
   width: 100vw;
   height: 100vh;
   display: grid;
