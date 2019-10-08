@@ -68,10 +68,18 @@ transform : scale(1);
 
 const NewMessageContainer = styled.div`
   position: absolute;
-  top: -7px;
-  left: -7px;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f15544;
+  color: white;
   animation: ${newMessageAnimation} 1000ms infinite;
   visibility: ${props => (props.isGetReply ? "visibility" : "hidden")};
+  /* background-image: url("https://cdn4.vectorstock.com/i/1000x1000/03/78/new-message-icon-vector-21810378.jpg"); */
+  /* background-position: center; */
+  /* background-size: cover; */
 `;
 
 export default () => {
@@ -89,7 +97,7 @@ export default () => {
     >
       톡
       <NewMessageContainer isGetReply={isGetReply}>
-        <Envelop fill={"#F00"}></Envelop>
+        {/* <Envelop fill={"#F00"}></Envelop> */}N
       </NewMessageContainer>
     </Wrapper>
   );

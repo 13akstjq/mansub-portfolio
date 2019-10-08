@@ -55,6 +55,7 @@ export default () => {
     };
     sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     setIsLoggedIn(true);
+    setIsAuthOpen(false);
     return true;
   };
 
