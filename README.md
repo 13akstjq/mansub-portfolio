@@ -4,7 +4,7 @@
 
 - [x] firebase Auth
 - [x] horizontal scroll
-- [ ] chat system
+- [x] chat system
 - [x] post Like
 - [] post Upload
 - [ ] admin
