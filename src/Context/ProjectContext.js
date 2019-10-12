@@ -21,7 +21,8 @@ const ProjectContextProvider = ({ children }) => {
       category: ["react", "Hooks"],
       url: "https://manstagram.netlify.com/#/",
       postURL: "",
-      photo: manstagram
+      photo: manstagram,
+      color: "#38416E"
     },
     {
       id: 2,
@@ -31,7 +32,8 @@ const ProjectContextProvider = ({ children }) => {
       category: ["React , Hooks"],
       url: "https://mansub.netlify.com",
       postURL: "",
-      photo: mansubportfolio
+      photo: mansubportfolio,
+      color: "#948798"
     },
     {
       id: 3,
@@ -43,7 +45,8 @@ const ProjectContextProvider = ({ children }) => {
         "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
       postURL:
         "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
-      photo: onedayonecommit
+      photo: onedayonecommit,
+      color: "#0D8CEB"
     }
     // {
     //   id: 4,

@@ -20,6 +20,8 @@ import {
 import { UserContext } from "../../Context/UserContext";
 import { AppContext } from "../../Context/AppContext";
 import { AuthContext } from "../../Context/AuthContext";
+import Theme from "../../Styles/Theme";
+import { card } from "../../Styles/device";
 
 export const bgColorFilter = (category, theme) => {
   let bgColor = "#999";
@@ -67,6 +69,13 @@ export const bgColorFilter = (category, theme) => {
   return bgColor;
 };
 
+const ImageContainer = styled.div`
+  padding: 20px 10px;
+  background-color: ${props => props.color};
+  @media ${card.small} {
+    padding: 50px 10px;
+  }
+`;
 const Image = styled.img`
   /* background-image: ${props => `url(${props.photo})`}; */
   /* background-image : ${props => props.photo};
@@ -74,6 +83,11 @@ const Image = styled.img`
   background-size: cover; */
   width: 100%;
   height: 100%;
+  border-radius : 3px;
+  @media ${card.small} {
+    box-shadow : 1px 1px 3px rgba(0,0,0,0.3);
+  }
+  
 `;
 
 const SkillImage = styled.div`
@@ -83,6 +97,8 @@ const SkillImage = styled.div`
 `;
 
 const Wrapper = styled.div`
+  min-height: 233.24px;
+  position: relative;
   transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
   border-radius: 10px;
   overflow: hidden;
@@ -96,6 +112,9 @@ const Wrapper = styled.div`
   &:hover {
     transform: scale(1.03);
   }
+  @media ${card.small} {
+    grid-template-rows: 1fr 0px;
+  }
 `;
 const DescContainer = styled.div`
   background-color: #fdfefe;
@@ -105,20 +124,35 @@ const DescContainer = styled.div`
 `;
 const TitleContainer = styled.div`
   height: 100%;
-  position: relative;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+
   align-self: flex-start;
 `;
 
-const Title = styled(FatText)`
-  margin-bottom: 8px;
+const Title = styled.div`
+  font-size: 18px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  @media ${card.small} {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #fff;
+  }
 `;
 
 const SubTitleContainer = styled.div`
   width: 100%;
   display: flex;
-  position: absolute;
-  bottom: 0px;
   justify-content: space-between;
+  align-self: flex-end;
+  @media ${card.small} {
+    display: none;
+  }
 `;
 
 const CreatedAt = styled.div`
@@ -136,6 +170,14 @@ const InfoContainer = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
+  @media ${card.small} {
+    width: 90%;
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    color: white;
+    font-size: 0.85rem;
+  }
 `;
 
 const UserContainer = styled.div`
@@ -166,7 +208,8 @@ export default withRouter(
     createdAt,
     likeCount,
     location,
-    photo
+    photo,
+    color
   }) => {
     const pathName = location.pathname;
     const [isLikedS, setIsLikedS] = useState(false);
@@ -195,7 +238,9 @@ export default withRouter(
       <Link to={pathName === "/" ? `/post/${id}` : `/blogDetail/${id}`}>
         <Wrapper category={category}>
           {pathName === "/" ? (
-            <Image src={photo}></Image>
+            <ImageContainer color={color}>
+              <Image src={photo}></Image>
+            </ImageContainer>
           ) : (
             <SkillImage>
               {((pathName === "/Blog" && category === "react") ||
@@ -224,7 +269,7 @@ export default withRouter(
 
           <DescContainer>
             <TitleContainer>
-              <Title size={18} text={title} />
+              <Title>{title}</Title>
               <SubTitleContainer>
                 <Category>{category}</Category>
                 <CreatedAt>{createdAt}</CreatedAt>

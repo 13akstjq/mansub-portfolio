@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   align-items: center;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 300px;
+  grid-auto-columns: 320px;
   grid-gap: 20px;
   perspective: 800px;
   transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
