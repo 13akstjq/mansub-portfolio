@@ -19,6 +19,9 @@ export const device = {
   desktopL: `(min-width: ${size.desktop})`
 };
 
-export const card = {
-  small: `(max-height: 600px)`
+export const desktopCard = {
+  small: `(max-height: 600px),(max-width : ${size.mobileL})`
+};
+export const mobileCard = {
+  small: `(max-height: 600px) and (max-width : ${size.mobileL})`
 };

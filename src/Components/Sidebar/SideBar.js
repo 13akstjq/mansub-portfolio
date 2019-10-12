@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { SideBarContext } from "../../Context/SideBarContext";
+import { mobileCard } from "../../Styles/device";
 
 const Wrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
@@ -18,7 +19,12 @@ const Wrapper = styled.div`
   padding-top: 200px;
   z-index: 1;
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  font-size: 40px;
   white-space: nowrap;
+  @media ${mobileCard.small} {
+    width: ${props => (props.isSideOpen ? "60vw" : "0px")};
+    font-size: 27px;
+  }
 `;
 
 const MenuItem = styled.div`
@@ -28,13 +34,14 @@ const MenuItem = styled.div`
 
 const Title = styled.div`
   font-weight: 900;
-  font-size: 40px;
+  /* font-size: 40px; */
+  font-size: 1em;
   color: ${props => props.theme.darkGreyColor};
   /* margin-bottom: 10px; */
 `;
 const SubTitle = styled.div`
   font-weight: 100;
-  font-size: 22px;
+  font-size: 0.6em;
   color: ${props => props.theme.lightGreyColor};
 `;
 

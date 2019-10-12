@@ -7,6 +7,7 @@ import ProjectSlider from "../Components/Project/ProjectSlider";
 import ScrollRangeBar from "../Components/Commons/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
 import { SideBarContext } from "../Context/SideBarContext";
+import { mobileCard } from "../Styles/device";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -28,11 +29,15 @@ const MainContainer = styled.div`
   transform: ${props =>
     props.isSideOpen ? "translateX(300px) " : "translateX(0px)"};
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  @media ${mobileCard.small} {
+    transform: ${props =>
+      props.isSideOpen ? "translateX(60vw) " : "translateX(0px)"};
+  }
 `;
 
 const MenuContainer = styled.div`
   align-items: flex-end;
-  padding: 3px 40px;
+  padding: 3px 30px;
 
   width: ${props => (props.isSideOpen ? "calc(76vw - 150px)" : "93vw")};
   display: grid;
@@ -41,7 +46,7 @@ const MenuContainer = styled.div`
   padding-right: 40px;
 
   transform: ${props =>
-    props.isSideOpen ? "translateX(50px) " : "translateX(0px)"};
+    props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
 `;
 
 const MenuTitle = styled.div`

@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { CloseButton, Sunny, Moon } from "../../Commons/Icons";
 import Room from "../Room";
+import { mobileCard } from "../../../Styles/device";
 const Wrapper = styled.div`
   width: ${props => (props.isChatOpen ? "320px" : "0px")};
   height: ${props => (props.isChatOpen ? "570px" : "0px")};
   opacity: ${props => (props.isChatOpen ? "1" : "0")};
   background-color: ${props => props.theme.chatbotBgColor};
   border-radius: 5px;
-  z-index: 9;
+  z-index: 21;
   position: fixed;
   display: grid;
   grid-template-rows: 1fr 1.3fr 8fr;
@@ -16,6 +17,16 @@ const Wrapper = styled.div`
   right: 20px;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 6px rgba(0, 0, 0, 0.19);
+
+  @media ${mobileCard.small} {
+    position: fixed;
+    bottom : 0px;
+    left: 0px;
+    width : 100vw;
+    /* width: ${props => (props.isChatOpen ? "100vw" : "0px")}; */
+    height: ${props => (props.isChatOpen ? "100vh" : "0px")};
+    opacity: ${props => (props.isChatOpen ? "1" : "0")};
+  }
 `;
 
 const Header = styled.div`

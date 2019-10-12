@@ -5,6 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import "../../Styles/Slider.css";
 import { SideBarContext } from "../../Context/SideBarContext";
 import { ProjectContext } from "../../Context/ProjectContext";
+import { mobileCard } from "../../Styles/device";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -16,6 +17,10 @@ const Wrapper = styled.div`
   grid-gap: 20px;
   perspective: 800px;
   transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
+  @media ${mobileCard.small} {
+    padding: 5vw;
+    grid-auto-columns: 90vw;
+  }
 `;
 
 const ProjectListContainer = styled.div`

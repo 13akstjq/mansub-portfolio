@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ChatbotContext } from "../../Context/ChatbotContext";
 import { Envelop } from "../Commons/Icons";
+import { mobileCard } from "../../Styles/device";
 
 // 커졌다가 작아지는 애니메이션
 const bigSmall = keyframes`
@@ -46,6 +47,10 @@ const Wrapper = styled.button`
   }
   &:focus {
     outline: none;
+  }
+  @media ${mobileCard.small} {
+    width: 45px;
+    height: 45px;
   }
 `;
 

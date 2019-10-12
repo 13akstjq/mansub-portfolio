@@ -21,7 +21,7 @@ import { UserContext } from "../../Context/UserContext";
 import { AppContext } from "../../Context/AppContext";
 import { AuthContext } from "../../Context/AuthContext";
 import Theme from "../../Styles/Theme";
-import { card } from "../../Styles/device";
+import { desktopCard } from "../../Styles/device";
 
 export const bgColorFilter = (category, theme) => {
   let bgColor = "#999";
@@ -72,7 +72,7 @@ export const bgColorFilter = (category, theme) => {
 const ImageContainer = styled.div`
   padding: 20px 10px;
   background-color: ${props => props.color};
-  @media ${card.small} {
+  @media ${desktopCard.small} {
     padding: 50px 10px;
   }
 `;
@@ -84,7 +84,7 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   border-radius : 3px;
-  @media ${card.small} {
+  @media ${desktopCard.small} {
     box-shadow : 1px 1px 3px rgba(0,0,0,0.3);
   }
   
@@ -112,7 +112,7 @@ const Wrapper = styled.div`
   &:hover {
     transform: scale(1.03);
   }
-  @media ${card.small} {
+  @media ${desktopCard.small} {
     grid-template-rows: 1fr 0px;
   }
 `;
@@ -136,7 +136,7 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  @media ${card.small} {
+  @media ${desktopCard.small} {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -150,7 +150,7 @@ const SubTitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-self: flex-end;
-  @media ${card.small} {
+  @media ${desktopCard.small} {
     display: none;
   }
 `;
@@ -170,7 +170,7 @@ const InfoContainer = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
-  @media ${card.small} {
+  @media ${desktopCard.small} {
     width: 90%;
     position: absolute;
     bottom: 15px;
