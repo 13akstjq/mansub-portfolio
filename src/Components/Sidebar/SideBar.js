@@ -50,21 +50,21 @@ export default () => {
       <MenuItem>
         <Link to="/">
           <Title>Home</Title>
+          <SubTitle>Discover all posts</SubTitle>
         </Link>
-        <SubTitle>Discover all posts</SubTitle>
       </MenuItem>
       <MenuItem>
         <Link to="/Blog">
           <Title>Blog</Title>
-        </Link>
 
-        <SubTitle>Visit development log</SubTitle>
+          <SubTitle>Visit development log</SubTitle>
+        </Link>
       </MenuItem>
       <MenuItem>
         <Link to="/Conference">
           <Title>Conference</Title>
+          <SubTitle>Visit activity</SubTitle>
         </Link>
-        <SubTitle>Visit activity</SubTitle>
       </MenuItem>
     </Wrapper>
   );

@@ -79,6 +79,8 @@ export default () => {
   const projectSliderRef = useRef(null);
   let isClick = false;
   let startX = 0;
+  let curX = 0;
+  let posX = position;
 
   // 휠 이벤트 메소드
   const onWheel = e => {
@@ -110,27 +112,37 @@ export default () => {
   };
 
   const onMouseDown = e => {
+    e.preventDefault();
+    e.stopPropagation();
     isClick = true;
     startX = e.clientX;
-    console.log(startX);
   };
 
   const onMouseMove = e => {
     if (isClick) {
-      if (e.clientX < startX) {
-        console.log(e.clientX - startX);
-        setPosition(position - (startX - e.clientX));
-      } else {
-        setPosition(position - (startX - e.clientX));
-        console.log("오른쪽");
-      }
+      curX = e.clientX;
+      const moveDist = curX - startX;
+      posX = posX - moveDist * 1.8;
+      projectSliderRef.current.scrollTo(posX, 0);
+      startX = curX;
     }
-    // startX = e.clientX;
-    // console.log(e);
   };
 
   const onMouseUp = e => {
-    isClick = false;
+    e.preventDefault();
+    e.stopPropagation();
+    if (isClick) {
+      isClick = false;
+    }
+    let selectedScrollIndex = Math.ceil(posX / 100);
+    selectedScrollIndex =
+      selectedScrollIndex >= projects.length * 3
+        ? projects.length * 3
+        : selectedScrollIndex;
+    selectedScrollIndex = selectedScrollIndex <= 1 ? 1 : selectedScrollIndex;
+    setScrollIndex(selectedScrollIndex);
+    setSelectedProject(Math.ceil(selectedScrollIndex / 3));
+    setPosition(posX);
   };
 
   return (

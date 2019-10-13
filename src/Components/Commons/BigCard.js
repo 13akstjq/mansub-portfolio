@@ -198,7 +198,6 @@ const LikeCount = styled.span`
 export default withRouter(
   ({
     id,
-    thumbnail,
     name,
     title,
     category,

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import "../Styles/Detail.css";
@@ -107,7 +107,7 @@ const VisitButton = styled.div`
 `;
 
 const DemoContainer = styled.div`
-  padding: ${props => (props.isShowDownDesc ? "0px" : "45px")};
+  padding: ${props => (props.isShowDownDesc ? "0px" : "47px")};
   display: flex;
   justify-content: center;
   padding-top: 0;
@@ -222,10 +222,12 @@ export default ({ history, location }) => {
   const [showFullDemo, setShowFullDemo] = useState(false);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [isShowDownDesc, setIsShowDownDesc] = useState(false);
+  const postRef = useRef(null);
   const toggleDemoType = type => setDemoType(type);
   const toggleShowFullDemo = () => setShowFullDemo(!showFullDemo);
   const toggleShowFullDesc = () => setShowFullDesc(!showFullDesc);
   const toggleIsShowDownDesc = () => setIsShowDownDesc(!isShowDownDesc);
+
   const projectId = location.pathname.split("/")[2];
   const goBack = () => {
     history.push("/");
@@ -234,7 +236,6 @@ export default ({ history, location }) => {
   useEffect(() => {
     setProject(projects[projectId - 1]);
   }, []);
-
   return (
     <Wrapper>
       <ShowContainer
@@ -303,7 +304,7 @@ export default ({ history, location }) => {
             scrolling="yes"
             marginHeight="0"
             marginWidth="0"
-            src={project && project.postURL}
+            src={project && project.postUrl}
           ></iframe>
         </BottomDescription>
       </ShowContainer>
@@ -322,7 +323,8 @@ export default ({ history, location }) => {
             scrolling="yes"
             marginHeight="0"
             marginWidth="0"
-            src={project && project.postURL}
+            src={project && project.postUrl}
+            ref={postRef}
           ></iframe>
           <FullDescButton onClick={toggleShowFullDesc}>
             {showFullDesc ? <RightIcon></RightIcon> : "||"}

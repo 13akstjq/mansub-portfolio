@@ -4,10 +4,6 @@ import mansubportfolio from "../assets/image/mansubportfolio.png";
 import manstagram from "../assets/image/manstagram.png";
 
 //컨텍스트 생성
-const MANSTAGRAM = "manstagram";
-const ONEDAY_ONECOMMIT = "oneDayOneCommit";
-const PORTFOLIO = "portfolio";
-
 export const ProjectContext = createContext();
 
 const ProjectContextProvider = ({ children }) => {
@@ -15,105 +11,33 @@ const ProjectContextProvider = ({ children }) => {
   const localProjects = [
     {
       id: 1,
-      thumbnail: MANSTAGRAM,
       title: "Instagram Clone",
       name: "Han ManSub",
       category: ["react", "Hooks"],
       url: "https://manstagram.netlify.com/#/",
-      postURL: "",
+      postUrl:
+        "https://13akstjq.github.io/manstagram/2019/10/14/manstagram-Doc.html",
       photo: manstagram,
       color: "#38416E"
     },
     {
       id: 2,
-      thumbnail: PORTFOLIO,
       title: "Portfolio site",
       name: "Han ManSub",
       category: ["React , Hooks"],
       url: "https://mansub.netlify.com",
-      postURL: "",
+      postUrl: "",
       photo: mansubportfolio,
       color: "#948798"
     },
     {
       id: 3,
-      thumbnail: ONEDAY_ONECOMMIT,
       title: "Chrome Extension - 1Day 1Commit",
       name: "Han ManSub",
       category: "Vanilla JS",
       url:
         "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
-      postURL:
-        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
-      photo: onedayonecommit,
-      color: "#0D8CEB"
-    },
-    {
-      id: 4,
-      thumbnail: MANSTAGRAM,
-      title: "Instagram Clone",
-      name: "Han ManSub",
-      category: ["react", "Hooks"],
-      url: "https://manstagram.netlify.com/#/",
-      postURL: "",
-      photo: manstagram,
-      color: "#38416E"
-    },
-    {
-      id: 5,
-      thumbnail: PORTFOLIO,
-      title: "Portfolio site",
-      name: "Han ManSub",
-      category: ["React , Hooks"],
-      url: "https://mansub.netlify.com",
-      postURL: "",
-      photo: mansubportfolio,
-      color: "#948798"
-    },
-    {
-      id: 6,
-      thumbnail: ONEDAY_ONECOMMIT,
-      title: "Chrome Extension - 1Day 1Commit",
-      name: "Han ManSub",
-      category: "Vanilla JS",
-      url:
-        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
-      postURL:
-        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
-      photo: onedayonecommit,
-      color: "#0D8CEB"
-    },
-    {
-      id: 7,
-      thumbnail: MANSTAGRAM,
-      title: "Instagram Clone",
-      name: "Han ManSub",
-      category: ["react", "Hooks"],
-      url: "https://manstagram.netlify.com/#/",
-      postURL: "",
-      photo: manstagram,
-      color: "#38416E"
-    },
-    {
-      id: 8,
-      thumbnail: PORTFOLIO,
-      title: "Portfolio site",
-      name: "Han ManSub",
-      category: ["React , Hooks"],
-      url: "https://mansub.netlify.com",
-      postURL: "",
-      photo: mansubportfolio,
-      color: "#948798"
-    },
-    {
-      id: 9,
-      thumbnail: ONEDAY_ONECOMMIT,
-      title: "Chrome Extension - 1Day 1Commit",
-      name: "Han ManSub",
-      category: "Vanilla JS",
-      url:
-        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
-      postURL:
+      postUrl:
         "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
       photo: onedayonecommit,
       color: "#0D8CEB"

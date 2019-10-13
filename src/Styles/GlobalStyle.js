@@ -37,7 +37,14 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
-
+    iframe .navitation {
+      background-color : red;
+      color : red !important;
+      /* display : none; */
+    }
+    iframe  header.navigation{
+      display : none !important;
+    }
     /* div :not(.markdown__container){
       color : red;
     } */

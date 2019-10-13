@@ -24,6 +24,7 @@ const TotalLine = styled.div`
 `;
 const CurrentLine = styled.div`
   width: ${props => (100 / props.length) * props.selectedProject}%;
+  transition: width 0.4s linear;
   position: absolute;
   top: 0px;
   border-top: 2px solid rgba(0, 0, 0, 0.5);

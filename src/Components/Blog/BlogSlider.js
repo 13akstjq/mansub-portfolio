@@ -77,8 +77,9 @@ export default () => {
   const [blogHtml, setBlogHtml] = useState("");
   const blogSliderRef = useRef(null);
   let isClick = false;
+  let posX = position;
   let startX = 0;
-  let endX = 0;
+  let curX = 0;
   // 최근 블로그 10개 게시물 호출
   useEffect(() => {
     setSelectedPost(1);
@@ -100,7 +101,9 @@ export default () => {
     }
   }, []);
 
+  // 휠 이벤트 메소드
   const onWheel = e => {
+    // 오른쪽 이동
     if (e.deltaY > 0 && scrollIndex < posts.length * 3) {
       setScrollIndex(scrollIndex + 1);
       setPosition(position + 100);
@@ -112,7 +115,7 @@ export default () => {
       ) {
         setSelectedPost(selectedPost + 1);
       }
-    }
+    } // 왼쪽 이동
     if (e.deltaY < 0 && scrollIndex > 0) {
       setScrollIndex(scrollIndex - 1);
       setPosition(position - 100);
@@ -125,28 +128,38 @@ export default () => {
   };
 
   const onMouseDown = e => {
+    e.preventDefault();
+    e.stopPropagation();
     isClick = true;
     startX = e.clientX;
-    console.log(startX);
   };
 
   const onMouseMove = e => {
     if (isClick) {
-      endX = e.clientX;
-      if (Math.abs(startX - endX) > 5) {
-        const moveDist = endX - startX;
-        console.log(moveDist);
-        // setPosition(position + moveDist);
-      }
+      curX = e.clientX;
+      const moveDist = curX - startX;
+      posX = posX - moveDist * 1.8;
+      blogSliderRef.current.scrollTo(posX, 0);
+      startX = curX;
     }
   };
 
   const onMouseUp = e => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isClick) {
       isClick = false;
     }
+    let selectedScrollIndex = Math.ceil(posX / 100);
+    selectedScrollIndex =
+      selectedScrollIndex >= posts.length * 3
+        ? posts.length * 3
+        : selectedScrollIndex;
+    selectedScrollIndex = selectedScrollIndex <= 1 ? 1 : selectedScrollIndex;
+    setScrollIndex(selectedScrollIndex);
+    setSelectedPost(Math.ceil(selectedScrollIndex / 3));
+    setPosition(posX);
   };
-
   return (
     <ProjectListContainer isSideOpen={isSideOpen}>
       <Wrapper
