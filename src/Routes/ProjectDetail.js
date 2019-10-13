@@ -31,6 +31,7 @@ const ShowContainer = styled.div`
       : props.showFullDesc
       ? "0% !important"
       : "60%"};
+  opacity: ${props => (props.showFullDesc ? 0 : 1)};
   height: ${props => (props.isShowDownDesc ? "70px" : "100%")};
   transition: 0.4s ease-in-out;
   background-color: #33a2a7;
@@ -73,8 +74,6 @@ const BackButton = styled.div`
 
 const ResponsivButton = styled.div`
   visibility: ${props => (props.isShowDownDesc ? "hidden" : "visibility")};
-  /* transition: all 0s ease-in-out; */
-
   display: flex;
 `;
 
@@ -115,7 +114,7 @@ const DemoContainer = styled.div`
   transition: 0.4s ease-in-out;
   opacity: ${props => (props.isShowDownDesc ? 0 : 1)};
   @media ${mobileCard.small} {
-    padding: 45px 20px;
+    padding: 45px 10px;
     padding-top: 0px;
   }
 `;
@@ -159,11 +158,13 @@ const DescriptionContainer = styled.div`
       : props.showFullDemo
       ? "0% !important"
       : "40%"};
+  opacity: ${props => (props.showFullDemo ? 0 : 1)};
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
+  transition: all 0.4s ease-in-out, opacity 0.3s ease-in-out;
   color: ${props => props.theme.lightGreyColor};
   @media ${mobileCard.small} {
     width: 0%;

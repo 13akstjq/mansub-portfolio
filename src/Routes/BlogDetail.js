@@ -5,6 +5,7 @@ import { Mobile, Desktop, LeftIcon } from "../Components/Commons/Icons";
 import { getBlog, postTagToPostList } from "../Services/BlogService";
 import { bgColorFilter } from "../Components/Commons/BigCard";
 import { ProjectContext } from "../Context/ProjectContext";
+import { mobileCard } from "../Styles/device";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -54,8 +55,10 @@ const BackButton = styled.div`
 
 const ResponsivButton = styled.div`
   transition: all 2s ease-in-out;
-
   display: flex;
+  @media ${mobileCard.small} {
+    display: none;
+  }
 `;
 
 const MobileButton = styled.div`
@@ -91,6 +94,10 @@ const DemoContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 0;
+  @media ${mobileCard.small} {
+    padding: 45px 10px;
+    padding-top: 0px;
+  }
 `;
 
 const DemoProject = styled.div`
