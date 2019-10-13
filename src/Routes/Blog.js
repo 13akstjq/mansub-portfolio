@@ -37,7 +37,6 @@ const MainContainer = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  /* background-color: red; */
   align-items: flex-end;
   padding: 3px 40px;
 
@@ -47,7 +46,7 @@ const MenuContainer = styled.div`
   grid-template-columns: 0.2fr 0.4fr 10fr;
   padding-right: 40px;
   transform: ${props =>
-    props.isSideOpen ? "translateX(50px) " : "translateX(0px)"};
+    props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
 `;
 
 const MenuTitle = styled.div`

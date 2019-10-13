@@ -38,6 +38,9 @@ const Wrapper = styled.div`
 
 const EmptyCard = styled.div`
   height: 100%;
+  @media ${mobileCard.small} {
+    height: 0%;
+  }
 `;
 
 const ProjectListContainer = styled.div`
