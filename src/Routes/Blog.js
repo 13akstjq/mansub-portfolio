@@ -50,6 +50,7 @@ const MenuContainer = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 0.2fr 0.4fr 10fr;
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
   transform: ${props =>
     props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
   @media ${mobileCard.small} {

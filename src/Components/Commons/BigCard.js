@@ -94,7 +94,7 @@ const SkillImage = styled.div`
 `;
 
 const Wrapper = styled.div`
-  height: 420px;
+  height: 370px;
   position: relative;
   transition: transform 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
   border-radius: 10px;

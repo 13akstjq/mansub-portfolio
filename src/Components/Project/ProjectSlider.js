@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 340px;
+  grid-auto-columns: 300px;
   grid-gap: 20px;
   overflow-x: scroll;
   perspective: 800px;
@@ -32,6 +32,11 @@ const Wrapper = styled.div`
     width: calc(100vw + 55vw);
     padding-left: calc(55vw + 5vw);
     transform: translateX(-55vw);
+    & > a:nth-child(${props => props.projectLength}) {
+      & > div {
+        margin-right: 5vw;
+      }
+    }
   }
 `;
 
@@ -136,6 +141,7 @@ export default () => {
         onWheel={onWheel}
         isSideOpen={isSideOpen}
         ref={projectSliderRef}
+        projectLength={projects.length}
       >
         {contents.map(content => (
           <CSSTransition

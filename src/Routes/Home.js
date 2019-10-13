@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   left: 0px;
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: transform 0.5s ease-in-out;
   font-size: 16px;
   @media ${mobileCard.small} {

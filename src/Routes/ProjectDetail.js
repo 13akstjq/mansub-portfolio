@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   background-color: transparent;
   overflow: hidden;
   display: flex;
+  z-index: 21;
 `;
 
 const ShowContainer = styled.div`
@@ -33,7 +34,9 @@ const ShowContainer = styled.div`
       : "60%"};
   opacity: ${props => (props.showFullDesc ? 0 : 1)};
   height: ${props => (props.isShowDownDesc ? "70px" : "100%")};
-  transition: 0.4s ease-in-out;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.5s cubic-bezier(0.72, 0, 0.58, 1);
   background-color: #33a2a7;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
@@ -109,7 +112,9 @@ const DemoContainer = styled.div`
   justify-content: center;
   padding-top: 0;
   overflow-y: hidden;
-  transition: 0.4s ease-in-out;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.5s cubic-bezier(0.72, 0, 0.58, 1), background-color 0.5s;
   opacity: ${props => (props.isShowDownDesc ? 0 : 1)};
   @media ${mobileCard.small} {
     padding: 45px 10px;
@@ -121,7 +126,10 @@ const DemoProject = styled.div`
   border-radius: 10px;
   width: 100%;
   height: 100%;
-  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    padding 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.5s cubic-bezier(0.72, 0, 0.58, 1), background-color 0.5s;
   width: ${props => (props.DemoType === "mobile" ? "375px" : "100%")};
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 `;
@@ -162,7 +170,9 @@ const DescriptionContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
-  transition: all 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.5s cubic-bezier(0.72, 0, 0.58, 1), background-color 0.5s;
   color: ${props => props.theme.lightGreyColor};
   @media ${mobileCard.small} {
     width: 0%;
@@ -182,7 +192,8 @@ const FullBottomDescButton = styled.div`
   bottom: ${props => (props.isShowDownDesc ? "20px" : "10px")};
   cursor: pointer;
   opacity: 0.6;
-  transition: 0.5s ease-in-out;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.5s cubic-bezier(0.72, 0, 0.58, 1), background-color 0.5s;
   &:hover {
     opacity: 0.95;
   }

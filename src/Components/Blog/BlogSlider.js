@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   align-items: center;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 340px;
+  grid-auto-columns: 300px;
   grid-gap: 20px;
   overflow-x: scroll;
   perspective: 800px;
@@ -34,6 +34,11 @@ const Wrapper = styled.div`
     width: 160vw;
     padding-left: 65vw;
     transform: translateX(-60vw);
+    & > a:nth-child(${props => props.postLength}) {
+      & > div {
+        margin-right: 5vw;
+      }
+    }
   }
 `;
 
@@ -150,6 +155,7 @@ export default () => {
         onWheel={onWheel}
         isSideOpen={isSideOpen}
         ref={blogSliderRef}
+        postLength={posts.length}
       >
         {posts.map(post => (
           <CSSTransition
