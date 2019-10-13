@@ -40,7 +40,9 @@ export default () => {
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
   const [blogHtml, setBlogHtml] = useState("");
-
+  let isClick = false;
+  let startX = 0;
+  let endX = 0;
   // 최근 블로그 10개 게시물 호출
   useEffect(() => {
     setSelectedPost(1);
@@ -88,9 +90,41 @@ export default () => {
       }
     }
   };
+
+  const onMouseDown = e => {
+    isClick = true;
+    startX = e.clientX;
+    console.log(startX);
+  };
+
+  const onMouseMove = e => {
+    if (isClick) {
+      endX = e.clientX;
+      if (Math.abs(startX - endX) > 5) {
+        const moveDist = endX - startX;
+        console.log(moveDist);
+        // setPosition(position + moveDist);
+      }
+    }
+  };
+
+  const onMouseUp = e => {
+    if (isClick) {
+      isClick = false;
+    }
+  };
+  useEffect(() => {
+    onMouseMove();
+  }, [position]);
   return (
     <ProjectListContainer position={position} isSideOpen={isSideOpen}>
-      <Wrapper onWheel={onWheel} isSideOpen={isSideOpen}>
+      <Wrapper
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onWheel={onWheel}
+        isSideOpen={isSideOpen}
+      >
         {posts.map(post => (
           <CSSTransition
             key={post.id}

@@ -41,13 +41,12 @@ export default () => {
   } = useContext(ProjectContext);
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
-
+  let isClick = false;
+  let startX = 0;
   // 휠 이벤트 메소드
   const onWheel = e => {
-    // e.preventDefault();
-    // console.log(projects.length * 3);
+    // 오른쪽 이동
     if (e.deltaY > 0 && scrollIndex < (projects.length - 3) * 3) {
-      // console.log(scrollIndex + 1);
       setScrollIndex(scrollIndex + 1);
       setPosition(position - 100);
       if (
@@ -57,7 +56,7 @@ export default () => {
       ) {
         setSelectedProject(selectedProject + 1);
       }
-    }
+    } // 왼쪽 이동
     if (e.deltaY < 0 && scrollIndex > 0) {
       setScrollIndex(scrollIndex - 1);
       setPosition(position + 100);
@@ -70,13 +69,44 @@ export default () => {
       }
     }
   };
+
+  const onMouseDown = e => {
+    isClick = true;
+    startX = e.clientX;
+    console.log(startX);
+  };
+
+  const onMouseMove = e => {
+    if (isClick) {
+      if (e.clientX < startX) {
+        console.log(e.clientX - startX);
+        setPosition(position - (startX - e.clientX));
+      } else {
+        setPosition(position - (startX - e.clientX));
+        console.log("오른쪽");
+      }
+    }
+    // startX = e.clientX;
+    // console.log(e);
+  };
+
+  const onMouseUp = e => {
+    isClick = false;
+  };
+
   useEffect(() => {
     setSelectedProject(1);
     setScrollIndex(0);
   }, []);
   return (
     <ProjectListContainer position={position} isSideOpen={isSideOpen}>
-      <Wrapper onWheel={onWheel} isSideOpen={isSideOpen}>
+      <Wrapper
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onWheel={onWheel}
+        isSideOpen={isSideOpen}
+      >
         {contents.map(content => (
           <CSSTransition
             key={content.id}
