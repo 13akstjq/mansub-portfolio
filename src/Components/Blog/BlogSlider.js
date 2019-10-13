@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import BigCard from "../Commons/BigCard";
 import { CSSTransition } from "react-transition-group";
@@ -7,25 +7,44 @@ import "../../Styles/Slider.css";
 import { SideBarContext } from "../../Context/SideBarContext";
 import { getBlog, postTagToPostList } from "../../Services/BlogService";
 import { BlogContext } from "../../Context/BlogContext";
+import { mobileCard } from "../../Styles/device";
 
 const Wrapper = styled.div`
+  width: calc(100vw + 340px);
   height: 100%;
   padding: 40px;
+  padding-left: 380px;
   align-items: center;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 300px;
   grid-gap: 20px;
-  overflow-x: auto;
+  overflow-x: scroll;
   perspective: 800px;
   transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
+  scroll-behavior: smooth;
+  transform: translateX(-340px);
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  @media ${mobileCard.small} {
+    padding: 5vw;
+    grid-auto-columns: 90vw;
+    width: 160vw;
+    padding-left: 65vw;
+    transform: translateX(-60vw);
+  }
+`;
+
+const EmptyCard = styled.div`
+  height: 100%;
 `;
 
 const ProjectListContainer = styled.div`
   transform: ${props =>
     props.isSideOpen
-      ? ` translateX(${props.position}px) perspective(500px) translate3d(-30px,-30px,-30px);`
-      : ` translateX(${props.position}px)perspective(500px) translate3d(0px,0px,0px); `};
+      ? `  perspective(500px) translate3d(-30px,-30px,-30px);`
+      : `  perspective(500px) translate3d(0px,0px,0px); `};
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 export default () => {
@@ -40,6 +59,7 @@ export default () => {
   const { isSideOpen } = useContext(SideBarContext);
   const [position, setPosition] = useState(0);
   const [blogHtml, setBlogHtml] = useState("");
+  const blogSliderRef = useRef(null);
   let isClick = false;
   let startX = 0;
   let endX = 0;
@@ -65,30 +85,27 @@ export default () => {
   }, []);
 
   const onWheel = e => {
-    // e.preventDefault();
-    // console.log(projects.length * 3);
-    if (e.deltaY > 0 && scrollIndex < (posts.length - 3) * 3) {
-      // console.log(scrollIndex + 1);
+    if (e.deltaY > 0 && scrollIndex < posts.length * 3) {
       setScrollIndex(scrollIndex + 1);
-      setPosition(position - 100);
+      setPosition(position + 100);
+      blogSliderRef.current.scrollTo(position + 100, 0);
       if (
         scrollIndex > 0 &&
         (scrollIndex + 1) % 3 === 0 &&
-        selectedPost <= posts.length - 3
+        selectedPost < posts.length
       ) {
-        // console.log("test");
         setSelectedPost(selectedPost + 1);
       }
     }
     if (e.deltaY < 0 && scrollIndex > 0) {
       setScrollIndex(scrollIndex - 1);
-      setPosition(position + 100);
-      // console.log(scrollIndex - 1);
+      setPosition(position - 100);
+      blogSliderRef.current.scrollTo(position - 100, 0);
       if (scrollIndex > 0 && selectedPost > 1 && (scrollIndex - 1) % 3 === 0) {
-        // console.log(selectedPost - 1);
         setSelectedPost(selectedPost - 1);
       }
     }
+    setTimeout(() => {}, 100);
   };
 
   const onMouseDown = e => {
@@ -113,17 +130,18 @@ export default () => {
       isClick = false;
     }
   };
-  useEffect(() => {
-    onMouseMove();
-  }, [position]);
+  // useEffect(() => {
+  //   onMouseMove();
+  // }, [position]);
   return (
-    <ProjectListContainer position={position} isSideOpen={isSideOpen}>
+    <ProjectListContainer isSideOpen={isSideOpen}>
       <Wrapper
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
         onWheel={onWheel}
         isSideOpen={isSideOpen}
+        ref={blogSliderRef}
       >
         {posts.map(post => (
           <CSSTransition
@@ -136,6 +154,9 @@ export default () => {
             <BigCard key={post.id} {...post} />
           </CSSTransition>
         ))}
+        <EmptyCard />
+        <EmptyCard />
+
         <div id="blog" dangerouslySetInnerHTML={{ __html: blogHtml }}></div>
       </Wrapper>
     </ProjectListContainer>

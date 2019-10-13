@@ -11,7 +11,8 @@ export default createGlobalStyle`
     } */
     font-family: 'Noto Sans KR', sans-serif;
     body {
-      background-color : ${props => props.theme.bgColor}
+      background-color : ${props => props.theme.bgColor};
+      margin : 0px;
     }
     a {
       text-decoration : none;

@@ -47,37 +47,77 @@ const ProjectContextProvider = ({ children }) => {
         "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
       photo: onedayonecommit,
       color: "#0D8CEB"
+    },
+    {
+      id: 4,
+      thumbnail: MANSTAGRAM,
+      title: "Instagram Clone",
+      name: "Han ManSub",
+      category: ["react", "Hooks"],
+      url: "https://manstagram.netlify.com/#/",
+      postURL: "",
+      photo: manstagram,
+      color: "#38416E"
+    },
+    {
+      id: 5,
+      thumbnail: PORTFOLIO,
+      title: "Portfolio site",
+      name: "Han ManSub",
+      category: ["React , Hooks"],
+      url: "https://mansub.netlify.com",
+      postURL: "",
+      photo: mansubportfolio,
+      color: "#948798"
+    },
+    {
+      id: 6,
+      thumbnail: ONEDAY_ONECOMMIT,
+      title: "Chrome Extension - 1Day 1Commit",
+      name: "Han ManSub",
+      category: "Vanilla JS",
+      url:
+        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
+      postURL:
+        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
+      photo: onedayonecommit,
+      color: "#0D8CEB"
+    },
+    {
+      id: 7,
+      thumbnail: MANSTAGRAM,
+      title: "Instagram Clone",
+      name: "Han ManSub",
+      category: ["react", "Hooks"],
+      url: "https://manstagram.netlify.com/#/",
+      postURL: "",
+      photo: manstagram,
+      color: "#38416E"
+    },
+    {
+      id: 8,
+      thumbnail: PORTFOLIO,
+      title: "Portfolio site",
+      name: "Han ManSub",
+      category: ["React , Hooks"],
+      url: "https://mansub.netlify.com",
+      postURL: "",
+      photo: mansubportfolio,
+      color: "#948798"
+    },
+    {
+      id: 9,
+      thumbnail: ONEDAY_ONECOMMIT,
+      title: "Chrome Extension - 1Day 1Commit",
+      name: "Han ManSub",
+      category: "Vanilla JS",
+      url:
+        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
+      postURL:
+        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
+      photo: onedayonecommit,
+      color: "#0D8CEB"
     }
-    // {
-    //   id: 4,
-    //   thumbnail: "",
-    //   title: "제목4",
-    //   name: "Han ManSub4",
-    //   category: "react4",
-    //   url: "",
-    //   postURL: " ",
-    //   photo: {}
-    // },
-    // {
-    //   id: 5,
-    //   thumbnail: "",
-    //   title: "제목5",
-    //   name: "Han ManSub5",
-    //   category: "react5",
-    //   url: "",
-    //   postURL: " ",
-    //   photo: {}
-    // },
-    // {
-    //   id: 6,
-    //   thumbnail: "",
-    //   title: "제목6",
-    //   name: "Han ManSub6",
-    //   category: "react6",
-    //   url: "",
-    //   postURL: " ",
-    //   photo: {}
-    // }
   ];
 
   const [projects, setProjects] = useState(localProjects);

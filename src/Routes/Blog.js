@@ -9,6 +9,7 @@ import { CSSTransition } from "react-transition-group";
 import "../Styles/Home.css";
 import { SideBarContext } from "../Context/SideBarContext";
 import BlogSlider from "../Components/Blog/BlogSlider";
+import { mobileCard } from "../Styles/device";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -29,6 +30,10 @@ const MainContainer = styled.div`
   transform: ${props =>
     props.isSideOpen ? "translateX(300px) " : "translateX(0px)"};
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  @media ${mobileCard.small} {
+    transform: ${props =>
+      props.isSideOpen ? "translateX(60vw) " : "translateX(0px)"};
+  }
 `;
 
 const MenuContainer = styled.div`
