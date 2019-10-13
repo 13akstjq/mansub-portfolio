@@ -10,6 +10,7 @@ import "../Styles/Home.css";
 import { SideBarContext } from "../Context/SideBarContext";
 import BlogSlider from "../Components/Blog/BlogSlider";
 import { mobileCard } from "../Styles/device";
+import Theme from "../Styles/Theme";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -39,7 +40,7 @@ const MainContainer = styled.div`
 const MenuContainer = styled.div`
   align-items: flex-end;
   padding: 3px 40px;
-
+  color: ${Theme.lightBlackColor};
   width: ${props => (props.isSideOpen ? "calc(76vw - 150px)" : "93vw")};
   display: grid;
   grid-auto-flow: column;

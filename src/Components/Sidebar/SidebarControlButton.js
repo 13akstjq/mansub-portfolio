@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { SideBarContext } from "../../Context/SideBarContext";
 import { LeftArrowIcon } from "../Commons/Icons";
+import Theme from "../../Styles/Theme";
 
 const HambugMenu = styled.span`
   transform: rotate(90deg);
   font-size: 30px;
   font-weight: 900;
   justify-self: flex-end;
+  color: ${Theme.lightBlackColor};
   cursor: pointer;
 `;
 

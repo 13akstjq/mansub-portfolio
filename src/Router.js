@@ -16,6 +16,7 @@ import Chatbot from "./Components/Chat/Chatbot";
 export default () => {
   return (
     <Router>
+      {/* location을 받아오기 위한 Route */}
       <Route
         render={({ location }) => {
           const path = location.pathname.split("/")[1];

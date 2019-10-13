@@ -1,6 +1,6 @@
 export default {
   themeColor: "#8565FC",
-
+  lightBlackColor: "#434a50",
   bgColor: "#FAFAFA",
   blackColor: "#262626",
   darkGreyColor: "#434a50",

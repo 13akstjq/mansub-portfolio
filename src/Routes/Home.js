@@ -8,6 +8,7 @@ import ScrollRangeBar from "../Components/Commons/ScrollRangeBar";
 import { CSSTransition } from "react-transition-group";
 import { SideBarContext } from "../Context/SideBarContext";
 import { mobileCard } from "../Styles/device";
+import Theme from "../Styles/Theme";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -32,7 +33,7 @@ const MainContainer = styled.div`
   @media ${mobileCard.small} {
     transform: ${props =>
       props.isSideOpen ? "translateX(60vw) " : "translateX(0px)"};
-    padding-top: 100px;
+    padding-top: 60px;
   }
 `;
 
@@ -58,6 +59,7 @@ const MenuTitle = styled.div`
   font-size: 30px;
   font-weight: 900;
   margin-left: 10px;
+  color: ${Theme.lightBlackColor};
 `;
 
 export default () => {
