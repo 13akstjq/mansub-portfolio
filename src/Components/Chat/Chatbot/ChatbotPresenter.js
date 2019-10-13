@@ -20,7 +20,6 @@ const Wrapper = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 6px rgba(0, 0, 0, 0.19);
 
   @media ${mobileCard.small} {
-    position: fixed;
     bottom : 0px;
     left: 0px;
     width : 100vw;
