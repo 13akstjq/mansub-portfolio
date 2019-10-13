@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   margin-left: 20px;
   display: flex;
   align-self: flex-end;
-  font-size: 20px;
+  font-size: 1.2em;
 `;
 
 const LineContainer = styled.div`

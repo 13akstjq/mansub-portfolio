@@ -34,12 +34,13 @@ const MainContainer = styled.div`
   @media ${mobileCard.small} {
     transform: ${props =>
       props.isSideOpen ? "translateX(60vw) " : "translateX(0px)"};
+    padding-top: 60px;
   }
 `;
 
 const MenuContainer = styled.div`
   align-items: flex-end;
-  padding: 3px 40px;
+  padding-left: 5vw;
   color: ${Theme.lightBlackColor};
   width: ${props => (props.isSideOpen ? "calc(76vw - 150px)" : "93vw")};
   display: grid;

@@ -24,6 +24,7 @@ const Wrapper = styled.div`
   transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
   scroll-behavior: smooth;
   transform: translateX(-340px);
+  align-items: flex-start;
   ::-webkit-scrollbar {
     display: none;
   }

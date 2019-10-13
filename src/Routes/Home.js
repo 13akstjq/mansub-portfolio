@@ -18,11 +18,15 @@ const Wrapper = styled.div`
   height: 100vh;
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
+  font-size: 16px;
+  @media ${mobileCard.small} {
+    color: red;
+    font-size: 16px;
+  }
 `;
 
 const MainContainer = styled.div`
   padding-top: 150px;
-  /* padding-bottom: 50px; */
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -39,13 +43,13 @@ const MainContainer = styled.div`
 
 const MenuContainer = styled.div`
   align-items: flex-end;
-  padding: 3px 30px;
+  padding-left: 5vw;
 
   width: ${props => (props.isSideOpen ? "calc(76vw - 150px)" : "93vw")};
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 0.2fr 0.4fr 10fr;
-  padding-right: 40px;
+  /* padding-right: 40px; */
 
   transform: ${props =>
     props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
@@ -56,7 +60,7 @@ const MenuContainer = styled.div`
 `;
 
 const MenuTitle = styled.div`
-  font-size: 30px;
+  font-size: 1.9em;
   font-weight: 900;
   margin-left: 10px;
   color: ${Theme.lightBlackColor};
