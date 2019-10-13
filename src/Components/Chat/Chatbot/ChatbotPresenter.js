@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   grid-template-rows: 1fr 1.3fr 8fr;
   bottom: 20px;
   right: 20px;
-  transition: width 0.1s ease-in-out , height 0.1s ease-in-out , opacity ${props =>
+  transition: width 0.3s ease-in-out , height 0.3s ease-in-out , opacity ${props =>
     props.isChatOpen ? "0.3s" : "0.15s"} ease-in-out;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 6px rgba(0, 0, 0, 0.19);
    ::-webkit-scrollbar {
