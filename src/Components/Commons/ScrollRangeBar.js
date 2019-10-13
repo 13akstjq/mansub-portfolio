@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   align-self: flex-end;
   font-size: 1.2em;
-  transition: 0.4s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: width 0.4s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
 const LineContainer = styled.div`

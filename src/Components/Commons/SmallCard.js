@@ -16,7 +16,17 @@ const LikeContainer = styled.div``;
 
 const LikeCount = styled.div``;
 
-const SmallCard = ({ isLiked }) => {
+const SmallCard = ({
+  id,
+  thumbnail,
+  name,
+  title,
+  category,
+  createdAt,
+  likeCount,
+  location,
+  photo
+}) => {
   return (
     <Wrapper>
       <CardTitle></CardTitle>

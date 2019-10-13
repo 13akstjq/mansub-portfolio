@@ -17,7 +17,8 @@ const Wrapper = styled.div`
   position: absolute;
   padding-top: 200px;
   z-index: 1;
-  transition: width 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  opacity: ${props => (props.isSideOpen ? 1 : 0)};
+  transition: width 0.3s cubic-bezier(0, 1.21, 0.85, 1.06), opacity 0.2s linear;
   font-size: 40px;
   white-space: nowrap;
   @media ${mobileCard.small} {

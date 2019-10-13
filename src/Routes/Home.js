@@ -47,6 +47,7 @@ const MenuContainer = styled.div`
   width: ${props => (props.isSideOpen ? "calc(76vw - 150px)" : "93vw")};
   display: grid;
   grid-auto-flow: column;
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
   grid-template-columns: 0.2fr 0.4fr 10fr;
   transform: ${props =>
     props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
