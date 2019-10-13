@@ -10,24 +10,24 @@ import { BlogContext } from "../../Context/BlogContext";
 import { mobileCard } from "../../Styles/device";
 
 const Wrapper = styled.div`
-  width: calc(100vw + 340px);
+  width: calc(100vw + 380px);
   height: 100%;
-  padding: 40px;
-  padding-left: 380px;
+  padding: 80px;
+  padding-left: 480px;
   align-items: center;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 300px;
+  grid-auto-columns: 340px;
   grid-gap: 20px;
   overflow-x: scroll;
   perspective: 800px;
-  transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06);
+  /* transition: 1s cubic-bezier(0, 1.21, 0.85, 1.06); */
   scroll-behavior: smooth;
-  transform: translateX(-340px);
-  align-items: flex-start;
+  transform: translateX(-380px);
   ::-webkit-scrollbar {
     display: none;
   }
+  align-items: flex-start;
   @media ${mobileCard.small} {
     padding: 5vw;
     grid-auto-columns: 90vw;
@@ -50,6 +50,12 @@ const ProjectListContainer = styled.div`
       ? `  perspective(500px) translate3d(-30px,-30px,-30px);`
       : `  perspective(500px) translate3d(0px,0px,0px); `};
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  @media ${mobileCard.small} {
+    transform: ${props =>
+      props.isSideOpen
+        ? ` perspective(500px) translate3d(-15px,-15px,-15px);`
+        : ` perspective(500px) translate3d(0px,0px,0px); `};
+  }
 `;
 export default () => {
   const {

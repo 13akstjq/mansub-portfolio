@@ -94,9 +94,9 @@ const SkillImage = styled.div`
 `;
 
 const Wrapper = styled.div`
-  min-height: 233.24px;
+  height: 420px;
   position: relative;
-  transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: transform 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
   border-radius: 10px;
   overflow: hidden;
   display: grid;
@@ -110,6 +110,7 @@ const Wrapper = styled.div`
     transform: scale(1.03);
   }
   @media ${desktopCard.small} {
+    height: 250px;
     grid-template-rows: 1fr 0px;
   }
 `;
@@ -165,7 +166,7 @@ const InfoContainer = styled.div`
   padding-top: 10px;
   align-items: flex-end;
   justify-content: space-between;
-  transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
+  /* transition: 0.5s cubic-bezier(0, 1.21, 0.85, 1.06); */
   @media ${desktopCard.small} {
     width: 90%;
     position: absolute;

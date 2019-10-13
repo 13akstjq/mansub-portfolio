@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   align-self: flex-end;
   font-size: 1.2em;
+  transition: 0.4s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
 const LineContainer = styled.div`
@@ -26,7 +27,6 @@ const CurrentLine = styled.div`
   position: absolute;
   top: 0px;
   border-top: 2px solid rgba(0, 0, 0, 0.5);
-  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
 `;
 
 const ProjectNumber = styled.div`

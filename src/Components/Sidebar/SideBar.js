@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   position: absolute;
   padding-top: 200px;
   z-index: 1;
-  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: width 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
   font-size: 40px;
   white-space: nowrap;
   @media ${mobileCard.small} {
@@ -38,7 +38,7 @@ const Title = styled.div`
 `;
 const SubTitle = styled.div`
   font-weight: 100;
-  font-size: 0.6em;
+  font-size: 0.5em;
   color: ${props => props.theme.lightGreyColor};
 `;
 

@@ -72,6 +72,7 @@ const ChatInput = styled.input`
 
 const MessagesContainer = styled.div`
   overflow-y: scroll;
+  overflow-x: hidden;
   ::-webkit-scrollbar {
     width: 5px;
   }

@@ -36,7 +36,7 @@ const Wrapper = styled.button`
   border: none;
   background-color: #8565fc;
   color: white;
-  transition: 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   z-index: 9;
   cursor: pointer;
   &:hover {

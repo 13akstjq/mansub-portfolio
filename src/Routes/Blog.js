@@ -19,7 +19,11 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  transition: 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  font-size: 16px;
+  @media ${mobileCard.small} {
+    font-size: 12px;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -46,7 +50,6 @@ const MenuContainer = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 0.2fr 0.4fr 10fr;
-  padding-right: 40px;
   transform: ${props =>
     props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
   @media ${mobileCard.small} {
@@ -56,9 +59,10 @@ const MenuContainer = styled.div`
 `;
 
 const MenuTitle = styled.div`
-  font-size: 30px;
+  font-size: 1.9em;
   font-weight: 900;
   margin-left: 10px;
+  color: ${Theme.lightBlackColor};
 `;
 
 export default () => {

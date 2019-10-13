@@ -6,7 +6,7 @@ import Theme from "../../Styles/Theme";
 
 const HambugMenu = styled.span`
   transform: rotate(90deg);
-  font-size: 30px;
+  font-size: 1.9em;
   font-weight: 900;
   justify-self: flex-end;
   color: ${Theme.lightBlackColor};
