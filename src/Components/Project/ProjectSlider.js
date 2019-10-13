@@ -28,9 +28,9 @@ const Wrapper = styled.div`
   @media ${mobileCard.small} {
     padding: 5vw;
     grid-auto-columns: 90vw;
-    width: 160vw;
-    padding-left: 65vw;
-    transform: translateX(-60vw);
+    width: calc(100vw + 55vw);
+    padding-left: calc(55vw + 5vw);
+    transform: translateX(-55vw);
   }
 `;
 

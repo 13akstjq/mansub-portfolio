@@ -47,6 +47,10 @@ const MenuContainer = styled.div`
 
   transform: ${props =>
     props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
+  @media ${mobileCard.small} {
+    transform: ${props =>
+      props.isSideOpen ? "translateX(-5vw) " : "translateX(0px)"};
+  }
 `;
 
 const MenuTitle = styled.div`

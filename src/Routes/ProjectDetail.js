@@ -12,6 +12,7 @@ import {
 } from "../Components/Commons/Icons";
 import { ProjectContext } from "../Context/ProjectContext";
 import Theme from "../Styles/Theme";
+import { mobileCard } from "../Styles/device";
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -31,18 +32,22 @@ const ShowContainer = styled.div`
       ? "0% !important"
       : "60%"};
   height: ${props => (props.isShowDownDesc ? "70px" : "100%")};
-  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: 0.4s ease-in-out;
   background-color: #33a2a7;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   display: grid;
-  grid-template-rows: ${props =>
-    props.isShowDownDesc ? "1fr 0px " : "1fr 9fr"};
+  /* grid-template-rows: ${props =>
+    props.isShowDownDesc ? "1fr 0px " : "1fr 9fr"}; */
+  grid-template-rows: 1fr 9fr;
   overflow: visible;
+  @media ${mobileCard.small} {
+    width: 100%;
+  }
 `;
 
 const Header = styled.div`
-  padding: 0 30px;
+  padding: 20px 30px;
   font-size: 24px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
@@ -102,11 +107,17 @@ const VisitButton = styled.div`
 `;
 
 const DemoContainer = styled.div`
-  padding: 45px;
+  padding: ${props => (props.isShowDownDesc ? "0px" : "45px")};
   display: flex;
   justify-content: center;
   padding-top: 0;
   overflow-y: hidden;
+  transition: 0.4s ease-in-out;
+  opacity: ${props => (props.isShowDownDesc ? 0 : 1)};
+  @media ${mobileCard.small} {
+    padding: 45px 20px;
+    padding-top: 0px;
+  }
 `;
 
 const DemoProject = styled.div`
@@ -127,6 +138,9 @@ const FullDemoButton = styled.div`
   top: 45%;
   right: 10px;
   cursor: pointer;
+  @media ${mobileCard.small} {
+    display: none;
+  }
 `;
 
 const FullDescButton = styled.div`
@@ -151,16 +165,19 @@ const DescriptionContainer = styled.div`
   align-items: center;
   background-color: white;
   color: ${props => props.theme.lightGreyColor};
-  padding-left: 20px;
+  @media ${mobileCard.small} {
+    width: 0%;
+  }
 `;
 
 const FullBottomDescButton = styled.div`
   visibility: ${props => (props.showFullDemo ? "visibility" : "hidden")};
   opacity: ${props => (props.showFullDemo ? 1 : 0)};
   position: absolute;
+  width: 100vw;
   display: flex;
   align-items: center;
-  left: 47%;
+  justify-content: center;
   color: #d3d4d5;
   font-weight: 600;
   bottom: ${props => (props.isShowDownDesc ? "20px" : "10px")};
@@ -172,6 +189,9 @@ const FullBottomDescButton = styled.div`
   }
   & > span {
     margin-left: 10px;
+  }
+  @media ${mobileCard.small} {
+    visibility: visible;
   }
 `;
 
@@ -227,7 +247,7 @@ export default ({ history, location }) => {
           </ResponsivButton>
           <VisitButton>Visit</VisitButton>
         </Header>
-        <DemoContainer>
+        <DemoContainer isShowDownDesc={isShowDownDesc}>
           <DemoProject DemoType={DemoType}>
             <iframe
               key={projectId}

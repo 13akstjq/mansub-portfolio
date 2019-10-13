@@ -26,6 +26,8 @@
 }
 
 /* DemoContainer는 처음에 100% */
+/* DemoContainer는 처음에 들어올떄를 위한 코드 (url로 바로 들어왔을 경우 ) */
+
 .post-appear > div:first-child {
   width: 100%;
 }
@@ -33,7 +35,16 @@
 .post-appear > div:nth-child(2) {
   width: 0%;
 }
-
+.post-appear-done > div:nth-child(2) {
+  width: 40%;
+}
+@media (max-width: 450px) {
+  .post-appear-done > div:nth-child(2) {
+    width: 0%;
+  }
+}
+/* DemoContainer는 처음에 100% */
+/* DemoContainer는 기본적으로 들어왔을 때 적용*/
 .post-enter > div:first-child {
   width: 100%;
 }
@@ -49,9 +60,12 @@
   transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
 }
 
+/* 나가기 전에 일단 0px  */
 .post-exit {
   transform: translateX(0px);
 }
+/* 나가sms rht 100vw  */
+
 .post-exit-active {
   transform: translate(100vw);
   transition: all cubic-bezier(0.16, 0.76, 0.79, 1.07) 700ms;
@@ -60,10 +74,6 @@
 /* DescContainer는 처음에 0% */
 .post-exit-done > div:nth-child(2) {
   width: 0%;
-}
-
-.post-appear-done > div:nth-child(2) {
-  width: 40%;
 }
 
 /* 현재 페이지의 title의 이동 transition */

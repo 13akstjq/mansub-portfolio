@@ -21,5 +21,5 @@ export default {
   tsColor: "#007ACC",
   vueColor: "#41B381",
   chatbotBgColor: "#f3f5fc",
-  transitionOne: "0.3s cubic-bezier(0, 1.21, 0.85, 1.06)"
+  transitionOne: "0.4s cubic-bezier(0, 1.21, 0.85, 1.06)"
 };

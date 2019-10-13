@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   font-size: 40px;
   white-space: nowrap;
   @media ${mobileCard.small} {
-    width: ${props => (props.isSideOpen ? "60vw" : "0px")};
+    width: ${props => (props.isSideOpen ? "55vw" : "0px")};
     font-size: 27px;
   }
 `;
