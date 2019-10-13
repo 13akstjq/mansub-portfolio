@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+  align-items: flex-start;
   @media ${mobileCard.small} {
     padding: 5vw;
     grid-auto-columns: 90vw;

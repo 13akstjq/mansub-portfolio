@@ -32,6 +32,7 @@ const MainContainer = styled.div`
   @media ${mobileCard.small} {
     transform: ${props =>
       props.isSideOpen ? "translateX(60vw) " : "translateX(0px)"};
+    padding-top: 100px;
   }
 `;
 
