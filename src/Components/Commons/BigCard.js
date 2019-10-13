@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import FatText from "./FatText";
 import Avatar from "./Avatar";
 import { Link, withRouter } from "react-router-dom";
 // import oneDayOneCommit from "../assets/video/1Day1Commit.mp4";
@@ -18,9 +17,7 @@ import {
   GraphqlIcon
 } from "./Icons";
 import { UserContext } from "../../Context/UserContext";
-import { AppContext } from "../../Context/AppContext";
 import { AuthContext } from "../../Context/AuthContext";
-import Theme from "../../Styles/Theme";
 import { desktopCard } from "../../Styles/device";
 
 export const bgColorFilter = (category, theme) => {

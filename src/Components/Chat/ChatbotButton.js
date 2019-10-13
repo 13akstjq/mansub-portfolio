@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ChatbotContext } from "../../Context/ChatbotContext";
-import { Envelop } from "../Commons/Icons";
 import { mobileCard } from "../../Styles/device";
 
 // 커졌다가 작아지는 애니메이션
@@ -91,7 +90,6 @@ export default () => {
   const { isChatOpen, setIsChatOpen, isGetReply, setIsGetReply } = useContext(
     ChatbotContext
   );
-  console.log(isGetReply);
   return (
     <Wrapper
       isChatOpen={isChatOpen}
@@ -100,10 +98,7 @@ export default () => {
         setIsGetReply(false);
       }}
     >
-      톡
-      <NewMessageContainer isGetReply={isGetReply}>
-        {/* <Envelop fill={"#F00"}></Envelop> */}N
-      </NewMessageContainer>
+      톡<NewMessageContainer isGetReply={isGetReply}>N</NewMessageContainer>
     </Wrapper>
   );
 };

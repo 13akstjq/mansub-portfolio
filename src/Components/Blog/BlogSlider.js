@@ -133,9 +133,7 @@ export default () => {
       isClick = false;
     }
   };
-  // useEffect(() => {
-  //   onMouseMove();
-  // }, [position]);
+
   return (
     <ProjectListContainer isSideOpen={isSideOpen}>
       <Wrapper

@@ -50,6 +50,10 @@ const EmptyCard = styled.div`
   }
 `;
 export default () => {
+  useEffect(() => {
+    setSelectedProject(1);
+    setScrollIndex(0);
+  }, []);
   const {
     scrollIndex,
     setScrollIndex,
@@ -117,10 +121,6 @@ export default () => {
     isClick = false;
   };
 
-  useEffect(() => {
-    setSelectedProject(1);
-    setScrollIndex(0);
-  }, []);
   return (
     <ProjectListContainer isSideOpen={isSideOpen}>
       <Wrapper

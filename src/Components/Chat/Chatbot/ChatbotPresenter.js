@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CloseButton, Sunny, Moon } from "../../Commons/Icons";
 import Room from "../Room";
 import { mobileCard } from "../../../Styles/device";
+
 const Wrapper = styled.div`
   width: ${props => (props.isChatOpen ? "320px" : "0px")};
   height: ${props => (props.isChatOpen ? "570px" : "0px")};
@@ -99,33 +100,6 @@ const TimeTable = styled.div`
 const ChatbotRow = styled.div`
   overflow: scroll;
 `;
-const RoomListContainer = styled.div`
-  display: grid;
-  background-color: white;
-  margin: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.13);
-`;
-
-const CreateChatButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-const FirstCreateChatButton = styled(CreateChatButton)`
-  width: 150px;
-  height: 40px;
-  font-size: 13px;
-  background-color: ${props => props.theme.chatbotBgColor};
-  border-radius: 7px;
-  margin: auto;
-  margin-bottom: 10px;
-  & > span {
-    margin-left: 5px;
-  }
-`;
 
 export default ({
   isChatOpen,
@@ -135,7 +109,6 @@ export default ({
   isShowTimeTable,
   setIsShowTimeTable,
   currentHours
-  // messages
 }) => {
   return (
     <Wrapper isChatOpen={isChatOpen}>
@@ -164,7 +137,10 @@ export default ({
               ></ChatStatusCircle>
             </ChatStatusContainer>
             <TimeTableText onClick={() => setIsShowTimeTable(!isShowTimeTable)}>
-              연락 가능시간 보기 🕐
+              연락 가능시간 보기{" "}
+              <span role="img" aria-label="clock">
+                🕐
+              </span>
             </TimeTableText>
             {isShowTimeTable && (
               <TimeTable>

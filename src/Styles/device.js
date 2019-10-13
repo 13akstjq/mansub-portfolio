@@ -20,8 +20,8 @@ export const device = {
 };
 
 export const desktopCard = {
-  small: `(max-height: 640px),(max-width : ${size.mobileL})`
+  small: `(max-height: 639px)`
 };
 export const mobileCard = {
-  small: `(max-width : ${size.mobileL})`
+  small: `(max-height : 639px) and (max-width : ${size.mobileL})`
 };

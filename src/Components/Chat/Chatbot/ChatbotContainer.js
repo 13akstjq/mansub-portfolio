@@ -1,9 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import ChatbotPresenter from "./ChatbotPresenter";
-import { getMessages, sendAnswer } from "../../../Services/FirebaseService";
-import { UserContext } from "../../../Context/UserContext";
 import { ChatbotContext } from "../../../Context/ChatbotContext";
-import { getReply } from "../../../Services/SlackService";
 
 export default () => {
   const { isChatOpen, setIsChatOpen, isJobLess } = useContext(ChatbotContext);
@@ -20,7 +17,6 @@ export default () => {
       currentHours={currentHours}
       isShowTimeTable={isShowTimeTable}
       setIsShowTimeTable={setIsShowTimeTable}
-      // messages={messages}
     ></ChatbotPresenter>
   );
 };

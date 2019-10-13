@@ -38,8 +38,6 @@ const ShowContainer = styled.div`
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   display: grid;
-  /* grid-template-rows: ${props =>
-    props.isShowDownDesc ? "1fr 0px " : "1fr 9fr"}; */
   grid-template-rows: 1fr 9fr;
   overflow: visible;
   @media ${mobileCard.small} {

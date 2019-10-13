@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   position: absolute;
-  /* flex-direction: column; */
   padding-top: 200px;
   z-index: 1;
   transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
@@ -24,20 +23,18 @@ const Wrapper = styled.div`
   @media ${mobileCard.small} {
     width: ${props => (props.isSideOpen ? "55vw" : "0px")};
     font-size: 27px;
+    padding-top: 20vh;
   }
 `;
 
 const MenuItem = styled.div`
-  margin-left: 2vw;
-  /* margin-bottom: 80px; */
+  margin-left: 20px;
 `;
 
 const Title = styled.div`
   font-weight: 900;
-  /* font-size: 40px; */
   font-size: 1em;
   color: ${props => props.theme.darkGreyColor};
-  /* margin-bottom: 10px; */
 `;
 const SubTitle = styled.div`
   font-weight: 100;
