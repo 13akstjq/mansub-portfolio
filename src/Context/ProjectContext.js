@@ -11,6 +11,16 @@ const ProjectContextProvider = ({ children }) => {
   const localProjects = [
     {
       id: 1,
+      title: "Portfolio site",
+      name: "Han ManSub",
+      category: ["React , Hooks"],
+      url: "https://mansub.netlify.com",
+      postUrl: "",
+      photo: mansubportfolio,
+      color: "#948798"
+    },
+    {
+      id: 2,
       title: "Instagram Clone",
       name: "Han ManSub",
       category: ["react", "Hooks"],
@@ -21,18 +31,20 @@ const ProjectContextProvider = ({ children }) => {
       color: "#38416E"
     },
     {
-      id: 2,
-      title: "Portfolio site",
-      name: "Han ManSub",
-      category: ["React , Hooks"],
-      url: "https://mansub.netlify.com",
-      postUrl: "",
-      photo: mansubportfolio,
-      color: "#948798"
-    },
-    {
       id: 3,
       title: "Chrome Extension - 1Day 1Commit",
+      name: "Han ManSub",
+      category: "Vanilla JS",
+      url:
+        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
+      postUrl:
+        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
+      photo: onedayonecommit,
+      color: "#0D8CEB"
+    },
+    {
+      id: 4,
+      title: "Copy Link to Slack",
       name: "Han ManSub",
       category: "Vanilla JS",
       url:

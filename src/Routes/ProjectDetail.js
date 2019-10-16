@@ -37,7 +37,7 @@ const ShowContainer = styled.div`
   transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
     opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
     height 0.5s cubic-bezier(0.72, 0, 0.58, 1);
-  background-color: #33a2a7;
+  background-color: ${props => props.bgColor};
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   display: grid;
@@ -138,10 +138,10 @@ const FullDemoButton = styled.div`
   visibility: ${props => (props.isShowDownDesc ? "hidden" : "visibility")};
   padding: 5px;
   color: ${props => props.theme.darkGreyColor};
-  font-size: 30px;
+  font-size: 25px;
   position: absolute;
   top: 45%;
-  right: 10px;
+  right: 4px;
   cursor: pointer;
   @media ${mobileCard.small} {
     display: none;
@@ -152,8 +152,8 @@ const FullDescButton = styled.div`
   padding: 5px;
   position: absolute;
   top: 45%;
-  left: 10px;
-  font-size: 30px;
+  left: 4px;
+  font-size: 25px;
   cursor: pointer;
 `;
 
@@ -191,8 +191,8 @@ const FullBottomDescButton = styled.div`
   font-weight: 600;
   bottom: ${props => (props.isShowDownDesc ? "20px" : "10px")};
   cursor: pointer;
-  opacity: 0.6;
   transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
     height 0.5s cubic-bezier(0.72, 0, 0.58, 1), background-color 0.5s;
   &:hover {
     opacity: 0.95;
@@ -236,9 +236,11 @@ export default ({ history, location }) => {
   useEffect(() => {
     setProject(projects[projectId - 1]);
   }, []);
+
   return (
     <Wrapper>
       <ShowContainer
+        bgColor={project && project.color}
         showFullDemo={showFullDemo}
         showFullDesc={showFullDesc}
         isShowDownDesc={isShowDownDesc}
@@ -323,6 +325,7 @@ export default ({ history, location }) => {
             scrolling="yes"
             marginHeight="0"
             marginWidth="0"
+            marginLeft="20px"
             src={project && project.postUrl}
             ref={postRef}
           ></iframe>
