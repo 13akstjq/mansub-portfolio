@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 import onedayonecommit from "../assets/image/onedayonecommit.png";
 import mansubportfolio from "../assets/image/mansubportfolio.png";
 import manstagram from "../assets/image/manstagram.png";
-
+import copyLinkToSlack from "../assets/image/copyLinkToSlack.png";
 //컨텍스트 생성
 export const ProjectContext = createContext();
 
@@ -15,9 +15,10 @@ const ProjectContextProvider = ({ children }) => {
       name: "Han ManSub",
       category: ["React , Hooks"],
       url: "https://mansub.netlify.com",
-      postUrl: "",
+      postUrl:
+        "https://13akstjq.github.io/portfolio/2019/08/20/portfolio-doc.html",
       photo: mansubportfolio,
-      color: "#948798"
+      color: "#6D214F"
     },
     {
       id: 2,
@@ -28,7 +29,7 @@ const ProjectContextProvider = ({ children }) => {
       postUrl:
         "https://13akstjq.github.io/manstagram/2019/10/14/manstagram-Doc.html",
       photo: manstagram,
-      color: "#38416E"
+      color: "#D6A2E8"
     },
     {
       id: 3,
@@ -40,7 +41,7 @@ const ProjectContextProvider = ({ children }) => {
       postUrl:
         "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
       photo: onedayonecommit,
-      color: "#0D8CEB"
+      color: "#FD7272"
     },
     {
       id: 4,
@@ -50,9 +51,9 @@ const ProjectContextProvider = ({ children }) => {
       url:
         "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
       postUrl:
-        "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
-      photo: onedayonecommit,
-      color: "#0D8CEB"
+        "https://13akstjq.github.io/chrome-extension/2019/09/06/Copy-Link-to-Slack.html",
+      photo: copyLinkToSlack,
+      color: "#3B3B98"
     }
   ];
 

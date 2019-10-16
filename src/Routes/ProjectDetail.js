@@ -325,7 +325,7 @@ export default ({ history, location }) => {
             scrolling="yes"
             marginHeight="0"
             marginWidth="0"
-            marginLeft="20px"
+            style={{ marginLeft: "20px" }}
             src={project && project.postUrl}
             ref={postRef}
           ></iframe>

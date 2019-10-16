@@ -36,7 +36,11 @@ const Wrapper = styled.button`
   border: none;
   background-color: #8565fc;
   color: white;
-  transition: transform 0.3s ease-in-out;
+  transition: all
+    ${props =>
+      props.isChatOpen
+        ? "0.3s ease-in-out;"
+        : "0.6s cubic-bezier(1,-0.78,1,.14)"};
   z-index: 9;
   cursor: pointer;
   &:hover {
