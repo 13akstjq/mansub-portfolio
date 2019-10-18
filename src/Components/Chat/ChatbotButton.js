@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ChatbotContext } from "../../Context/ChatbotContext";
 import { mobileCard } from "../../Styles/device";
-
+import ChatBotIcon from "../../assets/svg/ChatBotIcon";
 // 커졌다가 작아지는 애니메이션
 const bigSmall = keyframes`
     0% {
@@ -102,7 +102,8 @@ export default () => {
         setIsGetReply(false);
       }}
     >
-      톡<NewMessageContainer isGetReply={isGetReply}>N</NewMessageContainer>
+      <ChatBotIcon></ChatBotIcon>
+      <NewMessageContainer isGetReply={isGetReply}>N</NewMessageContainer>
     </Wrapper>
   );
 };

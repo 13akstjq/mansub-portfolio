@@ -5,11 +5,12 @@ import { UserContext } from "../../Context/UserContext";
 import { AuthContext } from "../../Context/AuthContext";
 import { mobileCard } from "../../Styles/device";
 import Theme from "../../Styles/Theme";
-
+import Logo from "../../assets/svg/Logo";
+import Logo2 from "../../assets/svg/Logo2";
 const Header = styled.div`
   position: fixed;
   width: 100vw;
-  height: 100px;
+  height: 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,10 +22,10 @@ const Header = styled.div`
   }
 `;
 
-const Logo = styled.img`
-  margin-left: 20px;
-  width: 4em;
-  height: 4em;
+const LogoContainer = styled.div`
+  margin-left: 1.7em;
+  width: 5.5em;
+  height: 5.5em;
   cursor: pointer;
 `;
 
@@ -53,7 +54,10 @@ export default () => {
   };
   return (
     <Header>
-      <Logo src={PortfolioLogo} />
+      <LogoContainer>
+        {/* <Logo></Logo> */}
+        <Logo2></Logo2>
+      </LogoContainer>
       <AuthButton onClick={toggleIsAuthOpen}>
         {!isLoggedIn ? "Login" : "Logout"}
       </AuthButton>
