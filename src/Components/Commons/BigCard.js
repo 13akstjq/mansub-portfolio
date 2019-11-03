@@ -154,7 +154,10 @@ const SubTitleContainer = styled.div`
 `;
 
 const CreatedAt = styled.div`
+  font-size: 0.8em;
   right: 0px;
+  display: flex;
+  align-items: flex-end;
   color: ${props => props.theme.lightGreyColor};
 `;
 
@@ -163,6 +166,7 @@ const CategoryList = styled.div``;
 const Category = styled.span`
   margin-right: 0.5em;
   font-size: 0.8em;
+  align-items: flex-end;
   color: ${props => props.theme.lightGreyColor};
 `;
 
