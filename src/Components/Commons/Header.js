@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import PortfolioLogo from "../../assets/image/portfolioLogo.jpg";
 import { UserContext } from "../../Context/UserContext";
 import { AuthContext } from "../../Context/AuthContext";
 import { mobileCard } from "../../Styles/device";
 import Theme from "../../Styles/Theme";
-import Logo from "../../assets/svg/Logo";
 import Logo2 from "../../assets/svg/Logo2";
 const Header = styled.div`
   position: fixed;

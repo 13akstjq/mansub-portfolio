@@ -65,7 +65,9 @@ export default () => {
   useEffect(() => {
     setSelectedProject(1);
     setScrollIndex(0);
+    // eslint-disable-next-line
   }, []);
+
   const {
     scrollIndex,
     setScrollIndex,

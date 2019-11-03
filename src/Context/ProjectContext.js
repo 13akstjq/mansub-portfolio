@@ -36,8 +36,7 @@ const ProjectContextProvider = ({ children }) => {
       title: "Chrome Extension - 1Day 1Commit",
       name: "Han ManSub",
       category: "Vanilla JS",
-      url:
-        "https://chrome.google.com/webstore/detail/1day1commit/pcmgohbndjdocgcodhijcmlcmahbephf?hl=ko",
+      url: "https://13akstjq.github.io/oneDayoneCommit-demo/",
       postUrl:
         "https://13akstjq.github.io/chrome-extension/2019/09/06/1Day-1Commit-1일1커밋-매니져.html",
       photo: onedayonecommit,

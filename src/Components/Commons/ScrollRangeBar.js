@@ -44,11 +44,17 @@ export default withRouter(({ location }) => {
   const content = location.pathname.split("/")[1] === "Blog" ? posts : projects;
   const contentLength = content.length;
 
+  //
+
   useEffect(() => {
     // 현재 페이지에 따른 text
-    location.pathname.split("/")[1] === "Blog"
-      ? setSelectedContentIndex(selectedPost)
-      : setSelectedContentIndex(selectedProject);
+    const textInit = () => {
+      location.pathname.split("/")[1] === "Blog"
+        ? setSelectedContentIndex(selectedPost)
+        : setSelectedContentIndex(selectedProject);
+    };
+    textInit();
+    // eslint-disable-next-line
   }, [selectedProject, selectedPost]);
 
   return (

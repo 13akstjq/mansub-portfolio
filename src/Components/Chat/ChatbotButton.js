@@ -36,7 +36,8 @@ const Wrapper = styled.button`
   border: none;
   background-color: #8565fc;
   color: white;
-  transition: all
+  box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.19);
+  )transition: all
     ${props =>
       props.isChatOpen
         ? "0.3s ease-in-out;"

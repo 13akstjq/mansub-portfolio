@@ -33,11 +33,14 @@ const ChatInputContainer = styled.div`
 `;
 
 const ChatForm = styled.form`
+  flex: 8;
   display: flex;
   align-items: center;
 `;
 
-const SendButtonContainer = styled.div``;
+const SendButtonContainer = styled.div`
+  display: flex;
+`;
 
 const EmojiContainer = styled.div`
   display: flex;
@@ -58,13 +61,17 @@ const Emoji = styled.div`
   cursor: pointer;
 `;
 
-const EmojiIconContainer = styled.div``;
+const EmojiIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 2;
+`;
 
 const ChatInput = styled.input`
   text-decoration: none;
   padding: 10px 5px;
   border: none;
-
+  flex: 1;
   &:focus {
     outline: none;
   }
@@ -241,6 +248,7 @@ export default () => {
       top: 100000
     });
     refresh();
+    // eslint-disable-next-line
   }, [messages]);
 
   // 처음에 메세지를 받아서 타임스탬프 필터링
@@ -249,6 +257,7 @@ export default () => {
       top: 100000
     });
     setLoading(false);
+    // eslint-disable-next-line
   }, [newMessages, guideMessages]);
 
   const refresh = () => {

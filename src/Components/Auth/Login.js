@@ -11,18 +11,24 @@ import {
   createRoom
 } from "../../Services/FirebaseService";
 import { AuthContext } from "../../Context/AuthContext";
+import { mobileCard } from "../../Styles/device";
 
 const Wrapper = styled.div`
-  z-index: 10;
+  z-index: 21;
   position: fixed;
   overflow: hidden;
   right: 0px;
-  top: 80px;
+  top: 100px;
   transition: 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
   ${props =>
     props.isAuthOpen && !props.isLoggedIn
       ? "width : 160px; height : 190px; opacity : 1"
       : "width : 0px; height: 0px; opacity : 0"}
+
+
+  @media ${mobileCard.small}{
+    top : 60px;
+  }
 `;
 const Overlay = styled.div`
   visibility: ${props => (props.isAuthOpen ? "visibility" : "hidden")};

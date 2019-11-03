@@ -96,7 +96,7 @@ const SkillImage = styled.div`
 const Wrapper = styled.div`
   height: 370px;
   position: relative;
-  transition: transform 0.5s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transition: transform 0.5s cubic-bezier(0, 1.21, 0.85, 1.06), box-shadow 0.5s;
   border-radius: 10px;
   overflow: hidden;
   display: grid;
@@ -108,6 +108,7 @@ const Wrapper = styled.div`
   }
   &:hover {
     transform: scale(1.03);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.16);
   }
   @media ${desktopCard.small} {
     height: 250px;

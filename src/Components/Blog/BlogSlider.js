@@ -81,6 +81,7 @@ export default () => {
   let startX = 0;
   let curX = 0;
   // 최근 블로그 10개 게시물 호출
+
   useEffect(() => {
     setSelectedPost(1);
     setScrollIndex(0);
@@ -99,6 +100,7 @@ export default () => {
       });
     } else {
     }
+    // eslint-disable-next-line
   }, []);
 
   // 휠 이벤트 메소드

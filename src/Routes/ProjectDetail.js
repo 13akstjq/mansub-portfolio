@@ -235,6 +235,7 @@ export default ({ history, location }) => {
 
   useEffect(() => {
     setProject(projects[projectId - 1]);
+    // eslint-disable-next-line
   }, []);
 
   return (
