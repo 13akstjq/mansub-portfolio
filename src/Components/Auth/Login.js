@@ -19,11 +19,11 @@ const Wrapper = styled.div`
   overflow: hidden;
   right: 0px;
   top: 100px;
-  transition: 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
+  transition: opacity 0.2s , height 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19), width 0.3s cubic-bezier(0.17, 0.67, 0.25, 1.19);
   ${props =>
     props.isAuthOpen && !props.isLoggedIn
       ? "width : 160px; height : 190px; opacity : 1"
-      : "width : 0px; height: 0px; opacity : 0"}
+      : "width : 100px; height: 80px; opacity : 0"}
 
 
   @media ${mobileCard.small}{

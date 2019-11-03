@@ -12,7 +12,7 @@ import {
 } from "../Components/Commons/Icons";
 import { ProjectContext } from "../Context/ProjectContext";
 import Theme from "../Styles/Theme";
-import { mobileCard } from "../Styles/device";
+import { mobileCard, device } from "../Styles/device";
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -91,6 +91,9 @@ const DesktopButton = styled.div`
     transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
   }
   cursor: pointer;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 const VisitButton = styled.div`

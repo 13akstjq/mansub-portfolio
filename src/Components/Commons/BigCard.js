@@ -129,7 +129,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -158,11 +158,16 @@ const CreatedAt = styled.div`
   color: ${props => props.theme.lightGreyColor};
 `;
 
+const CategoryList = styled.div``;
+
 const Category = styled.span`
+  margin-right: 0.5em;
+  font-size: 0.8em;
   color: ${props => props.theme.lightGreyColor};
 `;
 
 const InfoContainer = styled.div`
+  font-size: 0.9em;
   display: flex;
   padding-top: 10px;
   align-items: flex-end;
@@ -268,7 +273,14 @@ export default withRouter(
             <TitleContainer>
               <Title>{title}</Title>
               <SubTitleContainer>
-                <Category>{category}</Category>
+                <CategoryList>
+                  {pathName === "/" ? (
+                    category.map(c => <Category>{c}</Category>)
+                  ) : (
+                    <Category>{category}</Category>
+                  )}
+                </CategoryList>
+
                 <CreatedAt>{createdAt}</CreatedAt>
               </SubTitleContainer>
             </TitleContainer>

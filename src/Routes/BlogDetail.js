@@ -5,7 +5,7 @@ import { Mobile, Desktop, LeftIcon } from "../Components/Commons/Icons";
 import { getBlog, postTagToPostList } from "../Services/BlogService";
 import { bgColorFilter } from "../Components/Commons/BigCard";
 import { ProjectContext } from "../Context/ProjectContext";
-import { mobileCard } from "../Styles/device";
+import { mobileCard, device } from "../Styles/device";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -74,6 +74,9 @@ const DesktopButton = styled.div`
     transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
   }
   cursor: pointer;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 const VisitButton = styled.a`

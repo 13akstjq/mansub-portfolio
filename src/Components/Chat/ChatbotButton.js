@@ -37,11 +37,11 @@ const Wrapper = styled.button`
   background-color: #8565fc;
   color: white;
   box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.19);
-  )transition: all
+  transition: all
     ${props =>
       props.isChatOpen
         ? "0.3s ease-in-out;"
-        : "0.6s cubic-bezier(1,-0.78,1,.14)"};
+        : "0.6s cubic-bezier(1,-0.11, 0.58, 1)"};
   z-index: 9;
   cursor: pointer;
   &:hover {
