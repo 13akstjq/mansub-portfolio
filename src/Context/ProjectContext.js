@@ -15,10 +15,10 @@ const ProjectContextProvider = ({ children }) => {
       title: "개발자 채용 웹 서비스 ",
       name: "Han ManSub",
       category: ["React", "TypeScript", "Redux", "Axios"],
-      url: "http://13.125.230.141/#/",
+      url: "http://18.191.47.169:8080/#/",
       postUrl: "https://13akstjq.github.io/items/2019/11/03/itsme.html",
-      photo: blockCar,
-      color: "#CAE6F2"
+      photo: "",
+      color: "#512772"
     },
     {
       id: 2,

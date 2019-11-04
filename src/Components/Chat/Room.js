@@ -167,6 +167,7 @@ export default () => {
   const { loggedInUser } = useContext(UserContext);
   const { setIsGetReply } = useContext(ChatbotContext);
   const [loading, setLoading] = useState(false);
+  const [isInputFocus, setIsInputFocus] = useState(false);
   const [guideMessages, setGiudeMessages] = useState([
     `안녕하세요 😊
      궁금한 것이 있으시면 무엇이든 물어봐주세요.`
@@ -408,7 +409,7 @@ export default () => {
           })}
       </MessagesContainer>
       <ChatInputContainer>
-        <EmojiContainer isEmojiClick={isEmojiClick}>
+        <EmojiContainer isEmojiClick={isEmojiClick} isInputFocus={isInputFocus}>
           {emojiList.map((emojiItem, index) => (
             <Emoji
               onClick={() => appendEmojitoMessage(showEmoji(emojiItem))}
@@ -424,6 +425,7 @@ export default () => {
         <ChatForm onSubmit={onSubmit}>
           <ChatInput
             // {...chatbotInput}
+            onFocus={() => setIsEmojiClick(!isEmojiClick)}
             value={chatbotInput.value}
             onChange={chatbotInput.onChange}
             type="text"

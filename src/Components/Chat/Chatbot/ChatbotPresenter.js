@@ -119,7 +119,12 @@ export default ({
     <Wrapper isChatOpen={isChatOpen}>
       <Header>
         <span>Mansub</span>
-        <CloseButtonContainer onClick={() => setIsChatOpen(!isChatOpen)}>
+        <CloseButtonContainer
+          onClick={() => {
+            setIsShowTimeTable(false);
+            setIsChatOpen(!isChatOpen);
+          }}
+        >
           <CloseButton></CloseButton>
         </CloseButtonContainer>
       </Header>
