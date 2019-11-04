@@ -43,9 +43,9 @@ const ChatBotIcon = () => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width="45mm"
-    height="45mm"
+    height="48mm"
     version="1.1"
-    viewBox="0 0 45 45"
+    viewBox="0 0 48 48"
   >
     <g transform="translate(0 -252)">
       <path
@@ -53,7 +53,7 @@ const ChatBotIcon = () => (
         strokeMiterlimit="4"
         strokeWidth="2.234"
         d="M9.82 282.574a13.75 7.434 0 0013.726 7.055 13.75 7.434 0 0013.716-7.055z"
-        fill="white"
+        fill={Theme.themeColor}
       ></path>
       <rect
         width="4.472"
@@ -62,7 +62,7 @@ const ChatBotIcon = () => (
         y="265.817"
         strokeWidth="0.083"
         ry="1.26"
-        fill="white"
+        fill={Theme.themeColor}
       ></rect>
       <rect
         width="4.472"
@@ -71,7 +71,7 @@ const ChatBotIcon = () => (
         y="265.817"
         strokeWidth="0.083"
         ry="1.26"
-        fill="white"
+        fill={Theme.themeColor}
       ></rect>
       <EyeTop
         width="4.472"
@@ -82,7 +82,7 @@ const ChatBotIcon = () => (
         strokeMiterlimit="4"
         strokeWidth="1.526"
         ry="0.189"
-        fill={Theme.themeColor}
+        fill={"white"}
       ></EyeTop>
       <EyeTop
         width="4.85"
@@ -93,7 +93,7 @@ const ChatBotIcon = () => (
         strokeMiterlimit="4"
         strokeWidth="1.589"
         ry="0.189"
-        fill={Theme.themeColor}
+        fill={"white"}
       ></EyeTop>
     </g>
   </Svg>

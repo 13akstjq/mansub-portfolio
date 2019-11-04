@@ -14,7 +14,8 @@ import {
   JsIcon,
   TsIcon,
   GithubIcon,
-  GraphqlIcon
+  GraphqlIcon,
+  AwsIcon
 } from "./Icons";
 import { UserContext } from "../../Context/UserContext";
 import { AuthContext } from "../../Context/AuthContext";
@@ -259,7 +260,6 @@ export default withRouter(
               {pathName === "/Blog" && category === "typescript" && (
                 <TsIcon></TsIcon>
               )}
-
               {pathName === "/Blog" &&
                 (category === "git" || category === "github") && (
                   <GithubIcon></GithubIcon>
@@ -269,6 +269,9 @@ export default withRouter(
               )}
               {pathName === "/Blog" && category === "graphql" && (
                 <GraphqlIcon></GraphqlIcon>
+              )}{" "}
+              {pathName === "/Blog" && category === "aws" && (
+                <AwsIcon size={"100"}></AwsIcon>
               )}
             </SkillImage>
           )}

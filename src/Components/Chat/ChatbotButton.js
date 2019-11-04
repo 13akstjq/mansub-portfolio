@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ChatbotContext } from "../../Context/ChatbotContext";
 import { mobileCard } from "../../Styles/device";
-import ChatBotIcon from "../../assets/svg/ChatBotIcon";
+import ChatbotPresenter from "./Chatbot/ChatbotPresenter";
+import ChatBotIcon2 from "../../assets/svg/ChatBotIcon2";
 // 커졌다가 작아지는 애니메이션
 const bigSmall = keyframes`
     0% {
@@ -29,9 +30,10 @@ const Wrapper = styled.button`
   position: fixed;
   bottom: 10px;
   right: 10px;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   opacity: ${props => (props.isChatOpen ? "0" : "1")};
+  padding: 0px;
   border-radius: 50%;
   border: none;
   background-color: #8565fc;
@@ -91,6 +93,13 @@ const NewMessageContainer = styled.div`
   /* background-size: cover; */
 `;
 
+const WhiteCircle = styled.div`
+  width: 70%;
+  height: 48px;
+  border-radius: 50%;
+  background-color: white;
+`;
+
 export default () => {
   const { isChatOpen, setIsChatOpen, isGetReply, setIsGetReply } = useContext(
     ChatbotContext
@@ -103,7 +112,7 @@ export default () => {
         setIsGetReply(false);
       }}
     >
-      <ChatBotIcon></ChatBotIcon>
+      <ChatBotIcon2></ChatBotIcon2>
       <NewMessageContainer isGetReply={isGetReply}>N</NewMessageContainer>
     </Wrapper>
   );
