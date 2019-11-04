@@ -165,7 +165,7 @@ export default () => {
   const chatbotInput = useInput("");
   const [isEmojiClick, setIsEmojiClick] = useState(false);
   const { loggedInUser } = useContext(UserContext);
-  const { setIsGetReply } = useContext(ChatbotContext);
+  const { isChatOpen, setIsGetReply } = useContext(ChatbotContext);
   const [loading, setLoading] = useState(false);
   const [isInputFocus, setIsInputFocus] = useState(false);
   const [guideMessages, setGiudeMessages] = useState([
@@ -319,6 +319,11 @@ export default () => {
       });
     }
   }, [loggedInUser]);
+
+  // 챗봇이 닫히면 이모지 컨테이너 닫기
+  useEffect(() => {
+    setIsEmojiClick(false);
+  }, [isChatOpen]);
 
   // 이모지 코드 리스트
   const emojiList = [
