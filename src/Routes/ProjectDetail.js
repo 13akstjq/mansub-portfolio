@@ -205,6 +205,7 @@ const FullBottomDescButton = styled.div`
   }
   @media ${mobileCard.small} {
     visibility: visible;
+    opacity: 1;
   }
 `;
 
