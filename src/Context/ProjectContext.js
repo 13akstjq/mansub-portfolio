@@ -22,10 +22,10 @@ const ProjectContextProvider = ({ children }) => {
     },
     {
       id: 2,
-      title: "블록체인 기반 중고차 거래 사이트 ",
+      title: "블록체인 기반 중고차 거래 서비스 ",
       name: "Han ManSub",
       category: ["React", "TypeScript", "Redux", "Axios"],
-      url: "http://13.125.230.141/#/",
+      url: "http://13.124.63.128/#/",
       postUrl:
         "https://13akstjq.github.io/blockcar/2019/11/03/%EB%B8%94%EB%A1%9D%EC%B9%B4.html",
       photo: blockCar,
@@ -44,7 +44,7 @@ const ProjectContextProvider = ({ children }) => {
     },
     {
       id: 4,
-      title: "학습용 인스타그램 클론 ",
+      title: "학습용 인스타그램 클론  ",
       name: "Han ManSub",
       category: ["React", "ReactHooks", "GraphQL", "Prisma"],
       url: "https://manstagram.netlify.com/#/",
