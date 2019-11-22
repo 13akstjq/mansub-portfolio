@@ -68,24 +68,23 @@ export const bgColorFilter = (category, theme) => {
 };
 
 const ImageContainer = styled.div`
-  padding: 20px 10px;
-  background-color: ${props => props.color};
+  /* padding: 20px 10px; */
+  /* background-color: ${props => props.color}; */
   @media ${desktopCard.small} {
     padding: 50px 10px;
   }
 `;
 const Image = styled.img`
-  /* background-image: ${props => `url(${props.photo})`}; */
-  /* background-image : ${props => props.photo};
+  background-image: ${props => `url(${props.url})`};
+  background-image: ${props => props.url};
   background-position: center;
-  background-size: cover; */
+  background-size: cover;
   width: 100%;
   height: 100%;
-  border-radius : 3px;
+  border-radius: 3px;
   @media ${desktopCard.small} {
-    box-shadow : 1px 1px 3px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   }
-  
 `;
 
 const SkillImage = styled.div`
@@ -246,7 +245,7 @@ export default withRouter(
         <Wrapper category={category}>
           {pathName === "/" ? (
             <ImageContainer color={color}>
-              <Image src={photo}></Image>
+              <Image url={photo}></Image>
             </ImageContainer>
           ) : (
             <SkillImage>
