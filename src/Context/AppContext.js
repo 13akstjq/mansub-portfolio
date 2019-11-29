@@ -5,6 +5,7 @@ import ProjectContextProvider from "./ProjectContext";
 import ChatbotContextProvider from "./ChatbotContext";
 import SideBarContextProvider from "./SideBarContext";
 import UserContextProvider from "./UserContext";
+import ConferenceContext from "./ConferenceContext";
 
 const AppContext = ({ children }) => {
   return (
@@ -13,7 +14,9 @@ const AppContext = ({ children }) => {
         <ProjectContextProvider>
           <ChatbotContextProvider>
             <SideBarContextProvider>
-              <UserContextProvider>{children}</UserContextProvider>
+              <ConferenceContext>
+                <UserContextProvider>{children}</UserContextProvider>
+              </ConferenceContext>
             </SideBarContextProvider>
           </ChatbotContextProvider>
         </ProjectContextProvider>

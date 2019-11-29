@@ -1,26 +1,94 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../Components/Commons/Header";
 import styled from "styled-components";
 import SideBar from "../Components/Sidebar/SideBar";
+import SidebarControlButton from "../Components/Sidebar/SidebarControlButton";
+import ScrollRangeBar from "../Components/Commons/ScrollRangeBar";
+import { CSSTransition } from "react-transition-group";
+
+import "../Styles/Home.css";
+import { SideBarContext } from "../Context/SideBarContext";
+import BlogSlider from "../Components/Blog/BlogSlider";
+import { mobileCard } from "../Styles/device";
+import Theme from "../Styles/Theme";
+import ConferenceSlider from "../Components/Conference/ConferenceSlider";
 
 const Wrapper = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100vw;
-`;
-const MainContainer = styled.div`
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
+  font-size: 16px;
+  @media ${mobileCard.small} {
+    font-size: 12px;
+  }
 `;
+
+const MainContainer = styled.div`
+  padding-top: 140px;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  transform: ${props =>
+    props.isSideOpen ? "translateX(300px) " : "translateX(0px)"};
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  @media ${mobileCard.small} {
+    transform: ${props =>
+      props.isSideOpen ? "translateX(60vw) " : "translateX(0px)"};
+    padding-top: 60px;
+  }
+`;
+
+const MenuContainer = styled.div`
+  align-items: flex-end;
+  padding-left: 5vw;
+  color: ${Theme.lightBlackColor};
+  width: ${props => (props.isSideOpen ? "calc(76vw - 150px)" : "93vw")};
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.2fr 0.4fr 10fr;
+  transition: 0.3s cubic-bezier(0, 1.21, 0.85, 1.06);
+  transform: ${props =>
+    props.isSideOpen ? "translateX(30px) " : "translateX(0px)"};
+  @media ${mobileCard.small} {
+    transform: ${props =>
+      props.isSideOpen ? "translateX(-5vw) " : "translateX(0px)"};
+  }
+`;
+
+const MenuTitle = styled.div`
+  font-size: 1.9em;
+  font-weight: 900;
+  margin-left: 10px;
+  color: ${Theme.lightBlackColor};
+`;
+
 export default () => {
+  const { isSideOpen } = useContext(SideBarContext);
+
   return (
     <Wrapper>
       <Header />
       <SideBar />
-      <MainContainer>Conference</MainContainer>
+      <MainContainer isSideOpen={isSideOpen}>
+        <MenuContainer isSideOpen={isSideOpen}>
+          <SidebarControlButton />
+          <CSSTransition
+            in={true}
+            timeout={1300}
+            appear
+            classNames="page__title"
+          >
+            <MenuTitle>Conference</MenuTitle>
+          </CSSTransition>
+          <ScrollRangeBar />
+        </MenuContainer>
+        <ConferenceSlider></ConferenceSlider>
+      </MainContainer>
     </Wrapper>
   );
 };

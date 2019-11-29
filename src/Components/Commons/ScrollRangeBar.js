@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { ProjectContext } from "../../Context/ProjectContext";
 import { BlogContext } from "../../Context/BlogContext";
+import { ConferenceContext } from "../../Context/ConferenceContext";
 
 const Wrapper = styled.div`
   margin-left: 20px;
@@ -40,17 +41,21 @@ const TotalNumber = styled.div`
 export default withRouter(({ location }) => {
   const { projects, selectedProject } = useContext(ProjectContext);
   const { posts, selectedPost } = useContext(BlogContext);
+  const { conferences, selectedConference } = useContext(ConferenceContext);
   const [selectedContentIndex, setSelectedContentIndex] = useState(0);
-  const content = location.pathname.split("/")[1] === "Blog" ? posts : projects;
+  const menu = location.pathname.split("/")[1];
+  const content =
+    menu === "Blog" ? posts : menu === "Conference" ? conferences : projects;
   const contentLength = content.length;
-
-  //
 
   useEffect(() => {
     // 현재 페이지에 따른 text
     const textInit = () => {
-      location.pathname.split("/")[1] === "Blog"
+      let postType = location.pathname.split("/")[1];
+      postType === "Blog"
         ? setSelectedContentIndex(selectedPost)
+        : postType === "Conference"
+        ? setSelectedContentIndex(selectedConference)
         : setSelectedContentIndex(selectedProject);
     };
     textInit();
