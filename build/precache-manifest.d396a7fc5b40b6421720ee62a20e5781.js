@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e6751e7529a48d4d9a01c7106a1e7138",
+    "revision": "1a94415bd3de4be79aff07b778638ab3",
     "url": "/index.html"
   },
   {
-    "revision": "8a6c9614608c1fdc7c0b",
+    "revision": "f144b6d5561b184b728d",
     "url": "/static/css/main.a857e1d6.chunk.css"
   },
   {
-    "revision": "dd60eaf845484f0f90ff",
-    "url": "/static/js/2.c2ce39a5.chunk.js"
+    "revision": "90fa35a16af3fc23fe05",
+    "url": "/static/js/2.c5aeea5d.chunk.js"
   },
   {
-    "revision": "8a6c9614608c1fdc7c0b",
-    "url": "/static/js/main.c61fc48d.chunk.js"
+    "revision": "f144b6d5561b184b728d",
+    "url": "/static/js/main.040850af.chunk.js"
   },
   {
     "revision": "ee78056cbf9d2d1cacc7",
@@ -44,7 +44,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/mansubportfolio.6b448b97.png"
   },
   {
+    "revision": "7cb158dd129af3ac2cedf298de18a555",
+    "url": "/static/media/myProfile.7cb158dd.jpg"
+  },
+  {
     "revision": "ef1559b5999b24881eb2a39c9cad5c81",
     "url": "/static/media/onedayonecommit.ef1559b5.png"
+  },
+  {
+    "revision": "9f1d1f6baf59e7b7d01c160f5736f28b",
+    "url": "/static/media/wanted_developer_meetup.9f1d1f6b.png"
   }
 ]);

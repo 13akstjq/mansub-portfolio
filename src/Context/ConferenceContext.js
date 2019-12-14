@@ -1,6 +1,8 @@
 import React, { createContext, useState } from "react";
 import gdg from "../assets/image/gdg.png";
 import feconf2019 from "../assets/image/feconf2019.png";
+import wanted_developer_meetup from "../assets/image/wanted_developer_meetup.png";
+
 //컨텍스트 생성
 export const ConferenceContext = createContext();
 
@@ -8,7 +10,16 @@ const ConferenceContextProvider = ({ children }) => {
   const [selectedConference, setSelectedConference] = useState(1);
   const localConferences = [
     {
-      id: 1,
+      id: 3,
+      title: "Wanted Developer Meetup",
+      name: "Han ManSub",
+      date: "2019년 12월 04일",
+      address: "위워크 역삼점 3층 메인 라운지 ",
+      photo: wanted_developer_meetup,
+      color: "#512772"
+    },
+    {
+      id: 2,
       title: "FE CONF 2019 ",
       name: "Han ManSub",
       date: "2019년 10월 26일",
@@ -17,7 +28,7 @@ const ConferenceContextProvider = ({ children }) => {
       color: "#512772"
     },
     {
-      id: 2,
+      id: 1,
       title: "Google I/O Extended 2019 Daejeon ",
       name: "Han ManSub",
       date: "2019년 7월 20일",

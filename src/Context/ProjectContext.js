@@ -15,7 +15,7 @@ const ProjectContextProvider = ({ children }) => {
       title: "개발자 채용 웹 서비스 ",
       name: "Han ManSub",
       category: ["React", "TypeScript", "Redux", "Axios"],
-      url: "http://18.191.47.169:8080/#/",
+      url: "http://13.125.241.20:8080/#/",
       postUrl: "https://13akstjq.github.io/items/2019/11/03/itsme.html",
       photo: "",
       color: "#512772"
@@ -25,7 +25,7 @@ const ProjectContextProvider = ({ children }) => {
       title: "블록체인 기반 중고차 거래 서비스 ",
       name: "Han ManSub",
       category: ["React", "TypeScript", "Redux", "Axios"],
-      url: "http://13.124.63.128/#/",
+      url: "http://13.125.241.20:8081/#/",
       postUrl:
         "https://13akstjq.github.io/blockcar/2019/11/03/%EB%B8%94%EB%A1%9D%EC%B9%B4.html",
       photo: blockCar,
